@@ -34,11 +34,45 @@
         .fade-in { animation: fadeIn 1s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Custom scrollbar for a cleaner look */
+        /* Custom scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+        /* --- FUTURISTIC TIMELINE ANIMATIONS --- */
+        
+        /* The cards start offset, slightly smaller, and invisible */
+        .timeline-item {
+            opacity: 0;
+            transform: translateX(40px) scale(0.95);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy futuristic curve */
+        }
+        
+        /* The nodes start dull */
+        .timeline-node {
+            box-shadow: 0 0 0 rgba(0,0,0,0);
+            transform: scale(0.8);
+            transition: all 0.5s ease-in-out;
+        }
+
+        /* When the JS intersection observer adds the 'show' class */
+        .timeline-item.show {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+        
+        /* Ignite the node glow */
+        .timeline-item.show .timeline-node {
+            box-shadow: 0 0 20px currentColor;
+            transform: scale(1.2);
+        }
+
+        /* Hover effect on ignited nodes */
+        .timeline-item.show:hover .timeline-node {
+            transform: scale(1.5);
+            box-shadow: 0 0 30px currentColor;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-google-blue selection:text-white relative overflow-x-hidden">
@@ -84,43 +118,41 @@
     </section>
 
     <!-- Trusted By / Company LOGOS Banner -->
-    <section class="py-12 border-y border-white/5 bg-slate-900/50 backdrop-blur">
+    <section class="py-12 border-y border-white/5 bg-slate-900/50 backdrop-blur relative z-10">
         <div class="max-w-6xl mx-auto px-6">
-            <p class="text-center text-sm text-slate-500 font-medium mb-10 uppercase tracking-widest">Engineering scale & security at - Enterprise I worked with</p>
+            <p class="text-center text-sm text-slate-500 font-medium mb-10 uppercase tracking-widest">Engineering scale & security at</p>
             
             <div class="flex flex-wrap justify-center gap-12 md:gap-24 items-center">
-                
-                <!-- Google Logo -->
                 <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" 
                      class="h-8 md:h-9 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
-                
-                <!-- Wipro Logo -->
                 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg" alt="Wipro" 
                      class="h-10 md:h-12 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-300 cursor-pointer">
-                
-                <!-- Zomato Logo (Updated) -->
-                <img src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png" alt="Zomato" 
+                <img src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png" alt="Zomato"
                      class="h-6 md:h-7 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
-                
-                <!-- Searce Logo (Updated) -->
                 <img src="https://www.searce.com/images/logo.svg?dpl=dpl_GZUKGxMnGgodHaDTThtRs5CTdjXt" alt="Searce" 
                      class="h-6 md:h-7 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-300 cursor-pointer">
-
             </div>
         </div>
     </section>
 
-    <!-- Experience Section (Timeline Thread Design) -->
+    <!-- Experience Section (Animated Futuristic Timeline) -->
     <section id="experience" class="py-24 px-6 relative">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-white text-center"><span class="text-google-blue">/</span> Career Timeline</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-white text-center relative z-10"><span class="text-google-blue">/</span> Career Timeline</h2>
             
-            <!-- The Thread / Line -->
-            <div class="border-l-2 border-slate-700 ml-4 md:ml-12 space-y-16 relative">
+            <!-- Wrapper for the Timeline -->
+            <div class="ml-4 md:ml-12 space-y-16 relative" id="timeline-container">
                 
+                <!-- 1. The Static Background Track -->
+                <div class="absolute left-0 top-8 bottom-0 w-[2px] bg-slate-800 -ml-[1px]"></div>
+                
+                <!-- 2. The Futuristic Glowing Scroll Line -->
+                <div id="animated-line" class="absolute left-0 top-8 w-[2px] bg-gradient-to-b from-google-blue via-indigo-500 to-orange-500 -ml-[1px] shadow-[0_0_15px_rgba(66,133,244,0.8)] transition-all duration-75 ease-out rounded-full z-0" style="height: 0%;"></div>
+
                 <!-- Google Card -->
-                <div class="relative pl-8 md:pl-12 group">
-                    <div class="absolute -left-[9px] top-8 w-4 h-4 rounded-full bg-google-blue ring-4 ring-[#0f172a] group-hover:scale-125 group-hover:bg-blue-400 transition duration-300"></div>
+                <div class="relative pl-8 md:pl-12 group timeline-item">
+                    <!-- Note: Added 'text-color' matching the bg color so 'currentColor' in CSS creates a matching neon shadow -->
+                    <div class="timeline-node text-google-blue absolute -left-[9px] top-8 w-4 h-4 rounded-full bg-google-blue ring-4 ring-[#0f172a] z-10"></div>
                     
                     <div class="glass-card p-8 rounded-3xl relative overflow-hidden">
                         <i class="fab fa-google absolute -bottom-10 -right-10 text-9xl text-white opacity-5 pointer-events-none"></i>
@@ -128,13 +160,13 @@
                         <h3 class="text-2xl font-bold text-white mb-1">Workspace Cloud Architect</h3>
                         <p class="text-slate-400 mb-6 text-lg font-medium">Google</p>
                         
-                        <ul class="text-slate-300 leading-relaxed space-y-3 mb-6">
+                        <ul class="text-slate-300 leading-relaxed space-y-3 mb-6 relative z-10">
                             <li><i class="fas fa-angle-right text-google-blue mr-2 text-sm"></i> Developer of a core Google Workspace to Workspace chat migration tool supporting domain transfers.</li>
                             <li><i class="fas fa-angle-right text-google-blue mr-2 text-sm"></i> Designing automation solutions leveraging <strong>Apps Script, Vertex AI & REST APIs</strong> to eliminate human error across enterprise deployments.</li>
                             <li><i class="fas fa-angle-right text-google-blue mr-2 text-sm"></i> Acting as a trusted advisor for global public sector & enterprise customers regarding Google Vault, Security Posture, and Client-Side Encryption.</li>
                         </ul>
                         
-                        <div class="flex gap-3 flex-wrap">
+                        <div class="flex gap-3 flex-wrap relative z-10">
                             <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Vertex AI</span>
                             <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Apps Script</span>
                             <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Enterprise Security</span>
@@ -143,8 +175,8 @@
                 </div>
 
                 <!-- Wipro Card -->
-                <div class="relative pl-8 md:pl-12 group">
-                    <div class="absolute -left-[9px] top-8 w-4 h-4 rounded-full bg-indigo-500 ring-4 ring-[#0f172a] group-hover:scale-125 group-hover:bg-indigo-400 transition duration-300"></div>
+                <div class="relative pl-8 md:pl-12 group timeline-item">
+                    <div class="timeline-node text-indigo-500 absolute -left-[9px] top-8 w-4 h-4 rounded-full bg-indigo-500 ring-4 ring-[#0f172a] z-10"></div>
                     
                     <div class="glass-card p-8 rounded-3xl">
                         <span class="text-sm font-semibold text-indigo-400 tracking-widest uppercase mb-2 block">July 2021 – Jan 2023</span>
@@ -160,8 +192,8 @@
                 </div>
 
                 <!-- Zomato Card -->
-                <div class="relative pl-8 md:pl-12 group">
-                    <div class="absolute -left-[9px] top-8 w-4 h-4 rounded-full bg-red-500 ring-4 ring-[#0f172a] group-hover:scale-125 group-hover:bg-red-400 transition duration-300"></div>
+                <div class="relative pl-8 md:pl-12 group timeline-item">
+                    <div class="timeline-node text-red-500 absolute -left-[9px] top-8 w-4 h-4 rounded-full bg-red-500 ring-4 ring-[#0f172a] z-10"></div>
                     
                     <div class="glass-card p-8 rounded-3xl">
                         <span class="text-sm font-semibold text-red-500 tracking-widest uppercase mb-2 block">Nov 2019 – July 2021</span>
@@ -177,8 +209,8 @@
                 </div>
 
                 <!-- Searce Card -->
-                <div class="relative pl-8 md:pl-12 group pb-4">
-                    <div class="absolute -left-[9px] top-8 w-4 h-4 rounded-full bg-orange-500 ring-4 ring-[#0f172a] group-hover:scale-125 group-hover:bg-orange-400 transition duration-300"></div>
+                <div class="relative pl-8 md:pl-12 group timeline-item pb-4">
+                    <div class="timeline-node text-orange-500 absolute -left-[9px] top-8 w-4 h-4 rounded-full bg-orange-500 ring-4 ring-[#0f172a] z-10"></div>
                     
                     <div class="glass-card p-8 rounded-3xl">
                         <span class="text-sm font-semibold text-orange-500 tracking-widest uppercase mb-2 block">March 2016 – Nov 2019</span>
@@ -208,7 +240,6 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
                 
-                <!-- Left Side: Contact Details -->
                 <div class="glass-card p-10 rounded-3xl h-full flex flex-col justify-center relative overflow-hidden">
                     <i class="fas fa-paper-plane absolute -bottom-10 -right-10 text-9xl text-white opacity-5 pointer-events-none"></i>
                     <h3 class="text-2xl font-bold text-white mb-8 relative z-10">Contact Information</h3>
@@ -246,10 +277,8 @@
                     </div>
                 </div>
 
-                <!-- Right Side: The Form -->
                 <div class="glass-card p-10 rounded-3xl">
                     <form action="https://formsubmit.co/abhishekmehta110@gmail.com" method="POST" class="space-y-6">
-                        
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_subject" value="New message from mehtaabhishek.in!">
                         
@@ -282,7 +311,6 @@
 
             </div>
 
-            <!-- Footer Bottom -->
             <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
                 <p>&copy; 2026 Abhishek Mehta. All rights reserved.</p>
                 <div class="flex gap-6">
@@ -293,5 +321,54 @@
         </div>
     </section>
 
+    <!-- FUTURISTIC ANIMATION ENGINE (JavaScript) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // 1. Intersection Observer to slide in cards when they enter the screen
+            const cards = document.querySelectorAll('.timeline-item');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.3 // Card triggers animation when 30% visible
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // 2. Neon Beam Scroll Tracker
+            const timelineContainer = document.getElementById('experience');
+            const animatedLine = document.getElementById('animated-line');
+
+            window.addEventListener('scroll', () => {
+                // Get the position of the timeline section relative to viewport
+                const rect = timelineContainer.getBoundingClientRect();
+                
+                // Calculate percentage based on how far we scrolled past the vertical center
+                const viewportCenter = window.innerHeight / 2;
+                const scrollableDistance = rect.height;
+                
+                // Start filling when the top of the container hits the middle of the screen
+                const scrolledPast = viewportCenter - rect.top;
+                
+                let percentage = (scrolledPast / scrollableDistance) * 100;
+                
+                // Clamp the percentage between 0 and 100
+                percentage = Math.max(0, Math.min(percentage, 100)); 
+                
+                // Paint the line!
+                animatedLine.style.height = percentage + '%';
+            });
+        });
+    </script>
 </body>
 </html>
