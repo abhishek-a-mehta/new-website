@@ -15,7 +15,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    fontFamily: { sans:['Inter', 'sans-serif'] },
                     colors: {
                         google: { blue: '#4285F4', red: '#EA4335', yellow: '#FBBC05', green: '#34A853' }
                     }
@@ -33,9 +33,15 @@
         .glass-card:hover { border-color: rgba(66, 133, 244, 0.5); transform: translateY(-2px); transition: all 0.3s ease; }
         .fade-in { animation: fadeIn 1s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
     </style>
 </head>
-<body class="antialiased selection:bg-google-blue selection:text-white relative">
+<body class="antialiased selection:bg-google-blue selection:text-white relative overflow-x-hidden">
 
     <!-- Subtle Background Glow -->
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-google-blue rounded-full blur-[150px] opacity-10 pointer-events-none"></div>
@@ -63,15 +69,15 @@
             <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight leading-tight">
                 Workspace Cloud Architect
             </h1>
-            <p class="text-xl md:text-2xl text-slate-400 mb-10 max-w-2xl mx-auto font-light">
-                Hi, I'm <span class="text-white font-medium">Abhishek Mehta</span>. I empower enterprises to collaborate securely and scale efficiently in the cloud.
+            <p class="text-xl md:text-2xl text-slate-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                Hi, I'm <span class="text-white font-medium">Abhishek Mehta</span>. I leverage automation and architecture to empower enterprises to collaborate securely at scale.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#experience" class="bg-google-blue hover:bg-blue-600 text-white px-8 py-4 rounded-full font-medium transition shadow-lg shadow-google-blue/20">
-                    View My Experience
+                    View My Timeline
                 </a>
-                <a href="#contact" class="glass-card hover:bg-slate-800 text-white px-8 py-4 rounded-full font-medium transition flex items-center justify-center gap-2">
-                    <i class="fas fa-envelope text-xl"></i> Contact Me
+                <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" class="glass-card hover:bg-slate-800 text-white px-8 py-4 rounded-full font-medium transition flex items-center justify-center gap-2">
+                    <i class="fab fa-linkedin text-xl"></i> Connect on LinkedIn
                 </a>
             </div>
         </div>
@@ -84,69 +90,104 @@
             <div class="flex flex-wrap justify-center gap-12 md:gap-24 items-center text-slate-400 font-bold text-2xl md:text-3xl opacity-60 grayscale hover:grayscale-0 transition duration-500">
                 <span class="hover:text-white transition cursor-default">Google</span>
                 <span class="hover:text-red-500 transition cursor-default">Zomato</span>
+                <span class="hover:text-indigo-400 transition cursor-default">Wipro</span>
                 <span class="hover:text-orange-500 transition cursor-default">Searce</span>
-                <span class="hover:text-blue-500 transition cursor-default">Wipro</span>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section (Bento Grid) -->
+    <!-- Experience Section (Timeline Thread Design) -->
     <section id="experience" class="py-24 px-6 relative">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-white"><span class="text-google-blue">/</span> Career Journey</h2>
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-white text-center"><span class="text-google-blue">/</span> Career Timeline</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- The Thread / Line -->
+            <div class="border-l-2 border-slate-700 ml-4 md:ml-12 space-y-16 relative">
+                
                 <!-- Google Card -->
-                <div class="glass-card p-8 rounded-3xl md:col-span-2 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition duration-500">
-                        <i class="fab fa-google text-9xl text-white"></i>
-                    </div>
-                    <div class="relative z-10">
-                        <p class="text-google-blue font-semibold mb-2">Current</p>
+                <div class="relative pl-8 md:pl-12 group">
+                    <!-- Timeline Node -->
+                    <div class="absolute -left-[9px] top-8 w-4 h-4 rounded-full bg-google-blue ring-4 ring-[#0f172a] group-hover:scale-125 group-hover:bg-blue-400 transition duration-300"></div>
+                    
+                    <div class="glass-card p-8 rounded-3xl relative overflow-hidden">
+                        <i class="fab fa-google absolute -bottom-10 -right-10 text-9xl text-white opacity-5 pointer-events-none"></i>
+                        <span class="text-sm font-semibold text-google-blue tracking-widest uppercase mb-2 block">Jan 2023 – Present</span>
                         <h3 class="text-2xl font-bold text-white mb-1">Workspace Cloud Architect</h3>
-                        <p class="text-slate-400 mb-6 text-lg">Google</p>
-                        <p class="text-slate-300 leading-relaxed max-w-3xl">
-                            Designing and deploying enterprise-grade Google Workspace architectures. Focusing on security, compliance, data migrations, and optimizing cloud collaboration for global organizations.
-                        </p>
-                        <div class="mt-6 flex gap-3 flex-wrap">
-                            <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Cloud Architecture</span>
+                        <p class="text-slate-400 mb-6 text-lg font-medium">Google</p>
+                        
+                        <ul class="text-slate-300 leading-relaxed space-y-3 mb-6">
+                            <li><i class="fas fa-angle-right text-google-blue mr-2 text-sm"></i> Developer of a core Google Workspace to Workspace chat migration tool supporting domain transfers.</li>
+                            <li><i class="fas fa-angle-right text-google-blue mr-2 text-sm"></i> Designing automation solutions leveraging <strong>Apps Script, Vertex AI & REST APIs</strong> to eliminate human error across enterprise deployments.</li>
+                            <li><i class="fas fa-angle-right text-google-blue mr-2 text-sm"></i> Acting as a trusted advisor for global public sector & enterprise customers regarding Google Vault, Security Posture, and Client-Side Encryption.</li>
+                        </ul>
+                        
+                        <div class="flex gap-3 flex-wrap">
+                            <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Vertex AI</span>
+                            <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Apps Script</span>
                             <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Enterprise Security</span>
-                            <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Identity Management</span>
                         </div>
                     </div>
                 </div>
 
+                <!-- Wipro Card -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <!-- Timeline Node -->
+                    <div class="absolute -left-[9px] top-8 w-4 h-4 rounded-full bg-indigo-500 ring-4 ring-[#0f172a] group-hover:scale-125 group-hover:bg-indigo-400 transition duration-300"></div>
+                    
+                    <div class="glass-card p-8 rounded-3xl">
+                        <span class="text-sm font-semibold text-indigo-400 tracking-widest uppercase mb-2 block">July 2021 – Jan 2023</span>
+                        <h3 class="text-2xl font-bold text-white mb-1">Technical Lead - Google Workspace</h3>
+                        <p class="text-slate-400 mb-6 text-lg font-medium">Wipro</p>
+                        
+                        <ul class="text-slate-300 leading-relaxed space-y-3">
+                            <li><i class="fas fa-angle-right text-indigo-400 mr-2 text-sm"></i> Spearheaded automation for an enterprise customer with <strong>110,000 seats</strong> using Apps Script (Admin API, Gmail API) to off-board BetterCloud, resulting in <strong>~£500k in savings.</strong></li>
+                            <li><i class="fas fa-angle-right text-indigo-400 mr-2 text-sm"></i> Executed massive-scale user migrations from Office 365 to Google Workspace utilizing Cloud Migrator and Google DMS services.</li>
+                            <li><i class="fas fa-angle-right text-indigo-400 mr-2 text-sm"></i> Provided L3 technical expertise for core products (Gmail, Drive, Vault) and eradicated process errors through IT automation.</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <!-- Zomato Card -->
-                <div class="glass-card p-8 rounded-3xl">
-                    <h3 class="text-xl font-bold text-white mb-1">Previous Role</h3>
-                    <p class="text-slate-400 mb-6">Zomato</p>
-                    <p class="text-slate-300 leading-relaxed">
-                        Managed IT infrastructure and scalable workspace solutions for a hyper-growth environment. Ensured seamless operational tech flow for thousands of employees across regions.
-                    </p>
+                <div class="relative pl-8 md:pl-12 group">
+                    <!-- Timeline Node -->
+                    <div class="absolute -left-[9px] top-8 w-4 h-4 rounded-full bg-red-500 ring-4 ring-[#0f172a] group-hover:scale-125 group-hover:bg-red-400 transition duration-300"></div>
+                    
+                    <div class="glass-card p-8 rounded-3xl">
+                        <span class="text-sm font-semibold text-red-500 tracking-widest uppercase mb-2 block">Nov 2019 – July 2021</span>
+                        <h3 class="text-2xl font-bold text-white mb-1">Technical Lead - Google Workspace</h3>
+                        <p class="text-slate-400 mb-6 text-lg font-medium">Zomato</p>
+                        
+                        <ul class="text-slate-300 leading-relaxed space-y-3">
+                            <li><i class="fas fa-angle-right text-red-500 mr-2 text-sm"></i> Worked closely with the Google Engineering team on GCPW testing and go-live, directly influencing product implementations.</li>
+                            <li><i class="fas fa-angle-right text-red-500 mr-2 text-sm"></i> Started as an IT Analyst and was promoted to Technical Lead within just 8 months by actively converting man-driven processes to system-driven approaches.</li>
+                            <li><i class="fas fa-angle-right text-red-500 mr-2 text-sm"></i> Developed critical Business Process Automations using HTML, CSS, and Apps Script (automated user suspensions, quota notifications, etc.).</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Searce Card -->
-                <div class="glass-card p-8 rounded-3xl">
-                    <h3 class="text-xl font-bold text-white mb-1">Cloud Consultant / Architect</h3>
-                    <p class="text-slate-400 mb-6">Searce</p>
-                    <p class="text-slate-300 leading-relaxed">
-                        Acted as a trusted advisor for clients migrating to cloud environments. Delivered end-to-end modernization strategies and technical implementations.
-                    </p>
+                <div class="relative pl-8 md:pl-12 group pb-4">
+                    <!-- Timeline Node -->
+                    <div class="absolute -left-[9px] top-8 w-4 h-4 rounded-full bg-orange-500 ring-4 ring-[#0f172a] group-hover:scale-125 group-hover:bg-orange-400 transition duration-300"></div>
+                    
+                    <div class="glass-card p-8 rounded-3xl">
+                        <span class="text-sm font-semibold text-orange-500 tracking-widest uppercase mb-2 block">March 2016 – Nov 2019</span>
+                        <h3 class="text-2xl font-bold text-white mb-1">Cloud Solutions Engineer</h3>
+                        <p class="text-slate-400 mb-6 text-lg font-medium">Searce</p>
+                        
+                        <ul class="text-slate-300 leading-relaxed space-y-3">
+                            <li><i class="fas fa-angle-right text-orange-500 mr-2 text-sm"></i> Drove pre-sales, POCs, and deployment activities for both SMB and large business enterprise customers.</li>
+                            <li><i class="fas fa-angle-right text-orange-500 mr-2 text-sm"></i> Successfully performed data migration of over 1,200 users from Office 365 to Google Workspace for a SEA-based hospitality firm.</li>
+                            <li><i class="fas fa-angle-right text-orange-500 mr-2 text-sm"></i> Managed on-site customer relationships and engineered hybrid scenario environments including Split Delivery, External DLP, and GCDS.</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Wipro Card -->
-                <div class="glass-card p-8 rounded-3xl md:col-span-2">
-                    <h3 class="text-xl font-bold text-white mb-1">Early Career</h3>
-                    <p class="text-slate-400 mb-4">Wipro</p>
-                    <p class="text-slate-300 leading-relaxed max-w-3xl">
-                        Built foundational expertise in enterprise IT, system administration, and large-scale infrastructure management for global clients.
-                    </p>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- NEW Contact Section -->
+    <!-- Contact Section -->
     <section id="contact" class="py-24 px-6 border-t border-white/5 bg-slate-900/50">
         <div class="max-w-6xl mx-auto">
             
@@ -192,7 +233,7 @@
                             </div>
                             <div>
                                 <p class="text-sm text-slate-500 font-medium mb-1">Location</p>
-                                <p class="text-lg font-semibold tracking-wide">India</p>
+                                <p class="text-lg font-semibold tracking-wide">Bengaluru, India</p>
                             </div>
                         </div>
                     </div>
@@ -200,11 +241,9 @@
 
                 <!-- Right Side: The Form -->
                 <div class="glass-card p-10 rounded-3xl">
-                    <!-- FormSubmit Action URL setup with your email -->
                     <form action="https://formsubmit.co/abhishekmehta110@gmail.com" method="POST" class="space-y-6">
                         
-                        <!-- Form Configuration -->
-                        <input type="hidden" name="_captcha" value="false"> <!-- Disables annoying captcha -->
+                        <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_subject" value="New message from mehtaabhishek.in!">
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -240,7 +279,7 @@
             <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
                 <p>&copy; 2026 Abhishek Mehta. All rights reserved.</p>
                 <div class="flex gap-6">
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
                     <a href="#" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
                 </div>
             </div>
