@@ -129,18 +129,31 @@
     class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-google-blue rounded-full blur-[150px] opacity-10 pointer-events-none">
   </div>
 
-  <!-- Navigation -->
+<!-- Navigation -->
   <nav class="fixed w-full top-0 z-50 glass-card border-b-0 border-white/5">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="index.html" class="text-xl font-bold tracking-tight">AM<span class="text-google-blue">.</span></a>
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative">
+      <a href="index.html" class="text-xl font-bold tracking-tight z-50">AM<span class="text-google-blue">.</span></a>
+      
+      <!-- Desktop Menu -->
       <div class="space-x-8 hidden md:block text-sm font-medium text-slate-300">
         <a href="#experience" class="hover:text-white transition">Experience</a>
         <a href="addons.html" class="hover:text-white transition">Add-ons</a>
         <a href="#contact" class="hover:text-white transition">Contact</a>
       </div>
-      <a href="#contact"
-        class="hidden md:block bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition">Get
-        in Touch</a>
+      <a href="#contact" class="hidden md:block bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition">Get in Touch</a>
+      
+      <!-- Mobile Menu Toggle Button -->
+      <button id="mobile-menu-btn" class="block md:hidden text-slate-300 hover:text-white focus:outline-none z-50 transition">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full glass-card border-t border-white/5 shadow-2xl flex-col items-center py-8 space-y-6 md:hidden">
+      <a href="#experience" class="text-lg text-slate-300 hover:text-white font-medium mobile-link transition">Experience</a>
+      <a href="addons.html" class="text-lg text-slate-300 hover:text-white font-medium mobile-link transition">Add-ons</a>
+      <a href="#contact" class="text-lg text-slate-300 hover:text-white font-medium mobile-link transition">Contact</a>
+      <a href="#contact" class="bg-google-blue text-white px-8 py-3 mt-2 rounded-full text-sm font-semibold shadow-lg shadow-google-blue/20 mobile-link transition">Get in Touch</a>
     </div>
   </nav>
 
@@ -419,6 +432,35 @@
   <!-- FUTURISTIC ANIMATION ENGINE (JavaScript) -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+
+      // --- MOBILE MENU LOGIC ---
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            const menuIcon = mobileBtn.querySelector('i');
+
+            mobileBtn.addEventListener('click', () => {
+                // Toggle visibility
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+                
+                // Toggle between hamburger and X icon
+                if (mobileMenu.classList.contains('hidden')) {
+                    menuIcon.classList.replace('fa-times', 'fa-bars');
+                } else {
+                    menuIcon.classList.replace('fa-bars', 'fa-times');
+                }
+            });
+
+            // Automatically close the menu when a link is clicked
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                    menuIcon.classList.replace('fa-times', 'fa-bars');
+                });
+            });
+            // --- END MOBILE MENU LOGIC ---
             
             // MOBILE FIX 1: Capture initial width so we don't recalculate on address bar hide/show
             let currentWindowWidth = window.innerWidth;
