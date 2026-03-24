@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workspace Add-ons | Abhishek Mehta</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workspace Add-ons | Abhishek Mehta</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { sans:['Inter', 'sans-serif'] },
@@ -22,147 +24,187 @@
                 }
             }
         }
-    </script>
-    <style>
-        body { background-color: #0f172a; color: #f8fafc; }
-        .glass-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .glass-card:hover { border-color: rgba(66, 133, 244, 0.5); transform: translateY(-2px); transition: all 0.3s ease; }
-        .fade-in { animation: fadeIn 1s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
+  </script>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+    }
+
+    .glass-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(66, 133, 244, 0.5);
+      transform: translateY(-2px);
+      transition: all 0.3s ease;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
+
 <body class="antialiased selection:bg-google-blue selection:text-white relative">
 
-    <!-- Subtle Background Glow -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] bg-google-yellow blur-[150px] opacity-10 pointer-events-none"></div>
+  <!-- Subtle Background Glow -->
+  <div
+    class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] bg-google-yellow blur-[150px] opacity-10 pointer-events-none">
+  </div>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 glass-card border-b-0 border-white/5">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-xl font-bold tracking-tight">AM<span class="text-google-blue">.</span></a>
-            <div class="space-x-8 hidden md:block text-sm font-medium text-slate-300">
-                <a href="index.html" class="hover:text-white transition">Home</a>
-                <a href="index.html#experience" class="hover:text-white transition">Experience</a>
-                <a href="addons.html" class="text-white border-b-2 border-google-blue pb-1">Add-ons</a>
+  <!-- Navigation -->
+  <nav class="fixed w-full top-0 z-50 glass-card border-b-0 border-white/5">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold tracking-tight">AM<span class="text-google-blue">.</span></a>
+      <div class="space-x-8 hidden md:block text-sm font-medium text-slate-300">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <a href="index.html#experience" class="hover:text-white transition">Experience</a>
+        <a href="addons.html" class="text-white border-b-2 border-google-blue pb-1">Add-ons</a>
+      </div>
+      <a href="index.html#contact"
+        class="hidden md:block bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition">Get
+        in Touch</a>
+    </div>
+  </nav>
+
+  <!-- Header Section -->
+  <section class="pt-32 pb-12 px-6 fade-in text-center relative z-10">
+    <div class="max-w-3xl mx-auto">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm text-slate-300 mb-6 border border-slate-700">
+        <i class="fas fa-code text-google-yellow"></i> Built for the Community
+      </div>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
+        Google Workspace Add-ons
+      </h1>
+      <p class="text-lg md:text-xl text-slate-400 font-light leading-relaxed">
+        As part of my commitment to the Google Workspace ecosystem, I develop and maintain free Marketplace add-ons
+        designed to automate workflows and simplify administration for thousands of users globally.
+      </p>
+    </div>
+  </section>
+
+  <!-- Add-ons Grid -->
+  <section class="pb-24 px-6 relative z-10">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Bulkyduce Card -->
+      <div class="glass-card p-8 rounded-3xl flex flex-col h-full fade-in relative overflow-hidden">
+        <!-- Decorative Icon Background -->
+        <i class="fas fa-layer-group absolute -bottom-10 -right-10 text-9xl text-white opacity-5 pointer-events-none"></i>
+
+        <div class="flex items-center gap-4 mb-6 relative z-10">
+          <div
+            class="w-14 h-14 bg-slate-800 rounded-xl flex items-center justify-center border border-slate-700 shadow-lg">
+            <i class="fas fa-bolt text-2xl text-google-blue"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white">Bulkyduce</h2>
+            <div class="flex items-center gap-2 text-sm text-slate-400 mt-1">
+              <i class="fas fa-star text-google-yellow"></i>
+              <span>Workspace Marketplace</span>
             </div>
-            <a href="index.html#contact" class="hidden md:block bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition">Get in Touch</a>
+          </div>
         </div>
-    </nav>
 
-    <!-- Header Section -->
-    <section class="pt-32 pb-12 px-6 fade-in text-center relative z-10">
-        <div class="max-w-3xl mx-auto">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm text-slate-300 mb-6 border border-slate-700">
-                <i class="fas fa-code text-google-yellow"></i> Built for the Community
-            </div>
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
-                Google Workspace Add-ons
-            </h1>
-            <p class="text-lg md:text-xl text-slate-400 font-light leading-relaxed">
-                As part of my commitment to the Google Workspace ecosystem, I develop and maintain free Marketplace add-ons designed to automate workflows and simplify administration for thousands of users globally.
-            </p>
+        <p class="text-slate-300 leading-relaxed mb-8 flex-grow relative z-10">
+          A powerful utility designed to streamline bulk operations within Google Workspace. Bulkyduce eliminates
+          repetitive manual tasks, allowing administrators and power users to process large datasets efficiently
+          directly from their Workspace environment.
+        </p>
+
+        <div class="space-y-3 mb-8 relative z-10">
+          <div class="flex items-center gap-3 text-sm text-slate-400">
+            <i class="fas fa-check-circle text-google-green"></i> Bulk data processing
+          </div>
+          <div class="flex items-center gap-3 text-sm text-slate-400">
+            <i class="fas fa-check-circle text-google-green"></i> Time-saving automation
+          </div>
+          <div class="flex items-center gap-3 text-sm text-slate-400">
+            <i class="fas fa-check-circle text-google-green"></i> Seamless Workspace integration
+          </div>
         </div>
-    </section>
 
-    <!-- Add-ons Grid -->
-    <section class="pb-24 px-6 relative z-10">
-        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            <!-- Bulkyduce Card -->
-            <div class="glass-card p-8 rounded-3xl flex flex-col h-full fade-in relative overflow-hidden">
-                <!-- Decorative Icon Background -->
-                <i class="fas fa-layer-group absolute -bottom-10 -right-10 text-9xl text-white opacity-5 pointer-events-none"></i>
-                
-                <div class="flex items-center gap-4 mb-6 relative z-10">
-                    <div class="w-14 h-14 bg-slate-800 rounded-xl flex items-center justify-center border border-slate-700 shadow-lg">
-                        <i class="fas fa-bolt text-2xl text-google-blue"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-bold text-white">Bulkyduce</h2>
-                        <div class="flex items-center gap-2 text-sm text-slate-400 mt-1">
-                            <i class="fas fa-star text-google-yellow"></i>
-                            <span>Workspace Marketplace</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <p class="text-slate-300 leading-relaxed mb-8 flex-grow relative z-10">
-                    A powerful utility designed to streamline bulk operations within Google Workspace. Bulkyduce eliminates repetitive manual tasks, allowing administrators and power users to process large datasets efficiently directly from their Workspace environment.
-                </p>
-                
-                <div class="space-y-3 mb-8 relative z-10">
-                    <div class="flex items-center gap-3 text-sm text-slate-400">
-                        <i class="fas fa-check-circle text-google-green"></i> Bulk data processing
-                    </div>
-                    <div class="flex items-center gap-3 text-sm text-slate-400">
-                        <i class="fas fa-check-circle text-google-green"></i> Time-saving automation
-                    </div>
-                    <div class="flex items-center gap-3 text-sm text-slate-400">
-                        <i class="fas fa-check-circle text-google-green"></i> Seamless Workspace integration
-                    </div>
-                </div>
+        <a href="https://workspace.google.com/marketplace/app/bulkyduce/862622165027?flow_type=2&pann=b" target="_blank"
+          class="w-full bg-slate-700 hover:bg-google-blue text-white text-center py-3 rounded-xl font-medium transition-all duration-300 shadow-lg relative z-10 flex justify-center items-center">
+          View on Marketplace <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+        </a>
+      </div>
 
-                <a href="https://workspace.google.com/marketplace/app/bulkyduce/862622165027?flow_type=2&pann=b" target="_blank" class="w-full bg-google-blue hover:bg-blue-600 text-white text-center py-3 rounded-xl font-medium transition shadow-lg relative z-10">
-                    View on Marketplace <i class="fas fa-external-link-alt ml-2 text-sm"></i>
-                </a>
+      <!-- User Info Card -->
+      <div class="glass-card p-8 rounded-3xl flex flex-col h-full fade-in relative overflow-hidden"
+        style="animation-delay: 0.2s;">
+        <!-- Decorative Icon Background -->
+        <i class="fas fa-id-badge absolute -bottom-10 -right-10 text-9xl text-white opacity-5 pointer-events-none"></i>
+
+        <div class="flex items-center gap-4 mb-6 relative z-10">
+          <div
+            class="w-14 h-14 bg-slate-800 rounded-xl flex items-center justify-center border border-slate-700 shadow-lg">
+            <i class="fas fa-user-shield text-2xl text-google-red"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white">User Info</h2>
+            <div class="flex items-center gap-2 text-sm text-slate-400 mt-1">
+              <i class="fas fa-star text-google-yellow"></i>
+              <span>Workspace Marketplace</span>
             </div>
-
-            <!-- User Info Card -->
-            <div class="glass-card p-8 rounded-3xl flex flex-col h-full fade-in relative overflow-hidden" style="animation-delay: 0.2s;">
-                <!-- Decorative Icon Background -->
-                <i class="fas fa-id-badge absolute -bottom-10 -right-10 text-9xl text-white opacity-5 pointer-events-none"></i>
-
-                <div class="flex items-center gap-4 mb-6 relative z-10">
-                    <div class="w-14 h-14 bg-slate-800 rounded-xl flex items-center justify-center border border-slate-700 shadow-lg">
-                        <i class="fas fa-user-shield text-2xl text-google-red"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-bold text-white">User Info</h2>
-                        <div class="flex items-center gap-2 text-sm text-slate-400 mt-1">
-                            <i class="fas fa-star text-google-yellow"></i>
-                            <span>Workspace Marketplace</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <p class="text-slate-300 leading-relaxed mb-8 flex-grow relative z-10">
-                    A dedicated add-on that provides quick, secure, and comprehensive access to user directory details. Built to assist IT admins and HR teams in rapidly retrieving user metadata without leaving their active Workspace tab.
-                </p>
-                
-                <div class="space-y-3 mb-8 relative z-10">
-                    <div class="flex items-center gap-3 text-sm text-slate-400">
-                        <i class="fas fa-check-circle text-google-green"></i> Rapid directory lookup
-                    </div>
-                    <div class="flex items-center gap-3 text-sm text-slate-400">
-                        <i class="fas fa-check-circle text-google-green"></i> Enhanced admin visibility
-                    </div>
-                    <div class="flex items-center gap-3 text-sm text-slate-400">
-                        <i class="fas fa-check-circle text-google-green"></i> Secure API data handling
-                    </div>
-                </div>
-
-                <a href="https://workspace.google.com/marketplace/app/user_info/331367634987?pann=b" target="_blank" class="w-full bg-slate-700 hover:bg-slate-600 text-white text-center py-3 rounded-xl font-medium transition shadow-lg relative z-10">
-                    View on Marketplace <i class="fas fa-external-link-alt ml-2 text-sm"></i>
-                </a>
-            </div>
-
+          </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <section class="py-12 px-6 border-t border-white/5 bg-slate-900/50">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
-            <p>&copy; 2024 Abhishek Mehta. All rights reserved.</p>
-            <div class="flex gap-6">
-                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
-            </div>
+        <p class="text-slate-300 leading-relaxed mb-8 flex-grow relative z-10">
+          A dedicated add-on that provides quick, secure, and comprehensive access to user directory details. Built to
+          assist IT admins and HR teams in rapidly retrieving user metadata without leaving their active Workspace tab.
+        </p>
+
+        <div class="space-y-3 mb-8 relative z-10">
+          <div class="flex items-center gap-3 text-sm text-slate-400">
+            <i class="fas fa-check-circle text-google-green"></i> Rapid directory lookup
+          </div>
+          <div class="flex items-center gap-3 text-sm text-slate-400">
+            <i class="fas fa-check-circle text-google-green"></i> Enhanced admin visibility
+          </div>
+          <div class="flex items-center gap-3 text-sm text-slate-400">
+            <i class="fas fa-check-circle text-google-green"></i> Secure API data handling
+          </div>
         </div>
-    </section>
+
+        <a href="https://workspace.google.com/marketplace/app/user_info/331367634987?pann=b" target="_blank"
+          class="w-full bg-slate-700 hover:bg-google-blue text-white text-center py-3 rounded-xl font-medium transition-all duration-300 shadow-lg relative z-10 flex justify-center items-center">
+          View on Marketplace <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section class="py-12 px-6 border-t border-white/5 bg-slate-900/50">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+      <p>&copy; 2024 Abhishek Mehta. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="https://linkedin.com/in/yourprofile" target="_blank"
+          class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+        <a href="#" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
+      </div>
+    </div>
+  </section>
 
 </body>
+
 </html>
