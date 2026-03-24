@@ -70,8 +70,8 @@
                 <a href="#experience" class="bg-google-blue hover:bg-blue-600 text-white px-8 py-4 rounded-full font-medium transition shadow-lg shadow-google-blue/20">
                     View My Experience
                 </a>
-                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="glass-card hover:bg-slate-800 text-white px-8 py-4 rounded-full font-medium transition flex items-center justify-center gap-2">
-                    <i class="fab fa-linkedin text-xl"></i> Connect on LinkedIn
+                <a href="#contact" class="glass-card hover:bg-slate-800 text-white px-8 py-4 rounded-full font-medium transition flex items-center justify-center gap-2">
+                    <i class="fas fa-envelope text-xl"></i> Contact Me
                 </a>
             </div>
         </div>
@@ -96,7 +96,7 @@
             <h2 class="text-3xl md:text-4xl font-bold mb-12 text-white"><span class="text-google-blue">/</span> Career Journey</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Google Card (Spans full width on desktop) -->
+                <!-- Google Card -->
                 <div class="glass-card p-8 rounded-3xl md:col-span-2 relative overflow-hidden group">
                     <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition duration-500">
                         <i class="fab fa-google text-9xl text-white"></i>
@@ -134,7 +134,7 @@
                     </p>
                 </div>
 
-                <!-- Wipro Card (Spans full width) -->
+                <!-- Wipro Card -->
                 <div class="glass-card p-8 rounded-3xl md:col-span-2">
                     <h3 class="text-xl font-bold text-white mb-1">Early Career</h3>
                     <p class="text-slate-400 mb-4">Wipro</p>
@@ -146,21 +146,102 @@
         </div>
     </section>
 
-    <!-- Footer / Contact -->
+    <!-- NEW Contact Section -->
     <section id="contact" class="py-24 px-6 border-t border-white/5 bg-slate-900/50">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-bold text-white mb-6">Let's build something great.</h2>
-            <p class="text-slate-400 mb-10 text-lg">Whether it's cloud architecture strategy, workspace modernization, or just geeking out about tech, my inbox is open.</p>
-            <a href="mailto:your-email@mehtaabhishek.in" class="inline-block bg-white text-slate-900 hover:bg-slate-200 px-8 py-4 rounded-full font-bold transition text-lg">
-                Say Hello <i class="fas fa-arrow-right ml-2"></i>
-            </a>
+        <div class="max-w-6xl mx-auto">
             
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Let's build something great.</h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Whether it's cloud architecture strategy, workspace modernization, or a new opportunity, my inbox is always open.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                
+                <!-- Left Side: Contact Details -->
+                <div class="glass-card p-10 rounded-3xl h-full flex flex-col justify-center relative overflow-hidden">
+                    <i class="fas fa-paper-plane absolute -bottom-10 -right-10 text-9xl text-white opacity-5 pointer-events-none"></i>
+                    <h3 class="text-2xl font-bold text-white mb-8 relative z-10">Contact Information</h3>
+                    
+                    <div class="space-y-8 relative z-10">
+                        <!-- Email -->
+                        <a href="mailto:abhishekmehta110@gmail.com" class="flex items-center gap-5 text-slate-300 hover:text-white transition group">
+                            <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 group-hover:border-google-blue group-hover:bg-google-blue/10 transition shadow-lg">
+                                <i class="fas fa-envelope text-google-blue text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500 font-medium mb-1">Email</p>
+                                <p class="text-lg font-semibold tracking-wide">abhishekmehta110@gmail.com</p>
+                            </div>
+                        </a>
+                        
+                        <!-- LinkedIn -->
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="flex items-center gap-5 text-slate-300 hover:text-white transition group">
+                            <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 group-hover:border-blue-500 group-hover:bg-blue-500/10 transition shadow-lg">
+                                <i class="fab fa-linkedin-in text-blue-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500 font-medium mb-1">LinkedIn</p>
+                                <p class="text-lg font-semibold tracking-wide">Connect with me</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Location -->
+                        <div class="flex items-center gap-5 text-slate-300 group cursor-default">
+                            <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 shadow-lg">
+                                <i class="fas fa-map-marker-alt text-google-red text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500 font-medium mb-1">Location</p>
+                                <p class="text-lg font-semibold tracking-wide">India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: The Form -->
+                <div class="glass-card p-10 rounded-3xl">
+                    <!-- FormSubmit Action URL setup with your email -->
+                    <form action="https://formsubmit.co/abhishekmehta110@gmail.com" method="POST" class="space-y-6">
+                        
+                        <!-- Form Configuration -->
+                        <input type="hidden" name="_captcha" value="false"> <!-- Disables annoying captcha -->
+                        <input type="hidden" name="_subject" value="New message from mehtaabhishek.in!">
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-slate-400">Your Name</label>
+                                <input type="text" name="name" required class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-google-blue focus:ring-1 focus:ring-google-blue transition" placeholder="John Doe">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-slate-400">Your Email</label>
+                                <input type="email" name="email" required class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-google-blue focus:ring-1 focus:ring-google-blue transition" placeholder="john@company.com">
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-slate-400">Subject</label>
+                            <input type="text" name="subject" required class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-google-blue focus:ring-1 focus:ring-google-blue transition" placeholder="Cloud Consulting / Job Opportunity">
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-slate-400">Message</label>
+                            <textarea name="message" required rows="5" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-google-blue focus:ring-1 focus:ring-google-blue transition resize-none" placeholder="Hi Abhishek, I'm reaching out because..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-google-blue hover:bg-blue-600 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-google-blue/20 flex justify-center items-center gap-2 mt-4 text-lg">
+                            Send Message <i class="fas fa-arrow-right text-sm ml-1"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom -->
             <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
-                <p>&copy; 2024 Abhishek Mehta. All rights reserved.</p>
+                <p>&copy; 2026 Abhishek Mehta. All rights reserved.</p>
                 <div class="flex gap-6">
                     <a href="https://linkedin.com/in/yourprofile" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
                     <a href="#" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
-                    <a href="#" class="hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
                 </div>
             </div>
         </div>
