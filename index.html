@@ -41,36 +41,40 @@
         ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
         /* --- FUTURISTIC TIMELINE ANIMATIONS --- */
-        
-        /* The cards start offset, slightly smaller, and invisible */
         .timeline-item {
+            /* Keep the wrapper static so the node perfectly overlays the line */
+            position: relative; 
+        }
+
+        /* Move the entry animation specifically to the card content */
+        .timeline-content {
             opacity: 0;
             transform: translateX(40px) scale(0.95);
             transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
         }
-        
-        /* The Pill nodes start dull */
-        .timeline-node {
-            box-shadow: 0 0 0 rgba(0,0,0,0);
-            transform: scale(0.9);
-            transition: all 0.5s ease-in-out;
-        }
 
-        /* When the JS intersection observer adds the 'show' class */
-        .timeline-item.show {
+        .timeline-item.show .timeline-content {
             opacity: 1;
             transform: translateX(0) scale(1);
         }
         
+        .timeline-node {
+            box-shadow: 0 0 0 rgba(0,0,0,0);
+            /* Translate FIRST, then scale. This keeps it locked on the X-axis */
+            transform: translateX(-50%) scale(0.9); 
+            transition: all 0.5s ease-in-out;
+            transform-origin: center;
+        }
+
         /* Ignite the Pill node glow */
         .timeline-item.show .timeline-node {
             box-shadow: 0 0 20px currentColor;
-            transform: scale(1.1);
+            transform: translateX(-50%) scale(1.1);
         }
 
         /* Hover effect on ignited Pill nodes */
         .timeline-item.show:hover .timeline-node {
-            transform: scale(1.2);
+            transform: translateX(-50%) scale(1.2);
             box-shadow: 0 0 30px currentColor;
         }
     </style>
@@ -107,11 +111,10 @@
                 Hi, I'm <span class="text-white font-medium">Abhishek Mehta</span>. I leverage automation and architecture to empower enterprises to collaborate securely at scale.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <!-- Fixed flex alignment for center vertically -->
-                <a href="#experience" class="bg-google-blue hover:bg-blue-600 text-white px-8 py-4 rounded-full font-medium transition shadow-lg shadow-google-blue/20 flex items-center justify-center">
+                <a href="#experience" class="bg-google-blue hover:bg-blue-600 text-white px-8 h-14 rounded-full font-medium transition shadow-lg shadow-google-blue/20 flex items-center justify-center">
                     View My Timeline
                 </a>
-                <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" class="glass-card hover:bg-slate-800 text-white px-8 py-4 rounded-full font-medium transition flex items-center justify-center gap-2">
+                <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" class="glass-card hover:bg-slate-800 text-white px-8 h-14 rounded-full font-medium transition flex items-center justify-center gap-2">
                     <i class="fab fa-linkedin text-xl"></i> Connect on LinkedIn
                 </a>
             </div>
@@ -144,18 +147,17 @@
             <!-- Wrapper for the Timeline -->
             <div class="ml-4 md:ml-12 space-y-16 relative" id="timeline-container">
                 
-                <!-- 1. The Static Background Track (Top and Height now calculated by JS) -->
-                <div id="static-line" class="absolute left-0 w-[2px] bg-slate-800 -ml-[1px] z-0"></div>
+                <!-- 1. The Static Background Track -->
+                <div id="static-line" class="absolute left-0 w-[2px] bg-slate-800 -translate-x-1/2 z-0"></div>
                 
                 <!-- 2. The Futuristic Glowing Scroll Line -->
-                <div id="animated-line" class="absolute left-0 w-[2px] bg-gradient-to-b from-google-blue via-indigo-500 to-orange-500 -ml-[1px] shadow-[0_0_15px_rgba(66,133,244,0.8)] transition-all duration-75 ease-out rounded-full z-0" style="height: 0%;"></div>
+                <div id="animated-line" class="absolute left-0 w-[2px] bg-gradient-to-b from-google-blue via-indigo-500 to-orange-500 -translate-x-1/2 shadow-[0_0_15px_rgba(66,133,244,0.8)] transition-all duration-75 ease-out rounded-full z-0" style="height: 0px;"></div>
 
                 <!-- Google Card -->
                 <div class="relative pl-8 md:pl-12 group timeline-item">
-                    <!-- Updated to Pill Shape: w-[10px] h-[30px] & correctly centered on the line with -left-[4px] -->
-                    <div class="timeline-node text-google-blue absolute -left-[4px] top-8 w-[10px] h-[30px] rounded-full bg-google-blue ring-4 ring-[#0f172a] z-10"></div>
+                    <div class="timeline-node text-google-blue absolute left-0 top-8 w-[10px] h-[30px] rounded-full bg-google-blue ring-4 ring-[#0f172a] -translate-x-1/2 z-10"></div>
                     
-                    <div class="glass-card p-8 rounded-3xl relative overflow-hidden">
+                    <div class="glass-card p-6 md:p-8 rounded-3xl relative overflow-hidden timeline-content">
                         <i class="fab fa-google absolute -bottom-10 -right-10 text-9xl text-white opacity-5 pointer-events-none"></i>
                         <span class="text-sm font-semibold text-google-blue tracking-widest uppercase mb-2 block">Jan 2023 – Present</span>
                         <h3 class="text-2xl font-bold text-white mb-1">Workspace Cloud Architect</h3>
@@ -177,9 +179,9 @@
 
                 <!-- Wipro Card -->
                 <div class="relative pl-8 md:pl-12 group timeline-item">
-                    <div class="timeline-node text-indigo-500 absolute -left-[4px] top-8 w-[10px] h-[30px] rounded-full bg-indigo-500 ring-4 ring-[#0f172a] z-10"></div>
+                    <div class="timeline-node text-indigo-500 absolute left-0 top-8 w-[10px] h-[30px] rounded-full bg-indigo-500 ring-4 ring-[#0f172a] -translate-x-1/2 z-10"></div>
                     
-                    <div class="glass-card p-8 rounded-3xl">
+                    <div class="glass-card p-6 md:p-8 rounded-3xl relative overflow-hidden timeline-content">
                         <span class="text-sm font-semibold text-indigo-400 tracking-widest uppercase mb-2 block">July 2021 – Jan 2023</span>
                         <h3 class="text-2xl font-bold text-white mb-1">Technical Lead - Google Workspace</h3>
                         <p class="text-slate-400 mb-6 text-lg font-medium">Wipro</p>
@@ -194,9 +196,9 @@
 
                 <!-- Zomato Card -->
                 <div class="relative pl-8 md:pl-12 group timeline-item">
-                    <div class="timeline-node text-red-500 absolute -left-[4px] top-8 w-[10px] h-[30px] rounded-full bg-red-500 ring-4 ring-[#0f172a] z-10"></div>
+                    <div class="timeline-node text-red-500 absolute left-0 top-8 w-[10px] h-[30px] rounded-full bg-red-500 ring-4 ring-[#0f172a] -translate-x-1/2 z-10"></div>
                     
-                    <div class="glass-card p-8 rounded-3xl">
+                    <div class="glass-card p-6 md:p-8 rounded-3xl relative overflow-hidden timeline-content">
                         <span class="text-sm font-semibold text-red-500 tracking-widest uppercase mb-2 block">Nov 2019 – July 2021</span>
                         <h3 class="text-2xl font-bold text-white mb-1">Technical Lead - Google Workspace</h3>
                         <p class="text-slate-400 mb-6 text-lg font-medium">Zomato</p>
@@ -211,9 +213,9 @@
 
                 <!-- Searce Card -->
                 <div class="relative pl-8 md:pl-12 group timeline-item pb-4">
-                    <div class="timeline-node text-orange-500 absolute -left-[4px] top-8 w-[10px] h-[30px] rounded-full bg-orange-500 ring-4 ring-[#0f172a] z-10"></div>
+                    <div class="timeline-node text-orange-500 absolute left-0 top-8 w-[10px] h-[30px] rounded-full bg-orange-500 ring-4 ring-[#0f172a] -translate-x-1/2 z-10"></div>
                     
-                    <div class="glass-card p-8 rounded-3xl">
+                    <div class="glass-card p-6 md:p-8 rounded-3xl relative overflow-hidden timeline-content">
                         <span class="text-sm font-semibold text-orange-500 tracking-widest uppercase mb-2 block">March 2016 – Nov 2019</span>
                         <h3 class="text-2xl font-bold text-white mb-1">Cloud Solutions Engineer</h3>
                         <p class="text-slate-400 mb-6 text-lg font-medium">Searce</p>
@@ -326,11 +328,11 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             
-            // 1. Intersection Observer for Cards
+            // 1. Intersection Observer for Cards (Trigger slightly earlier for mobile)
             const cards = document.querySelectorAll('.timeline-item');
             const observerOptions = {
                 root: null,
-                rootMargin: '-20% 0px -20% 0px', // Triggers slightly before the middle of the screen
+                rootMargin: '-10% 0px -10% 0px', 
                 threshold: 0
             };
 
@@ -351,29 +353,23 @@
             const nodes = document.querySelectorAll('.timeline-node');
             
             let bounds = { topOffset: 0, totalHeight: 0 };
+            let ticking = false; // Prevents mobile scroll jank
 
             function updateTimelineBounds() {
                 if (!timelineContainer || nodes.length < 2) return;
                 
-                // Get the parent items of the first and last node
                 const firstItem = nodes[0].closest('.timeline-item');
                 const lastItem = nodes[nodes.length - 1].closest('.timeline-item');
                 
-                // Calculate exact vertical center of the FIRST pill relative to the container
-                // offsetTop of item + offsetTop of node + half height of node
                 const topOffset = firstItem.offsetTop + nodes[0].offsetTop + (nodes[0].offsetHeight / 2);
-                
-                // Calculate exact vertical center of the LAST pill relative to the container
                 const bottomOffset = lastItem.offsetTop + nodes[nodes.length - 1].offsetTop + (nodes[nodes.length - 1].offsetHeight / 2);
                 
                 const totalHeight = bottomOffset - topOffset;
                 bounds = { topOffset, totalHeight };
                 
-                // Set the static line to perfectly connect the first and last pill
                 staticLine.style.top = topOffset + 'px';
                 staticLine.style.height = totalHeight + 'px';
                 
-                // Set the animated line to start exactly at the first pill
                 animatedLine.style.top = topOffset + 'px';
             }
 
@@ -383,27 +379,33 @@
                 const viewportCenter = window.innerHeight / 2;
                 const containerRect = timelineContainer.getBoundingClientRect();
                 
-                // Find exactly where the top of the track is relative to the viewport
                 const trackStartLocation = containerRect.top + bounds.topOffset;
-                
-                // Calculate how many pixels the user scrolled past the track start
                 const scrolledPast = viewportCenter - trackStartLocation;
                 
-                // Convert to percentage
-                let percentage = (scrolledPast / bounds.totalHeight) * 100;
-                percentage = Math.max(0, Math.min(percentage, 100)); // clamp between 0 and 100
-                
-                animatedLine.style.height = percentage + '%';
+                const fillHeight = Math.max(0, Math.min(scrolledPast, bounds.totalHeight));
+                animatedLine.style.height = fillHeight + 'px';
             }
 
-            // Initialize bounds and attach listeners
+            // Wrap in requestAnimationFrame for 60fps mobile performance
+            function onScroll() {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        handleScroll();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+
             updateTimelineBounds();
             window.addEventListener('resize', () => {
                 updateTimelineBounds();
                 handleScroll();
             });
-            window.addEventListener('scroll', handleScroll);
-            handleScroll(); // Trigger once on load
+            
+            // Added passive: true for mobile scrolling performance
+            window.addEventListener('scroll', onScroll, { passive: true }); 
+            handleScroll(); 
         });
     </script>
 </body>
