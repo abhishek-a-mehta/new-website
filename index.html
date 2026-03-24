@@ -1,126 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine?</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #ffdae0; /* Soft Pink */
-            font-family: 'Arial', sans-serif;
-        }
-
-        .card {
-            background-color: white;
-            padding: 2.5rem;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 400px;
-            min-height: 300px;
-            position: relative; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        h1 {
-            color: #d63384;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px; /* Space between Yes and No */
-            height: 50px;
-            position: relative;
-        }
-
-        button {
-            padding: 12px 30px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        #yesBtn {
-            background-color: #ff4d6d;
-            color: white;
-            z-index: 1;
-        }
-
-        #noBtn {
-            background-color: #f8f9fa;
-            color: #6c757d;
-            border: 1px solid #dee2e6;
-            /* No absolute position yet! */
-        }
-
-        .success-content {
-            display: none;
-        }
-
-        img {
-            width: 250px;
-            border-radius: 15px;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="card" id="mainCard">
-        <div id="questionSection">
-            <h1>Will you be my Valentine?</h1>
-            <div class="btn-container">
-                <button id="yesBtn" onclick="celebrate()">Yes</button>
-                <button id="noBtn" onmouseover="moveButton()">No</button>
-            </div>
-        </div>
-
-        <div id="successSection" class="success-content">
-            <h1>Yay! I knew it! ❤️</h1>
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmZpZ3FqbmZqbmZqbmZqbmZqbmZqbmZqbmZqbmZqbmZqbmZqbmZqJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZNo/KzM1lAfJ9SdwF7rcp3/giphy.gif" alt="Happy Cat">
-        </div>
-    </div>
-
+    <title>Abhishek Mehta | Workspace Cloud Architect</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script>
-        function moveButton() {
-            const noBtn = document.getElementById('noBtn');
-            const card = document.getElementById('mainCard');
-            
-            // On first hover, switch to absolute positioning
-            if (noBtn.style.position !== 'absolute') {
-                noBtn.style.position = 'absolute';
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        google: { blue: '#4285F4', red: '#EA4335', yellow: '#FBBC05', green: '#34A853' }
+                    }
+                }
             }
-
-            // Calculate boundaries relative to the card
-            // We subtract button size and padding to keep it inside
-            const padding = 20;
-            const maxWidth = card.clientWidth - noBtn.clientWidth - padding;
-            const maxHeight = card.clientHeight - noBtn.clientHeight - padding;
-
-            const randomX = Math.max(padding, Math.floor(Math.random() * maxWidth));
-            const randomY = Math.max(padding, Math.floor(Math.random() * maxHeight));
-
-            noBtn.style.left = randomX + "px";
-            noBtn.style.top = randomY + "px";
-        }
-
-        function celebrate() {
-            document.getElementById('questionSection').style.display = 'none';
-            document.getElementById('successSection').style.display = 'block';
         }
     </script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card:hover { border-color: rgba(66, 133, 244, 0.5); transform: translateY(-2px); transition: all 0.3s ease; }
+        .fade-in { animation: fadeIn 1s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="antialiased selection:bg-google-blue selection:text-white relative">
+
+    <!-- Subtle Background Glow -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-google-blue rounded-full blur-[150px] opacity-10 pointer-events-none"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 glass-card border-b-0 border-white/5">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold tracking-tight">AM<span class="text-google-blue">.</span></a>
+            <div class="space-x-8 hidden md:block text-sm font-medium text-slate-300">
+                <a href="#experience" class="hover:text-white transition">Experience</a>
+                <a href="addons.html" class="hover:text-white transition">Add-ons</a>
+                <a href="#contact" class="hover:text-white transition">Contact</a>
+            </div>
+            <a href="#contact" class="hidden md:block bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition">Get in Touch</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center pt-20 px-6 fade-in">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm text-slate-300 mb-8 border border-slate-700">
+                <span class="w-2 h-2 rounded-full bg-google-green animate-pulse"></span>
+                Currently building at Google
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+                Workspace Cloud Architect
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 mb-10 max-w-2xl mx-auto font-light">
+                Hi, I'm <span class="text-white font-medium">Abhishek Mehta</span>. I empower enterprises to collaborate securely and scale efficiently in the cloud.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#experience" class="bg-google-blue hover:bg-blue-600 text-white px-8 py-4 rounded-full font-medium transition shadow-lg shadow-google-blue/20">
+                    View My Experience
+                </a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="glass-card hover:bg-slate-800 text-white px-8 py-4 rounded-full font-medium transition flex items-center justify-center gap-2">
+                    <i class="fab fa-linkedin text-xl"></i> Connect on LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By / Companies Banner -->
+    <section class="py-12 border-y border-white/5 bg-slate-900/50 backdrop-blur">
+        <div class="max-w-6xl mx-auto px-6">
+            <p class="text-center text-sm text-slate-500 font-medium mb-8 uppercase tracking-widest">Engineering scale & security at</p>
+            <div class="flex flex-wrap justify-center gap-12 md:gap-24 items-center text-slate-400 font-bold text-2xl md:text-3xl opacity-60 grayscale hover:grayscale-0 transition duration-500">
+                <span class="hover:text-white transition cursor-default">Google</span>
+                <span class="hover:text-red-500 transition cursor-default">Zomato</span>
+                <span class="hover:text-orange-500 transition cursor-default">Searce</span>
+                <span class="hover:text-blue-500 transition cursor-default">Wipro</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section (Bento Grid) -->
+    <section id="experience" class="py-24 px-6 relative">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-white"><span class="text-google-blue">/</span> Career Journey</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Google Card (Spans full width on desktop) -->
+                <div class="glass-card p-8 rounded-3xl md:col-span-2 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition duration-500">
+                        <i class="fab fa-google text-9xl text-white"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <p class="text-google-blue font-semibold mb-2">Current</p>
+                        <h3 class="text-2xl font-bold text-white mb-1">Workspace Cloud Architect</h3>
+                        <p class="text-slate-400 mb-6 text-lg">Google</p>
+                        <p class="text-slate-300 leading-relaxed max-w-3xl">
+                            Designing and deploying enterprise-grade Google Workspace architectures. Focusing on security, compliance, data migrations, and optimizing cloud collaboration for global organizations.
+                        </p>
+                        <div class="mt-6 flex gap-3 flex-wrap">
+                            <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Cloud Architecture</span>
+                            <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Enterprise Security</span>
+                            <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Identity Management</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zomato Card -->
+                <div class="glass-card p-8 rounded-3xl">
+                    <h3 class="text-xl font-bold text-white mb-1">Previous Role</h3>
+                    <p class="text-slate-400 mb-6">Zomato</p>
+                    <p class="text-slate-300 leading-relaxed">
+                        Managed IT infrastructure and scalable workspace solutions for a hyper-growth environment. Ensured seamless operational tech flow for thousands of employees across regions.
+                    </p>
+                </div>
+
+                <!-- Searce Card -->
+                <div class="glass-card p-8 rounded-3xl">
+                    <h3 class="text-xl font-bold text-white mb-1">Cloud Consultant / Architect</h3>
+                    <p class="text-slate-400 mb-6">Searce</p>
+                    <p class="text-slate-300 leading-relaxed">
+                        Acted as a trusted advisor for clients migrating to cloud environments. Delivered end-to-end modernization strategies and technical implementations.
+                    </p>
+                </div>
+
+                <!-- Wipro Card (Spans full width) -->
+                <div class="glass-card p-8 rounded-3xl md:col-span-2">
+                    <h3 class="text-xl font-bold text-white mb-1">Early Career</h3>
+                    <p class="text-slate-400 mb-4">Wipro</p>
+                    <p class="text-slate-300 leading-relaxed max-w-3xl">
+                        Built foundational expertise in enterprise IT, system administration, and large-scale infrastructure management for global clients.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <section id="contact" class="py-24 px-6 border-t border-white/5 bg-slate-900/50">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Let's build something great.</h2>
+            <p class="text-slate-400 mb-10 text-lg">Whether it's cloud architecture strategy, workspace modernization, or just geeking out about tech, my inbox is open.</p>
+            <a href="mailto:your-email@mehtaabhishek.in" class="inline-block bg-white text-slate-900 hover:bg-slate-200 px-8 py-4 rounded-full font-bold transition text-lg">
+                Say Hello <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+            
+            <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+                <p>&copy; 2024 Abhishek Mehta. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>
