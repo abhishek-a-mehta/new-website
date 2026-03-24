@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhishek Mehta | Workspace Cloud Architect</title>
-    <!-- Tailwind CSS for modern styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhishek Mehta | Workspace Cloud Architect</title>
+  <!-- Tailwind CSS for modern styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { sans:['Inter', 'sans-serif'] },
@@ -22,315 +24,401 @@
                 }
             }
         }
-    </script>
-    <style>
-        body { background-color: #0f172a; color: #f8fafc; overflow-x: hidden; }
-        .glass-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .glass-card:hover { border-color: rgba(66, 133, 244, 0.5); transform: translateY(-2px); transition: all 0.3s ease; }
-        .fade-in { animation: fadeIn 1s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </script>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      overflow-x: hidden;
+    }
 
-        /* --- FUTURISTIC TIMELINE ANIMATIONS --- */
-        .timeline-item {
-            position: relative; 
-        }
+    .glass-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-        .timeline-content {
-            opacity: 0;
-            /* MOBILE FIX: Slide UP instead of sideways to prevent screen overflow */
-            transform: translateY(30px) scale(0.95);
-            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-        }
+    .glass-card:hover {
+      border-color: rgba(66, 133, 244, 0.5);
+      transform: translateY(-2px);
+      transition: all 0.3s ease;
+    }
 
-        /* DESKTOP FIX: Restore the horizontal slide for larger screens */
-        @media (min-width: 768px) {
-            .timeline-content {
-                transform: translateX(40px) scale(0.95);
-            }
-        }
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
 
-        .timeline-item.show .timeline-content {
-            opacity: 1;
-            /* Safely zeroes out both X and Y axis depending on screen size */
-            transform: translate(0, 0) scale(1);
-        }
-        
-        .timeline-node {
-            box-shadow: 0 0 0 rgba(0,0,0,0);
-            transform: translateX(-50%) scale(0.9); 
-            transition: all 0.5s ease-in-out;
-            transform-origin: center;
-        }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
 
-        .timeline-item.show .timeline-node {
-            box-shadow: 0 0 20px currentColor;
-            transform: translateX(-50%) scale(1.1);
-        }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .timeline-item.show:hover .timeline-node {
-            transform: translateX(-50%) scale(1.2);
-            box-shadow: 0 0 30px currentColor;
-        }
-    </style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+
+    /* --- FUTURISTIC TIMELINE ANIMATIONS --- */
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-content {
+      opacity: 0;
+      /* MOBILE FIX: Slide UP instead of sideways to prevent screen overflow */
+      transform: translateY(30px) scale(0.95);
+      transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* DESKTOP FIX: Restore the horizontal slide for larger screens */
+    @media (min-width: 768px) {
+      .timeline-content {
+        transform: translateX(40px) scale(0.95);
+      }
+    }
+
+    .timeline-item.show .timeline-content {
+      opacity: 1;
+      /* Safely zeroes out both X and Y axis depending on screen size */
+      transform: translate(0, 0) scale(1);
+    }
+
+    .timeline-node {
+      box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+      transform: translateX(-50%) scale(0.9);
+      transition: all 0.5s ease-in-out;
+      transform-origin: center;
+    }
+
+    .timeline-item.show .timeline-node {
+      box-shadow: 0 0 20px currentColor;
+      transform: translateX(-50%) scale(1.1);
+    }
+
+    .timeline-item.show:hover .timeline-node {
+      transform: translateX(-50%) scale(1.2);
+      box-shadow: 0 0 30px currentColor;
+    }
+  </style>
 </head>
+
 <body class="antialiased selection:bg-google-blue selection:text-white relative">
 
-    <!-- Subtle Background Glow -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-google-blue rounded-full blur-[150px] opacity-10 pointer-events-none"></div>
+  <!-- Subtle Background Glow -->
+  <div
+    class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-google-blue rounded-full blur-[150px] opacity-10 pointer-events-none">
+  </div>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 glass-card border-b-0 border-white/5">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-xl font-bold tracking-tight">AM<span class="text-google-blue">.</span></a>
-            <div class="space-x-8 hidden md:block text-sm font-medium text-slate-300">
-                <a href="#experience" class="hover:text-white transition">Experience</a>
-                <a href="addons.html" class="hover:text-white transition">Add-ons</a>
-                <a href="#contact" class="hover:text-white transition">Contact</a>
-            </div>
-            <a href="#contact" class="hidden md:block bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition">Get in Touch</a>
-        </div>
-    </nav>
+  <!-- Navigation -->
+  <nav class="fixed w-full top-0 z-50 glass-card border-b-0 border-white/5">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold tracking-tight">AM<span class="text-google-blue">.</span></a>
+      <div class="space-x-8 hidden md:block text-sm font-medium text-slate-300">
+        <a href="#experience" class="hover:text-white transition">Experience</a>
+        <a href="addons.html" class="hover:text-white transition">Add-ons</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+      </div>
+      <a href="#contact"
+        class="hidden md:block bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition">Get
+        in Touch</a>
+    </div>
+  </nav>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center pt-20 px-6 fade-in">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm text-slate-300 mb-8 border border-slate-700">
-                <span class="w-2 h-2 rounded-full bg-google-green animate-pulse"></span>
-                Currently building at Google
-            </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight leading-tight">
-                Workspace Cloud Architect
-            </h1>
-            <p class="text-xl md:text-2xl text-slate-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-                Hi, I'm <span class="text-white font-medium">Abhishek Mehta</span>. I leverage automation and architecture to empower enterprises to collaborate securely at scale.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#experience" class="bg-google-blue hover:bg-blue-600 text-white px-8 h-14 rounded-full font-medium transition shadow-lg shadow-google-blue/20 flex items-center justify-center">
-                    View My Timeline
-                </a>
-                <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" class="glass-card hover:bg-slate-800 text-white px-8 h-14 rounded-full font-medium transition flex items-center justify-center gap-2">
-                    <i class="fab fa-linkedin text-xl"></i> Connect on LinkedIn
-                </a>
-            </div>
-        </div>
-    </section>
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center pt-20 px-6 fade-in">
+    <div class="max-w-4xl mx-auto text-center">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm text-slate-300 mb-8 border border-slate-700">
+        <span class="w-2 h-2 rounded-full bg-google-green animate-pulse"></span>
+        Currently building at Google
+      </div>
+      <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+        Workspace Cloud Architect
+      </h1>
+      <p class="text-xl md:text-2xl text-slate-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+        Hi, I'm <span class="text-white font-medium">Abhishek Mehta</span>. I leverage automation and architecture to
+        empower enterprises to collaborate securely at scale.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#experience"
+          class="bg-google-blue hover:bg-blue-600 text-white px-8 h-14 rounded-full font-medium transition shadow-lg shadow-google-blue/20 flex items-center justify-center">
+          View My Timeline
+        </a>
+        <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank"
+          class="glass-card hover:bg-slate-800 text-white px-8 h-14 rounded-full font-medium transition flex items-center justify-center gap-2">
+          <i class="fab fa-linkedin text-xl"></i> Connect on LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Trusted By / Company LOGOS Banner -->
-    <section class="py-12 border-y border-white/5 bg-slate-900/50 backdrop-blur relative z-10">
-        <div class="max-w-6xl mx-auto px-6">
-            <p class="text-center text-sm text-slate-500 font-medium mb-10 uppercase tracking-widest">Engineering scale & security at</p>
-            
-            <div class="flex flex-wrap justify-center gap-12 md:gap-24 items-center">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" 
+  <!-- Trusted By / Company LOGOS Banner -->
+  <section class="py-12 border-y border-white/5 bg-slate-900/50 backdrop-blur relative z-10">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="text-center text-sm text-slate-500 font-medium mb-10 uppercase tracking-widest">Engineering scale &
+        security at</p>
+
+      <div class="flex flex-wrap justify-center gap-12 md:gap-24 items-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"
                      class="h-8 md:h-9 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
-                <img src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png" alt="Zomato" 
+        <img src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png" alt="Zomato"
                      class="h-6 md:h-7 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg" alt="Wipro" 
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg" alt="Wipro"
                      class="h-10 md:h-12 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-300 cursor-pointer">
-                <img src="https://www.searce.com/images/logo.svg?dpl=dpl_GZUKGxMnGgodHaDTThtRs5CTdjXt" alt="Searce" 
+        <img src="https://www.searce.com/images/logo.svg?dpl=dpl_GZUKGxMnGgodHaDTThtRs5CTdjXt" alt="Searce"
                      class="h-6 md:h-7 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-300 cursor-pointer">
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section (Animated Futuristic Timeline) -->
+  <section id="experience" class="py-24 px-6 relative">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-16 text-white text-center relative z-10">
+        <span class="text-google-blue">/</span> Career Timeline</h2>
+
+      <div class="ml-4 md:ml-12 relative" id="timeline-container">
+
+        <div id="static-line" class="absolute left-0 w-[2px] bg-slate-800 -translate-x-1/2 z-0"></div>
+
+        <div id="animated-line"
+          class="absolute left-0 w-[2px] bg-gradient-to-b from-google-blue via-indigo-500 to-orange-500 -translate-x-1/2 shadow-[0_0_15px_rgba(66,133,244,0.8)] transition-all duration-75 ease-out rounded-full z-0"
+          style="height: 0px;"></div>
+
+        <div class="space-y-16 w-full">
+
+          <!-- Google Card -->
+          <div class="relative pl-8 md:pl-12 group timeline-item">
+            <div
+              class="timeline-node text-google-blue absolute left-0 top-8 w-[10px] h-[30px] rounded-full bg-google-blue ring-4 ring-[#0f172a] -translate-x-1/2 z-10">
             </div>
+
+            <div class="glass-card p-6 md:p-8 rounded-3xl relative overflow-hidden timeline-content">
+              <i class="fab fa-google absolute -bottom-10 -right-10 text-9xl text-white opacity-5 pointer-events-none"></i>
+              <span class="text-sm font-semibold text-google-blue tracking-widest uppercase mb-2 block">Jan 2023 – Present</span>
+              <h3 class="text-2xl font-bold text-white mb-1">Workspace Cloud Architect</h3>
+              <p class="text-slate-400 mb-6 text-lg font-medium">Google</p>
+
+              <ul class="text-slate-300 leading-relaxed space-y-3 mb-6 relative z-10">
+                <li><i class="fas fa-angle-right text-google-blue mr-2 text-sm"></i> Developer of a core Google
+                  Workspace to Workspace chat migration tool supporting domain transfers.</li>
+                <li><i class="fas fa-angle-right text-google-blue mr-2 text-sm"></i> Designing automation solutions
+                  leveraging <strong>Apps Script, Vertex AI & REST APIs</strong> to eliminate human error across
+                  enterprise deployments.</li>
+                <li><i class="fas fa-angle-right text-google-blue mr-2 text-sm"></i> Acting as a trusted advisor for
+                  global public sector & enterprise customers regarding Google Vault, Security Posture, and Client-Side
+                  Encryption.</li>
+              </ul>
+
+              <div class="flex gap-3 flex-wrap relative z-10">
+                <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Vertex AI</span>
+                <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Apps Script</span>
+                <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Enterprise Security</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wipro Card -->
+          <div class="relative pl-8 md:pl-12 group timeline-item">
+            <div
+              class="timeline-node text-indigo-500 absolute left-0 top-8 w-[10px] h-[30px] rounded-full bg-indigo-500 ring-4 ring-[#0f172a] -translate-x-1/2 z-10">
+            </div>
+
+            <div class="glass-card p-6 md:p-8 rounded-3xl relative overflow-hidden timeline-content">
+              <span class="text-sm font-semibold text-indigo-400 tracking-widest uppercase mb-2 block">July 2021 – Jan 2023</span>
+              <h3 class="text-2xl font-bold text-white mb-1">Technical Lead - Google Workspace</h3>
+              <p class="text-slate-400 mb-6 text-lg font-medium">Wipro</p>
+
+              <ul class="text-slate-300 leading-relaxed space-y-3">
+                <li><i class="fas fa-angle-right text-indigo-400 mr-2 text-sm"></i> Spearheaded automation for an
+                  enterprise customer with <strong>110,000 seats</strong> using Apps Script (Admin API, Gmail API) to
+                  off-board BetterCloud, resulting in <strong>~£500k in savings.</strong></li>
+                <li><i class="fas fa-angle-right text-indigo-400 mr-2 text-sm"></i> Executed massive-scale user
+                  migrations from Office 365 to Google Workspace utilizing Cloud Migrator and Google DMS services.</li>
+                <li><i class="fas fa-angle-right text-indigo-400 mr-2 text-sm"></i> Provided L3 technical expertise for
+                  core products (Gmail, Drive, Vault) and eradicated process errors through IT automation.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Zomato Card -->
+          <div class="relative pl-8 md:pl-12 group timeline-item">
+            <div
+              class="timeline-node text-red-500 absolute left-0 top-8 w-[10px] h-[30px] rounded-full bg-red-500 ring-4 ring-[#0f172a] -translate-x-1/2 z-10">
+            </div>
+
+            <div class="glass-card p-6 md:p-8 rounded-3xl relative overflow-hidden timeline-content">
+              <span class="text-sm font-semibold text-red-500 tracking-widest uppercase mb-2 block">Nov 2019 – July 2021</span>
+              <h3 class="text-2xl font-bold text-white mb-1">Technical Lead - Google Workspace</h3>
+              <p class="text-slate-400 mb-6 text-lg font-medium">Zomato</p>
+
+              <ul class="text-slate-300 leading-relaxed space-y-3">
+                <li><i class="fas fa-angle-right text-red-500 mr-2 text-sm"></i> Worked closely with the Google
+                  Engineering team on GCPW testing and go-live, directly influencing product implementations.</li>
+                <li><i class="fas fa-angle-right text-red-500 mr-2 text-sm"></i> Started as an IT Analyst and was
+                  promoted to Technical Lead within just 8 months by actively converting man-driven processes to
+                  system-driven approaches.</li>
+                <li><i class="fas fa-angle-right text-red-500 mr-2 text-sm"></i> Developed critical Business Process
+                  Automations using HTML, CSS, and Apps Script (automated user suspensions, quota notifications, etc.).
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Searce Card -->
+          <div class="relative pl-8 md:pl-12 group timeline-item pb-4">
+            <div
+              class="timeline-node text-orange-500 absolute left-0 top-8 w-[10px] h-[30px] rounded-full bg-orange-500 ring-4 ring-[#0f172a] -translate-x-1/2 z-10">
+            </div>
+
+            <div class="glass-card p-6 md:p-8 rounded-3xl relative overflow-hidden timeline-content">
+              <span class="text-sm font-semibold text-orange-500 tracking-widest uppercase mb-2 block">March 2016 – Nov 2019</span>
+              <h3 class="text-2xl font-bold text-white mb-1">Cloud Solutions Engineer</h3>
+              <p class="text-slate-400 mb-6 text-lg font-medium">Searce</p>
+
+              <ul class="text-slate-300 leading-relaxed space-y-3">
+                <li><i class="fas fa-angle-right text-orange-500 mr-2 text-sm"></i> Drove pre-sales, POCs, and
+                  deployment activities for both SMB and large business enterprise customers.</li>
+                <li><i class="fas fa-angle-right text-orange-500 mr-2 text-sm"></i> Successfully performed data
+                  migration of over 1,200 users from Office 365 to Google Workspace for a SEA-based hospitality firm.
+                </li>
+                <li><i class="fas fa-angle-right text-orange-500 mr-2 text-sm"></i> Managed on-site customer
+                  relationships and engineered hybrid scenario environments including Split Delivery, External DLP, and
+                  GCDS.</li>
+              </ul>
+            </div>
+          </div>
+
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Experience Section (Animated Futuristic Timeline) -->
-    <section id="experience" class="py-24 px-6 relative">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-white text-center relative z-10"><span class="text-google-blue">/</span> Career Timeline</h2>
-            
-            <div class="ml-4 md:ml-12 relative" id="timeline-container">
-                
-                <div id="static-line" class="absolute left-0 w-[2px] bg-slate-800 -translate-x-1/2 z-0"></div>
-                
-                <div id="animated-line" class="absolute left-0 w-[2px] bg-gradient-to-b from-google-blue via-indigo-500 to-orange-500 -translate-x-1/2 shadow-[0_0_15px_rgba(66,133,244,0.8)] transition-all duration-75 ease-out rounded-full z-0" style="height: 0px;"></div>
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 px-6 border-t border-white/5 bg-slate-900/50">
+    <div class="max-w-6xl mx-auto">
 
-                <div class="space-y-16 w-full">
-                    
-                    <!-- Google Card -->
-                    <div class="relative pl-8 md:pl-12 group timeline-item">
-                        <div class="timeline-node text-google-blue absolute left-0 top-8 w-[10px] h-[30px] rounded-full bg-google-blue ring-4 ring-[#0f172a] -translate-x-1/2 z-10"></div>
-                        
-                        <div class="glass-card p-6 md:p-8 rounded-3xl relative overflow-hidden timeline-content">
-                            <i class="fab fa-google absolute -bottom-10 -right-10 text-9xl text-white opacity-5 pointer-events-none"></i>
-                            <span class="text-sm font-semibold text-google-blue tracking-widest uppercase mb-2 block">Jan 2023 – Present</span>
-                            <h3 class="text-2xl font-bold text-white mb-1">Workspace Cloud Architect</h3>
-                            <p class="text-slate-400 mb-6 text-lg font-medium">Google</p>
-                            
-                            <ul class="text-slate-300 leading-relaxed space-y-3 mb-6 relative z-10">
-                                <li><i class="fas fa-angle-right text-google-blue mr-2 text-sm"></i> Developer of a core Google Workspace to Workspace chat migration tool supporting domain transfers.</li>
-                                <li><i class="fas fa-angle-right text-google-blue mr-2 text-sm"></i> Designing automation solutions leveraging <strong>Apps Script, Vertex AI & REST APIs</strong> to eliminate human error across enterprise deployments.</li>
-                                <li><i class="fas fa-angle-right text-google-blue mr-2 text-sm"></i> Acting as a trusted advisor for global public sector & enterprise customers regarding Google Vault, Security Posture, and Client-Side Encryption.</li>
-                            </ul>
-                            
-                            <div class="flex gap-3 flex-wrap relative z-10">
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Vertex AI</span>
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Apps Script</span>
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Enterprise Security</span>
-                            </div>
-                        </div>
-                    </div>
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Let's build something great.</h2>
+        <p class="text-slate-400 text-lg max-w-2xl mx-auto">Whether it's cloud architecture strategy, workspace
+          modernization, or a new opportunity, my inbox is always open.</p>
+      </div>
 
-                    <!-- Wipro Card -->
-                    <div class="relative pl-8 md:pl-12 group timeline-item">
-                        <div class="timeline-node text-indigo-500 absolute left-0 top-8 w-[10px] h-[30px] rounded-full bg-indigo-500 ring-4 ring-[#0f172a] -translate-x-1/2 z-10"></div>
-                        
-                        <div class="glass-card p-6 md:p-8 rounded-3xl relative overflow-hidden timeline-content">
-                            <span class="text-sm font-semibold text-indigo-400 tracking-widest uppercase mb-2 block">July 2021 – Jan 2023</span>
-                            <h3 class="text-2xl font-bold text-white mb-1">Technical Lead - Google Workspace</h3>
-                            <p class="text-slate-400 mb-6 text-lg font-medium">Wipro</p>
-                            
-                            <ul class="text-slate-300 leading-relaxed space-y-3">
-                                <li><i class="fas fa-angle-right text-indigo-400 mr-2 text-sm"></i> Spearheaded automation for an enterprise customer with <strong>110,000 seats</strong> using Apps Script (Admin API, Gmail API) to off-board BetterCloud, resulting in <strong>~£500k in savings.</strong></li>
-                                <li><i class="fas fa-angle-right text-indigo-400 mr-2 text-sm"></i> Executed massive-scale user migrations from Office 365 to Google Workspace utilizing Cloud Migrator and Google DMS services.</li>
-                                <li><i class="fas fa-angle-right text-indigo-400 mr-2 text-sm"></i> Provided L3 technical expertise for core products (Gmail, Drive, Vault) and eradicated process errors through IT automation.</li>
-                            </ul>
-                        </div>
-                    </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
 
-                    <!-- Zomato Card -->
-                    <div class="relative pl-8 md:pl-12 group timeline-item">
-                        <div class="timeline-node text-red-500 absolute left-0 top-8 w-[10px] h-[30px] rounded-full bg-red-500 ring-4 ring-[#0f172a] -translate-x-1/2 z-10"></div>
-                        
-                        <div class="glass-card p-6 md:p-8 rounded-3xl relative overflow-hidden timeline-content">
-                            <span class="text-sm font-semibold text-red-500 tracking-widest uppercase mb-2 block">Nov 2019 – July 2021</span>
-                            <h3 class="text-2xl font-bold text-white mb-1">Technical Lead - Google Workspace</h3>
-                            <p class="text-slate-400 mb-6 text-lg font-medium">Zomato</p>
-                            
-                            <ul class="text-slate-300 leading-relaxed space-y-3">
-                                <li><i class="fas fa-angle-right text-red-500 mr-2 text-sm"></i> Worked closely with the Google Engineering team on GCPW testing and go-live, directly influencing product implementations.</li>
-                                <li><i class="fas fa-angle-right text-red-500 mr-2 text-sm"></i> Started as an IT Analyst and was promoted to Technical Lead within just 8 months by actively converting man-driven processes to system-driven approaches.</li>
-                                <li><i class="fas fa-angle-right text-red-500 mr-2 text-sm"></i> Developed critical Business Process Automations using HTML, CSS, and Apps Script (automated user suspensions, quota notifications, etc.).</li>
-                            </ul>
-                        </div>
-                    </div>
+        <div class="glass-card p-10 rounded-3xl h-full flex flex-col justify-center relative overflow-hidden">
+          <i class="fas fa-paper-plane absolute -bottom-10 -right-10 text-9xl text-white opacity-5 pointer-events-none"></i>
+          <h3 class="text-2xl font-bold text-white mb-8 relative z-10">Contact Information</h3>
 
-                    <!-- Searce Card -->
-                    <div class="relative pl-8 md:pl-12 group timeline-item pb-4">
-                        <div class="timeline-node text-orange-500 absolute left-0 top-8 w-[10px] h-[30px] rounded-full bg-orange-500 ring-4 ring-[#0f172a] -translate-x-1/2 z-10"></div>
-                        
-                        <div class="glass-card p-6 md:p-8 rounded-3xl relative overflow-hidden timeline-content">
-                            <span class="text-sm font-semibold text-orange-500 tracking-widest uppercase mb-2 block">March 2016 – Nov 2019</span>
-                            <h3 class="text-2xl font-bold text-white mb-1">Cloud Solutions Engineer</h3>
-                            <p class="text-slate-400 mb-6 text-lg font-medium">Searce</p>
-                            
-                            <ul class="text-slate-300 leading-relaxed space-y-3">
-                                <li><i class="fas fa-angle-right text-orange-500 mr-2 text-sm"></i> Drove pre-sales, POCs, and deployment activities for both SMB and large business enterprise customers.</li>
-                                <li><i class="fas fa-angle-right text-orange-500 mr-2 text-sm"></i> Successfully performed data migration of over 1,200 users from Office 365 to Google Workspace for a SEA-based hospitality firm.</li>
-                                <li><i class="fas fa-angle-right text-orange-500 mr-2 text-sm"></i> Managed on-site customer relationships and engineered hybrid scenario environments including Split Delivery, External DLP, and GCDS.</li>
-                            </ul>
-                        </div>
-                    </div>
-                
-                </div>
+          <div class="space-y-8 relative z-10">
+            <a href="mailto:abhishekmehta110@gmail.com"
+              class="flex items-center gap-4 md:gap-5 text-slate-300 hover:text-white transition group">
+              <!-- Added shrink-0 to protect the icon shape -->
+              <div
+                class="shrink-0 w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 group-hover:border-google-blue group-hover:bg-google-blue/10 transition shadow-lg">
+                <i class="fas fa-envelope text-google-blue text-xl"></i>
+              </div>
+              <!-- Added min-w-0 and break-all to handle the long text gracefully -->
+              <div class="min-w-0">
+                <p class="text-sm text-slate-500 font-medium mb-1">Email</p>
+                <p class="text-base md:text-lg font-semibold tracking-wide break-all">abhishekmehta110@gmail.com</p>
+              </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank"
+              class="flex items-center gap-4 md:gap-5 text-slate-300 hover:text-white transition group">
+              <div
+                class="shrink-0 w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 group-hover:border-blue-500 group-hover:bg-blue-500/10 transition shadow-lg">
+                <i class="fab fa-linkedin-in text-blue-500 text-xl"></i>
+              </div>
+              <div class="min-w-0">
+                <p class="text-sm text-slate-500 font-medium mb-1">LinkedIn</p>
+                <p class="text-base md:text-lg font-semibold tracking-wide truncate">Connect with me</p>
+              </div>
+            </a>
+
+            <div class="flex items-center gap-4 md:gap-5 text-slate-300 group cursor-default">
+              <div
+                class="shrink-0 w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 shadow-lg">
+                <i class="fas fa-map-marker-alt text-google-red text-xl"></i>
+              </div>
+              <div class="min-w-0">
+                <p class="text-sm text-slate-500 font-medium mb-1">Location</p>
+                <p class="text-base md:text-lg font-semibold tracking-wide truncate">Bengaluru, India</p>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 px-6 border-t border-white/5 bg-slate-900/50">
-        <div class="max-w-6xl mx-auto">
-            
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Let's build something great.</h2>
-                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Whether it's cloud architecture strategy, workspace modernization, or a new opportunity, my inbox is always open.</p>
+        <div class="glass-card p-10 rounded-3xl">
+          <form action="https://formsubmit.co/abhishekmehta110@gmail.com" method="POST" class="space-y-6">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New message from mehtaabhishek.in!">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-sm font-medium text-slate-400">Your Name</label>
+                <input type="text" name="name" required class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-google-blue focus:ring-1 focus:ring-google-blue transition" placeholder="John Doe">
+              </div>
+              <div class="space-y-2">
+                <label class="text-sm font-medium text-slate-400">Your Email</label>
+                <input type="email" name="email" required class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-google-blue focus:ring-1 focus:ring-google-blue transition" placeholder="john@company.com">
+              </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-                
-                <div class="glass-card p-10 rounded-3xl h-full flex flex-col justify-center relative overflow-hidden">
-                    <i class="fas fa-paper-plane absolute -bottom-10 -right-10 text-9xl text-white opacity-5 pointer-events-none"></i>
-                    <h3 class="text-2xl font-bold text-white mb-8 relative z-10">Contact Information</h3>
-                    
-                    <div class="space-y-8 relative z-10">
-                        <a href="mailto:abhishekmehta110@gmail.com" class="flex items-center gap-5 text-slate-300 hover:text-white transition group">
-                            <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 group-hover:border-google-blue group-hover:bg-google-blue/10 transition shadow-lg">
-                                <i class="fas fa-envelope text-google-blue text-xl"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm text-slate-500 font-medium mb-1">Email</p>
-                                <p class="text-lg font-semibold tracking-wide">abhishekmehta110@gmail.com</p>
-                            </div>
-                        </a>
-                        
-                        <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" class="flex items-center gap-5 text-slate-300 hover:text-white transition group">
-                            <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 group-hover:border-blue-500 group-hover:bg-blue-500/10 transition shadow-lg">
-                                <i class="fab fa-linkedin-in text-blue-500 text-xl"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm text-slate-500 font-medium mb-1">LinkedIn</p>
-                                <p class="text-lg font-semibold tracking-wide">Connect with me</p>
-                            </div>
-                        </a>
-                        
-                        <div class="flex items-center gap-5 text-slate-300 group cursor-default">
-                            <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 shadow-lg">
-                                <i class="fas fa-map-marker-alt text-google-red text-xl"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm text-slate-500 font-medium mb-1">Location</p>
-                                <p class="text-lg font-semibold tracking-wide">Bengaluru, India</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-slate-400">Subject</label>
+              <input type="text" name="subject" required class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-google-blue focus:ring-1 focus:ring-google-blue transition" placeholder="Cloud Consulting / Job Opportunity">
+            </div>
 
-                <div class="glass-card p-10 rounded-3xl">
-                    <form action="https://formsubmit.co/abhishekmehta110@gmail.com" method="POST" class="space-y-6">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_subject" value="New message from mehtaabhishek.in!">
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="space-y-2">
-                                <label class="text-sm font-medium text-slate-400">Your Name</label>
-                                <input type="text" name="name" required class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-google-blue focus:ring-1 focus:ring-google-blue transition" placeholder="John Doe">
-                            </div>
-                            <div class="space-y-2">
-                                <label class="text-sm font-medium text-slate-400">Your Email</label>
-                                <input type="email" name="email" required class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-google-blue focus:ring-1 focus:ring-google-blue transition" placeholder="john@company.com">
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-2">
-                            <label class="text-sm font-medium text-slate-400">Subject</label>
-                            <input type="text" name="subject" required class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-google-blue focus:ring-1 focus:ring-google-blue transition" placeholder="Cloud Consulting / Job Opportunity">
-                        </div>
-                        
-                        <div class="space-y-2">
-                            <label class="text-sm font-medium text-slate-400">Message</label>
-                            <textarea name="message" required rows="5" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-google-blue focus:ring-1 focus:ring-google-blue transition resize-none" placeholder="Hi Abhishek, I'm reaching out because..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="w-full bg-google-blue hover:bg-blue-600 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-google-blue/20 flex justify-center items-center gap-2 mt-4 text-lg">
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-slate-400">Message</label>
+              <textarea name="message" required rows="5" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-google-blue focus:ring-1 focus:ring-google-blue transition resize-none" placeholder="Hi Abhishek, I'm reaching out because..."></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-google-blue hover:bg-blue-600 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-google-blue/20 flex justify-center items-center gap-2 mt-4 text-lg">
                             Send Message <i class="fas fa-arrow-right text-sm ml-1"></i>
                         </button>
-                    </form>
-                </div>
-
-            </div>
-
-            <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
-                <p>&copy; 2026 Abhishek Mehta. All rights reserved.</p>
-                <div class="flex gap-6">
-                    <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
-                    <a href="#" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
-                </div>
-            </div>
+          </form>
         </div>
-    </section>
 
-    <!-- FUTURISTIC ANIMATION ENGINE (JavaScript) -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
+      </div>
+
+      <div
+        class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+        <p>&copy; 2026 Abhishek Mehta. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank"
+            class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+          <a href="#" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUTURISTIC ANIMATION ENGINE (JavaScript) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
             
             // MOBILE FIX 1: Capture initial width so we don't recalculate on address bar hide/show
             let currentWindowWidth = window.innerWidth;
@@ -415,6 +503,7 @@
             window.addEventListener('scroll', onScroll, { passive: true }); 
             handleScroll(); 
         });
-    </script>
+  </script>
 </body>
+
 </html>
