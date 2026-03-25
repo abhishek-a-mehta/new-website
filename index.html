@@ -5,24 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Abhishek Mehta | Workspace Cloud Architect</title>
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CSS for modern styling -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <!-- FontAwesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] },
-          colors: {
-            google: { blue: '#4285F4', red: '#EA4335', yellow: '#FBBC05', green: '#34A853' }
-          }
+            theme: {
+                extend: {
+                    fontFamily: { sans:['Inter', 'sans-serif'] },
+                    colors: {
+                        google: { blue: '#4285F4', red: '#EA4335', yellow: '#FBBC05', green: '#34A853' }
+                    }
+                }
+            }
         }
-      }
-    }
   </script>
   <style>
     body {
@@ -48,31 +49,57 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Custom scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #0f172a; }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
 
     /* --- FUTURISTIC TIMELINE ANIMATIONS --- */
-    .timeline-item { position: relative; }
+    .timeline-item {
+      position: relative;
+    }
 
     .timeline-content {
       opacity: 0;
+      /* MOBILE FIX: Slide UP instead of sideways to prevent screen overflow */
       transform: translateY(30px) scale(0.95);
       transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
+    /* DESKTOP FIX: Restore the horizontal slide for larger screens */
     @media (min-width: 768px) {
-      .timeline-content { transform: translateX(40px) scale(0.95); }
+      .timeline-content {
+        transform: translateX(40px) scale(0.95);
+      }
     }
 
     .timeline-item.show .timeline-content {
       opacity: 1;
+      /* Safely zeroes out both X and Y axis depending on screen size */
       transform: translate(0, 0) scale(1);
     }
 
@@ -98,7 +125,9 @@
 <body class="antialiased selection:bg-google-blue selection:text-white relative">
 
   <!-- Subtle Background Glow -->
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-google-blue rounded-full blur-[150px] opacity-10 pointer-events-none"></div>
+  <div
+    class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-google-blue rounded-full blur-[150px] opacity-10 pointer-events-none">
+  </div>
 
   <!-- Navigation -->
   <nav class="fixed w-full top-0 z-50 glass-card border-b-0 border-white/5">
@@ -129,21 +158,25 @@
   <!-- Hero Section -->
   <section class="min-h-screen flex items-center justify-center pt-20 px-6 fade-in">
     <div class="max-w-4xl mx-auto text-center">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm text-slate-300 mb-8 border border-slate-700">
-        <span class="w-2 h-2 rounded-full bg-google-green animate-pulse"></span>
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm text-slate-300 mb-8 border border-slate-700">
+        <span class="w-4 h-4 rounded-full bg-google-green animate-pulse"></span>
         Currently building at Google
       </div>
       <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight leading-tight">
         Workspace Cloud Architect
       </h1>
       <p class="text-xl md:text-2xl text-slate-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-        Hi, I'm <span class="text-white font-medium">Abhishek Mehta</span>. I leverage automation and architecture to empower enterprises to collaborate securely at scale.
+        Hi, I'm <span class="text-white font-medium">Abhishek Mehta</span>. I leverage automation and architecture to
+        empower enterprises to collaborate securely at scale.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#experience" class="bg-google-blue hover:bg-blue-600 text-white px-8 h-14 rounded-full font-medium transition shadow-lg shadow-google-blue/20 flex items-center justify-center">
+        <a href="#experience"
+          class="bg-google-blue hover:bg-blue-600 text-white px-8 h-14 rounded-full font-medium transition shadow-lg shadow-google-blue/20 flex items-center justify-center">
           View My Timeline
         </a>
-        <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" class="glass-card hover:bg-slate-800 text-white px-8 h-14 rounded-full font-medium transition flex items-center justify-center gap-2">
+        <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank"
+          class="glass-card hover:bg-slate-800 text-white px-8 h-14 rounded-full font-medium transition flex items-center justify-center gap-2">
           <i class="fab fa-linkedin text-xl"></i> Connect on LinkedIn
         </a>
       </div>
@@ -153,12 +186,18 @@
   <!-- Trusted By / Company LOGOS Banner -->
   <section class="py-12 border-y border-white/5 bg-slate-900/50 backdrop-blur relative z-10">
     <div class="max-w-6xl mx-auto px-6">
-      <p class="text-center text-sm text-slate-500 font-medium mb-10 uppercase tracking-widest">Engineering scale & security at</p>
+      <p class="text-center text-sm text-slate-500 font-medium mb-10 uppercase tracking-widest">Engineering scale &
+        security at</p>
+
       <div class="flex flex-wrap justify-center gap-12 md:gap-24 items-center">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="h-8 md:h-9 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
-        <img src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png" alt="Zomato" class="h-6 md:h-7 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg" alt="Wipro" class="h-10 md:h-12 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-300 cursor-pointer">
-        <img src="https://www.searce.com/images/logo.svg?dpl=dpl_GZUKGxMnGgodHaDTThtRs5CTdjXt" alt="Searce" class="h-6 md:h-7 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-300 cursor-pointer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"
+                     class="h-8 md:h-9 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
+        <img src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png" alt="Zomato"
+                     class="h-6 md:h-7 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg" alt="Wipro"
+                     class="h-10 md:h-12 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-300 cursor-pointer">
+        <img src="https://www.searce.com/images/logo.svg?dpl=dpl_GZUKGxMnGgodHaDTThtRs5CTdjXt" alt="Searce"
+                     class="h-6 md:h-7 brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-300 cursor-pointer">
       </div>
     </div>
   </section>
@@ -167,11 +206,16 @@
   <section id="experience" class="py-24 px-6 relative">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-3xl md:text-4xl font-bold mb-16 text-white text-center relative z-10">
-        <span class="text-google-blue">/</span> Career Timeline</h2>
+        <span class="text-google-blue">/</span> Career Timeline
+      </h2>
 
       <div class="ml-4 md:ml-12 relative" id="timeline-container">
+
         <div id="static-line" class="absolute left-0 w-[2px] bg-slate-800 -translate-x-1/2 z-0"></div>
-        <div id="animated-line" class="absolute left-0 w-[2px] bg-gradient-to-b from-google-blue via-indigo-500 to-orange-500 -translate-x-1/2 shadow-[0_0_15px_rgba(66,133,244,0.8)] transition-all duration-75 ease-out rounded-full z-0" style="height: 0px;"></div>
+
+        <div id="animated-line"
+          class="absolute left-0 w-[2px] bg-gradient-to-b from-google-blue via-indigo-500 to-orange-500 -translate-x-1/2 shadow-[0_0_15px_rgba(66,133,244,0.8)] transition-all duration-75 ease-out rounded-full z-0"
+          style="height: 0px;"></div>
 
         <div class="space-y-16 w-full">
 
@@ -266,29 +310,38 @@
   <!-- Contact Section -->
   <section id="contact" class="py-24 px-6 border-t border-white/5 bg-slate-900/50">
     <div class="max-w-6xl mx-auto">
+
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Let's build something great.</h2>
-        <p class="text-slate-400 text-lg max-w-2xl mx-auto">Whether it's cloud architecture strategy, workspace modernization, or a new opportunity, my inbox is always open.</p>
+        <p class="text-slate-400 text-lg max-w-2xl mx-auto">Whether it's cloud architecture strategy, workspace
+          modernization, or a new opportunity, my inbox is always open.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
         <div class="glass-card p-10 rounded-3xl h-full flex flex-col justify-center relative overflow-hidden">
           <i class="fas fa-paper-plane absolute -bottom-10 -right-10 text-9xl text-white opacity-5 pointer-events-none"></i>
           <h3 class="text-2xl font-bold text-white mb-8 relative z-10">Contact Information</h3>
 
           <div class="space-y-8 relative z-10">
-            <a href="mailto:abhishekmehta110@gmail.com" class="flex items-center gap-4 md:gap-5 text-slate-300 hover:text-white transition group">
-              <div class="shrink-0 w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 group-hover:border-google-blue group-hover:bg-google-blue/10 transition shadow-lg">
+            <a href="mailto:abhishekmehta110@gmail.com"
+              class="flex items-center gap-4 md:gap-5 text-slate-300 hover:text-white transition group">
+              <!-- Added shrink-0 to protect the icon shape -->
+              <div
+                class="shrink-0 w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 group-hover:border-google-blue group-hover:bg-google-blue/10 transition shadow-lg">
                 <i class="fas fa-envelope text-google-blue text-xl"></i>
               </div>
+              <!-- Added min-w-0 and break-all to handle the long text gracefully -->
               <div class="min-w-0">
                 <p class="text-sm text-slate-500 font-medium mb-1">Email</p>
                 <p class="text-base md:text-lg font-semibold tracking-wide break-all">abhishekmehta110@gmail.com</p>
               </div>
             </a>
 
-            <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" class="flex items-center gap-4 md:gap-5 text-slate-300 hover:text-white transition group">
-              <div class="shrink-0 w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 group-hover:border-blue-500 group-hover:bg-blue-500/10 transition shadow-lg">
+            <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank"
+              class="flex items-center gap-4 md:gap-5 text-slate-300 hover:text-white transition group">
+              <div
+                class="shrink-0 w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 group-hover:border-blue-500 group-hover:bg-blue-500/10 transition shadow-lg">
                 <i class="fab fa-linkedin-in text-blue-500 text-xl"></i>
               </div>
               <div class="min-w-0">
@@ -298,7 +351,8 @@
             </a>
 
             <div class="flex items-center gap-4 md:gap-5 text-slate-300 group cursor-default">
-              <div class="shrink-0 w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 shadow-lg">
+              <div
+                class="shrink-0 w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700 shadow-lg">
                 <i class="fas fa-map-marker-alt text-google-red text-xl"></i>
               </div>
               <div class="min-w-0">
@@ -336,133 +390,142 @@
             </div>
 
             <button type="submit" class="w-full bg-google-blue hover:bg-blue-600 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-google-blue/20 flex justify-center items-center gap-2 mt-4 text-lg">
-              Send Message <i class="fas fa-arrow-right text-sm ml-1"></i>
-            </button>
+                            Send Message <i class="fas fa-arrow-right text-sm ml-1"></i>
+                        </button>
           </form>
         </div>
+
       </div>
 
-      <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+      <div
+        class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
         <p>&copy; 2026 Abhishek Mehta. All rights reserved.</p>
         <div class="flex gap-6">
-          <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+          <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank"
+            class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
           <a href="#" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- JavaScript -->
+  <!-- FUTURISTIC ANIMATION ENGINE (JavaScript) -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+
       // --- MOBILE MENU LOGIC ---
-      const mobileBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const mobileLinks = document.querySelectorAll('.mobile-link');
-      const menuIcon = mobileBtn.querySelector('i');
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            const menuIcon = mobileBtn.querySelector('i');
 
-      mobileBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        mobileMenu.classList.toggle('flex');
-        
-        if (mobileMenu.classList.contains('hidden')) {
-          menuIcon.classList.replace('fa-times', 'fa-bars');
-        } else {
-          menuIcon.classList.replace('fa-bars', 'fa-times');
-        }
-      });
+            mobileBtn.addEventListener('click', () => {
+                // Toggle visibility
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+                
+                // Toggle between hamburger and X icon
+                if (mobileMenu.classList.contains('hidden')) {
+                    menuIcon.classList.replace('fa-times', 'fa-bars');
+                } else {
+                    menuIcon.classList.replace('fa-bars', 'fa-times');
+                }
+            });
 
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-          mobileMenu.classList.remove('flex');
-          menuIcon.classList.replace('fa-times', 'fa-bars');
+            // Automatically close the menu when a link is clicked
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                    menuIcon.classList.replace('fa-times', 'fa-bars');
+                });
+            });
+            // --- END MOBILE MENU LOGIC ---
+            
+            // MOBILE FIX 1: Capture initial width so we don't recalculate on address bar hide/show
+            let currentWindowWidth = window.innerWidth;
+            
+            const cards = document.querySelectorAll('.timeline-item');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -15% 0px', // Trigger a bit earlier on mobile for smoother UX
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => observer.observe(card));
+
+            const timelineContainer = document.getElementById('timeline-container');
+            const staticLine = document.getElementById('static-line');
+            const animatedLine = document.getElementById('animated-line');
+            const nodes = document.querySelectorAll('.timeline-node');
+            
+            let bounds = { topOffset: 0, totalHeight: 0 };
+            let ticking = false;
+
+            function updateTimelineBounds() {
+                if (!timelineContainer || nodes.length < 2) return;
+                
+                const firstItem = nodes[0].closest('.timeline-item');
+                const lastItem = nodes[nodes.length - 1].closest('.timeline-item');
+                
+                const topOffset = firstItem.offsetTop + nodes[0].offsetTop + (nodes[0].offsetHeight / 2);
+                const bottomOffset = lastItem.offsetTop + nodes[nodes.length - 1].offsetTop + (nodes[nodes.length - 1].offsetHeight / 2);
+                
+                const totalHeight = bottomOffset - topOffset;
+                bounds = { topOffset, totalHeight };
+                
+                staticLine.style.top = topOffset + 'px';
+                staticLine.style.height = totalHeight + 'px';
+                
+                animatedLine.style.top = topOffset + 'px';
+            }
+
+            function handleScroll() {
+                if(bounds.totalHeight === 0) return;
+                
+                const viewportCenter = window.innerHeight / 2;
+                const containerRect = timelineContainer.getBoundingClientRect();
+                
+                const trackStartLocation = containerRect.top + bounds.topOffset;
+                const scrolledPast = viewportCenter - trackStartLocation;
+                
+                const fillHeight = Math.max(0, Math.min(scrolledPast, bounds.totalHeight));
+                animatedLine.style.height = fillHeight + 'px';
+            }
+
+            function onScroll() {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        handleScroll();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+
+            updateTimelineBounds();
+            
+            window.addEventListener('resize', () => {
+                // MOBILE FIX 2: Only recalculate height if the screen width ACTUALLY changed
+                if (window.innerWidth !== currentWindowWidth) {
+                    currentWindowWidth = window.innerWidth;
+                    updateTimelineBounds();
+                    handleScroll();
+                }
+            });
+            
+            window.addEventListener('scroll', onScroll, { passive: true }); 
+            handleScroll(); 
         });
-      });
-      // --- END MOBILE MENU LOGIC ---
-      
-      // MOBILE FIX: Capture initial width
-      let currentWindowWidth = window.innerWidth;
-      
-      const cards = document.querySelectorAll('.timeline-item');
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px -15% 0px', 
-        threshold: 0
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-          }
-        });
-      }, observerOptions);
-
-      cards.forEach(card => observer.observe(card));
-
-      const timelineContainer = document.getElementById('timeline-container');
-      const staticLine = document.getElementById('static-line');
-      const animatedLine = document.getElementById('animated-line');
-      const nodes = document.querySelectorAll('.timeline-node');
-      
-      let bounds = { topOffset: 0, totalHeight: 0 };
-      let ticking = false;
-
-      function updateTimelineBounds() {
-        if (!timelineContainer || nodes.length < 2) return;
-        
-        const firstItem = nodes[0].closest('.timeline-item');
-        const lastItem = nodes[nodes.length - 1].closest('.timeline-item');
-        
-        const topOffset = firstItem.offsetTop + nodes[0].offsetTop + (nodes[0].offsetHeight / 2);
-        const bottomOffset = lastItem.offsetTop + nodes[nodes.length - 1].offsetTop + (nodes[nodes.length - 1].offsetHeight / 2);
-        
-        const totalHeight = bottomOffset - topOffset;
-        bounds = { topOffset, totalHeight };
-        
-        staticLine.style.top = topOffset + 'px';
-        staticLine.style.height = totalHeight + 'px';
-        
-        animatedLine.style.top = topOffset + 'px';
-      }
-
-      function handleScroll() {
-        if(bounds.totalHeight === 0) return;
-        
-        const viewportCenter = window.innerHeight / 2;
-        const containerRect = timelineContainer.getBoundingClientRect();
-        
-        const trackStartLocation = containerRect.top + bounds.topOffset;
-        const scrolledPast = viewportCenter - trackStartLocation;
-        
-        const fillHeight = Math.max(0, Math.min(scrolledPast, bounds.totalHeight));
-        animatedLine.style.height = fillHeight + 'px';
-      }
-
-      function onScroll() {
-        if (!ticking) {
-          window.requestAnimationFrame(() => {
-            handleScroll();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      }
-
-      updateTimelineBounds();
-      
-      window.addEventListener('resize', () => {
-        if (window.innerWidth !== currentWindowWidth) {
-          currentWindowWidth = window.innerWidth;
-          updateTimelineBounds();
-          handleScroll();
-        }
-      });
-      
-      window.addEventListener('scroll', onScroll, { passive: true }); 
-      handleScroll(); 
-    });
   </script>
 </body>
+
 </html>
