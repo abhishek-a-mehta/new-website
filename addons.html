@@ -49,42 +49,57 @@
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+    /* --- FUTURISTIC DYNAMIC BACKGROUND --- */
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -20; 
+      opacity: 1; 
     }
 
-    ::-webkit-scrollbar-track {
-      background: #0f172a;
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px); 
+      opacity: 0.2; 
+      animation: blob-color-shift 8s infinite ease-in-out alternate;
     }
 
-    ::-webkit-scrollbar-thumb {
-      background: #334155;
-      border-radius: 4px;
+    @keyframes blob-color-shift {
+      0% { background-color: #4285F4; transform: translate(0px, 0px) scale(1); }
+      25% { background-color: #EA4335; transform: translate(40px, -40px) scale(1.05); }
+      50% { background-color: #FBBC05; transform: translate(-30px, 20px) scale(0.95); }
+      75% { background-color: #34A853; transform: translate(20px, 40px) scale(1.1); }
+      100% { background-color: #4285F4; transform: translate(0px, 0px) scale(1); }
     }
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: #475569;
-    }
+    .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; animation-duration: 9s; animation-delay: 0s; }
+    .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; animation-duration: 11s; animation-delay: -3s; }
+    .blob-3 { top: 30%; left: 40%; width: 55vw; height: 55vw; animation-duration: 13s; animation-delay: -6s; }
   </style>
 </head>
 
 <body class="antialiased selection:bg-google-blue selection:text-white relative">
 
-  <!-- Subtle Background Glow -->
-  <div
-    class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] bg-google-yellow blur-[150px] opacity-10 pointer-events-none">
+  <!-- Dynamic Animated Background -->
+  <div class="background-animation">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
   </div>
 
   <!-- Navigation -->
@@ -194,10 +209,16 @@
           </div>
         </div>
 
-        <a href="https://workspace.google.com/marketplace/app/bulkyduce/862622165027?flow_type=2&pann=b" target="_blank"
-          class="w-full bg-slate-700 hover:bg-google-blue text-white text-center py-3 rounded-xl font-medium transition-all duration-300 shadow-lg relative z-10 flex justify-center items-center">
-          View on Marketplace <i class="fas fa-external-link-alt ml-2 text-sm"></i>
-        </a>
+        <!-- Buttons Container -->
+        <div class="mt-auto flex flex-col gap-3 relative z-10">
+          <a href="bulkyduce.html" class="w-full bg-slate-800/50 hover:bg-slate-700 border border-slate-600 text-white text-center py-3 rounded-xl font-medium transition-all duration-300 shadow-lg flex justify-center items-center">
+            Learn More <i class="fas fa-info-circle ml-2 text-sm text-slate-400"></i>
+          </a>
+          <a href="https://workspace.google.com/marketplace/app/bulkyduce/862622165027?flow_type=2&pann=b" target="_blank"
+            class="w-full bg-slate-700 hover:bg-google-blue text-white text-center py-3 rounded-xl font-medium transition-all duration-300 shadow-lg flex justify-center items-center">
+            View on Marketplace <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+          </a>
+        </div>
       </div>
 
       <!-- User Info Card -->
@@ -253,10 +274,16 @@
           </div>
         </div>
 
-        <a href="https://workspace.google.com/marketplace/app/user_info/331367634987?pann=b" target="_blank"
-          class="w-full bg-slate-700 hover:bg-google-blue text-white text-center py-3 rounded-xl font-medium transition-all duration-300 shadow-lg relative z-10 flex justify-center items-center">
-          View on Marketplace <i class="fas fa-external-link-alt ml-2 text-sm"></i>
-        </a>
+        <!-- Buttons Container -->
+        <div class="mt-auto flex flex-col gap-3 relative z-10">
+          <a href="User%20Info.html" class="w-full bg-slate-800/50 hover:bg-slate-700 border border-slate-600 text-white text-center py-3 rounded-xl font-medium transition-all duration-300 shadow-lg flex justify-center items-center">
+            Learn More <i class="fas fa-info-circle ml-2 text-sm text-slate-400"></i>
+          </a>
+          <a href="https://workspace.google.com/marketplace/app/user_info/331367634987?pann=b" target="_blank"
+            class="w-full bg-slate-700 hover:bg-google-blue text-white text-center py-3 rounded-xl font-medium transition-all duration-300 shadow-lg flex justify-center items-center">
+            View on Marketplace <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+          </a>
+        </div>
       </div>
 
       <!-- Resource Manager Card -->
@@ -309,9 +336,15 @@
           </div>
         </div>
 
-        <a href="https://workspace.google.com/marketplace/app/resource_manager/995689811803" target="_blank" class="w-full bg-slate-700 hover:bg-google-blue text-white text-center py-3 rounded-xl font-medium transition-all duration-300 shadow-lg relative z-10 flex justify-center items-center">
-          View on Marketplace <i class="fas fa-external-link-alt ml-2 text-sm"></i>
-        </a>
+        <!-- Buttons Container -->
+        <div class="mt-auto flex flex-col gap-3 relative z-10">
+          <a href="resourcemanager.html" class="w-full bg-slate-800/50 hover:bg-slate-700 border border-slate-600 text-white text-center py-3 rounded-xl font-medium transition-all duration-300 shadow-lg flex justify-center items-center">
+            Learn More <i class="fas fa-info-circle ml-2 text-sm text-slate-400"></i>
+          </a>
+          <a href="https://workspace.google.com/marketplace/app/resource_manager/995689811803" target="_blank" class="w-full bg-slate-700 hover:bg-google-blue text-white text-center py-3 rounded-xl font-medium transition-all duration-300 shadow-lg flex justify-center items-center">
+            View on Marketplace <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+          </a>
+        </div>
       </div>
 
     </div>
