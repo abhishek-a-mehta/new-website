@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Info | Abhishek Mehta</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { google: { blue: '#4285F4', red: '#EA4335', yellow: '#FBBC05', green: '#34A853' } } } }
+    }
+  </script>
+  <style>
+    body { background-color: #0f172a; color: #f8fafc; overflow-x: hidden; }
+    .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    .fade-in { animation: fadeIn 1s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    .background-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -20; opacity: 1; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.2; animation: blob-color-shift 8s infinite ease-in-out alternate; }
+    @keyframes blob-color-shift { 0% { background-color: #4285F4; transform: translate(0px, 0px) scale(1); } 25% { background-color: #EA4335; transform: translate(40px, -40px) scale(1.05); } 50% { background-color: #FBBC05; transform: translate(-30px, 20px) scale(0.95); } 75% { background-color: #34A853; transform: translate(20px, 40px) scale(1.1); } 100% { background-color: #4285F4; transform: translate(0px, 0px) scale(1); } }
+    .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; animation-duration: 9s; animation-delay: 0s; }
+    .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; animation-duration: 11s; animation-delay: -3s; }
+    .blob-3 { top: 30%; left: 40%; width: 55vw; height: 55vw; animation-duration: 13s; animation-delay: -6s; }
+  </style>
+</head>
+<body class="antialiased selection:bg-google-blue selection:text-white relative">
+  <div class="background-animation"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+
+  <nav class="fixed w-full top-0 z-50 glass-card border-b-0 border-white/5">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative">
+      <a href="index.html" class="text-xl font-bold tracking-tight z-50">AM<span class="text-google-blue">.</span></a>
+      <div class="space-x-8 hidden md:block text-sm font-medium text-slate-300">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <a href="addons.html" class="hover:text-white transition">Add-ons</a>
+      </div>
+      <a href="index.html#contact" class="hidden md:block bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition">Get in Touch</a>
+      <button id="mobile-menu-btn" class="block md:hidden text-slate-300 hover:text-white focus:outline-none z-50 transition">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full glass-card border-t border-white/5 shadow-2xl flex-col items-center py-8 space-y-6 md:hidden">
+      <a href="index.html" class="text-lg text-slate-300 hover:text-white font-medium mobile-link transition">Home</a>
+      <a href="addons.html" class="text-lg text-slate-300 hover:text-white font-medium mobile-link transition">Add-ons</a>
+      <a href="index.html#contact" class="bg-google-blue text-white px-8 py-3 mt-2 rounded-full text-sm font-semibold shadow-lg shadow-google-blue/20 mobile-link transition">Get in Touch</a>
+    </div>
+  </nav>
+
+  <section class="pt-32 pb-12 px-6 fade-in text-center relative z-10">
+    <div class="max-w-3xl mx-auto">
+      <div class="w-20 h-20 bg-slate-800 rounded-2xl mx-auto flex items-center justify-center border border-slate-700 shadow-lg mb-6">
+        <i class="fas fa-user-shield text-4xl text-google-red"></i>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">User Info</h1>
+      <p class="text-lg md:text-xl text-slate-400 font-light leading-relaxed">Download Google Workspace™ users effortlessly right from Google Sheets™ in just two clicks.</p>
+      
+      <div class="mt-8 flex justify-center gap-4">
+        <a href="addons.html" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back to Add-ons</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-24 px-6 relative z-10 fade-in" style="animation-delay: 0.2s;">
+    <div class="max-w-4xl mx-auto space-y-8">
+      
+      <div class="glass-card p-8 md:p-10 rounded-3xl">
+        <h2 class="text-2xl font-bold text-white mb-6 border-b border-white/10 pb-4">About</h2>
+        <p class="text-slate-300 leading-relaxed">
+          A simple task like downloading users from the Google Admin console™ can involve a lot of unnecessary clicks and steps. This Add-on allows you to bypass the console entirely and extract directory data straight into Google Sheets.
+        </p>
+        <p class="text-slate-300 leading-relaxed mt-4">
+          You can choose to download users with all organizational information, or limit the export to specific essential data only. The choice is yours!
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="glass-card p-8 rounded-3xl">
+          <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2"><i class="fas fa-download text-google-green"></i> How to Install?</h2>
+          <p class="text-slate-400 mb-4 text-sm uppercase tracking-widest font-semibold">One-Time Setup</p>
+          <ol class="space-y-4 text-slate-300 list-decimal list-inside ml-2">
+            <li>Go to <code class="bg-slate-800 px-2 py-1 rounded text-sm text-google-red">sheets.new</code> and login with your corporate email id.</li>
+            <li>From the menu above, click on <strong>Extensions</strong> (or Add-ons) > <strong>Get add-ons</strong>.</li>
+            <li>Search for <strong>User Info</strong>.</li>
+            <li>Click on <strong>Individual Install / Domain Install</strong> > Click on Continue.</li>
+            <li>Click on <strong>Allow</strong> to grant necessary permissions.</li>
+          </ol>
+        </div>
+
+        <div class="glass-card p-8 rounded-3xl">
+          <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2"><i class="fas fa-play-circle text-google-yellow"></i> How to Use It?</h2>
+          <p class="text-slate-400 mb-4 text-sm uppercase tracking-widest font-semibold">Post-Installation Steps</p>
+          <ol class="space-y-4 text-slate-300 list-decimal list-inside ml-2">
+            <li>Re-load the same sheet where you have installed the Add-on.</li>
+            <li>Go to <strong>Extensions</strong> > <strong>User Info</strong> > <strong>Get User Info</strong> > <strong>Download All user</strong>.</li>
+            <li>All users will securely populate into your sheet in the next few minutes.</li>
+          </ol>
+          <div class="mt-6 p-4 bg-google-red/10 border border-google-red/20 rounded-xl">
+            <p class="text-sm text-slate-300"><i class="fas fa-info-circle text-google-red mr-2"></i><strong>Note:</strong> You can reuse the exact same Google Sheet for future downloads without repeating the setup.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-12 px-6 border-t border-white/5 bg-slate-900/50">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+      <p>&copy; 2026 Abhishek Mehta. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
+        <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+        <a href="#" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = mobileBtn.querySelector('i');
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden'); mobileMenu.classList.toggle('flex');
+        menuIcon.classList.replace(mobileMenu.classList.contains('hidden') ? 'fa-times' : 'fa-bars', mobileMenu.classList.contains('hidden') ? 'fa-bars' : 'fa-times');
+      });
+      document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('flex'); menuIcon.classList.replace('fa-times', 'fa-bars');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
