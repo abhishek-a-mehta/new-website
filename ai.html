@@ -9,8 +9,7 @@
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
@@ -26,162 +25,37 @@
     }
   </script>
   <style>
-    body {
-      background-color: #0f172a;
-      color: #f8fafc;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-
-    .glass-card {
-      background: rgba(30, 41, 59, 0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .glass-card:hover {
-      border-color: rgba(66, 133, 244, 0.5);
-      transition: all 0.3s ease;
-    }
-
-    /* Custom scrollbar */
-    #chat-window::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    #chat-window::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    #chat-window::-webkit-scrollbar-thumb {
-      background: #334155;
-      border-radius: 10px;
-    }
-
-    #chat-window::-webkit-scrollbar-thumb:hover {
-      background: #475569;
-    }
-
-    /* Typing indicator animation */
-    .dot-flashing {
-      animation: blink 1.4s infinite linear;
-    }
-
-    .dot-flashing:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    .dot-flashing:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-
-    @keyframes blink {
-      0% {
-        opacity: .2;
-      }
-
-      20% {
-        opacity: 1;
-      }
-
-      100% {
-        opacity: .2;
-      }
-    }
-
-    /* --- FUTURISTIC DYNAMIC BACKGROUND --- */
-    .background-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: -20;
-      opacity: 1;
-    }
-
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.2;
-      animation: blob-color-shift 8s infinite ease-in-out alternate;
-    }
-
+    body { background-color: #0f172a; color: #f8fafc; overflow-x: hidden; display: flex; flex-direction: column; height: 100vh; }
+    .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    .glass-card:hover { border-color: rgba(66, 133, 244, 0.5); transition: all 0.3s ease; }
+    #chat-window::-webkit-scrollbar { width: 6px; }
+    #chat-window::-webkit-scrollbar-track { background: transparent; }
+    #chat-window::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+    #chat-window::-webkit-scrollbar-thumb:hover { background: #475569; }
+    .dot-flashing { animation: blink 1.4s infinite linear; }
+    .dot-flashing:nth-child(2) { animation-delay: 0.2s; }
+    .dot-flashing:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes blink { 0% { opacity: .2; } 20% { opacity: 1; } 100% { opacity: .2; } }
+    .background-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -20; opacity: 1; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.2; animation: blob-color-shift 8s infinite ease-in-out alternate; }
     @keyframes blob-color-shift {
-      0% {
-        background-color: #4285F4;
-        transform: translate(0px, 0px) scale(1);
-      }
-
-      25% {
-        background-color: #EA4335;
-        transform: translate(40px, -40px) scale(1.05);
-      }
-
-      50% {
-        background-color: #FBBC05;
-        transform: translate(-30px, 20px) scale(0.95);
-      }
-
-      75% {
-        background-color: #34A853;
-        transform: translate(20px, 40px) scale(1.1);
-      }
-
-      100% {
-        background-color: #4285F4;
-        transform: translate(0px, 0px) scale(1);
-      }
+      0% { background-color: #4285F4; transform: translate(0px, 0px) scale(1); }
+      25% { background-color: #EA4335; transform: translate(40px, -40px) scale(1.05); }
+      50% { background-color: #FBBC05; transform: translate(-30px, 20px) scale(0.95); }
+      75% { background-color: #34A853; transform: translate(20px, 40px) scale(1.1); }
+      100% { background-color: #4285F4; transform: translate(0px, 0px) scale(1); }
     }
-
-    .blob-1 {
-      top: -10%;
-      left: -10%;
-      width: 50vw;
-      height: 50vw;
-      animation-duration: 9s;
-      animation-delay: 0s;
-    }
-
-    .blob-2 {
-      bottom: -10%;
-      right: -10%;
-      width: 60vw;
-      height: 60vw;
-      animation-duration: 11s;
-      animation-delay: -3s;
-    }
-
-    .blob-3 {
-      top: 30%;
-      left: 40%;
-      width: 55vw;
-      height: 55vw;
-      animation-duration: 13s;
-      animation-delay: -6s;
-    }
-
-    /* Thinking Accordion Custom Styles */
-    details>summary {
-      list-style: none;
-    }
-
-    details>summary::-webkit-details-marker {
-      display: none;
-    }
+    .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; animation-duration: 9s; animation-delay: 0s; }
+    .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; animation-duration: 11s; animation-delay: -3s; }
+    .blob-3 { top: 30%; left: 40%; width: 55vw; height: 55vw; animation-duration: 13s; animation-delay: -6s; }
+    details>summary { list-style: none; }
+    details>summary::-webkit-details-marker { display: none; }
   </style>
 </head>
 
 <body class="antialiased selection:bg-google-blue selection:text-white relative">
-
   <div class="background-animation">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
+    <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
   </div>
 
   <nav class="fixed w-full top-0 z-50 glass-card border-b-0 border-white/5 shrink-0">
@@ -192,34 +66,23 @@
         <a href="addons.html" class="hover:text-white transition">Add-ons</a>
         <a href="ai.html" class="text-white border-b-2 border-google-blue pb-1">AI Assistant</a>
       </div>
-      <a href="index.html#contact"
-        class="hidden md:block bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition z-50">Get
-        in Touch</a>
+      <a href="index.html#contact" class="hidden md:block bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition z-50">Get in Touch</a>
       <button id="mobile-menu-btn" class="block md:hidden text-slate-300 hover:text-white focus:outline-none z-50 transition">
         <i class="fas fa-bars text-2xl"></i>
       </button>
     </div>
-    <div id="mobile-menu"
-      class="hidden absolute top-full left-0 w-full glass-card border-t border-white/5 shadow-2xl flex-col items-center py-8 space-y-6 md:hidden">
+    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full glass-card border-t border-white/5 shadow-2xl flex-col items-center py-8 space-y-6 md:hidden">
       <a href="index.html" class="text-lg text-slate-300 hover:text-white font-medium mobile-link transition">Home</a>
-      <a href="addons.html"
-        class="text-lg text-slate-300 hover:text-white font-medium mobile-link transition">Add-ons</a>
-      <a href="ai.html"
-        class="text-lg text-white font-medium border-b-2 border-google-blue pb-1 mobile-link transition">AI
-        Assistant</a>
-      <a href="index.html#contact"
-        class="bg-google-blue text-white px-8 py-3 mt-2 rounded-full text-sm font-semibold shadow-lg shadow-google-blue/20 mobile-link transition">Get
-        in Touch</a>
+      <a href="addons.html" class="text-lg text-slate-300 hover:text-white font-medium mobile-link transition">Add-ons</a>
+      <a href="ai.html" class="text-lg text-white font-medium border-b-2 border-google-blue pb-1 mobile-link transition">AI Assistant</a>
+      <a href="index.html#contact" class="bg-google-blue text-white px-8 py-3 mt-2 rounded-full text-sm font-semibold shadow-lg shadow-google-blue/20 mobile-link transition">Get in Touch</a>
     </div>
   </nav>
 
   <main class="flex-grow flex flex-col max-w-5xl mx-auto w-full pt-28 pb-6 px-4 md:px-6 overflow-hidden relative z-10">
-
     <div class="flex justify-between items-end mb-6 shrink-0 px-2">
       <div class="text-left">
-        <h1 class="text-3xl font-extrabold text-white tracking-tight">Workspace
-          <span class="text-google-blue">Oracle</span>
-        </h1>
+        <h1 class="text-3xl font-extrabold text-white tracking-tight">Workspace <span class="text-google-blue">Oracle</span></h1>
         <p class="text-slate-400 text-sm mt-1">Ask complex GAM questions or request Apps Script workflows.</p>
       </div>
       <button id="clear-btn" class="text-xs font-semibold text-slate-400 hover:text-white border border-slate-700 hover:border-slate-500 bg-slate-800/50 rounded-full px-4 py-2 transition flex items-center shadow-lg">
@@ -229,33 +92,26 @@
 
     <div class="flex-grow glass-card rounded-3xl p-4 md:p-6 flex flex-col shadow-2xl mb-6 overflow-hidden">
       <div id="chat-window" class="flex-grow flex flex-col gap-6 overflow-y-auto pr-2 md:pr-4">
-
         <div id="greeting-msg" class="flex gap-4 max-w-4xl w-full">
-          <div
-            class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
+          <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
             <i class="fas fa-robot text-google-blue"></i>
           </div>
           <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 w-full">
             <div class="prose prose-sm prose-invert max-w-none text-slate-300 leading-relaxed">
-              Hello Abhishek. I am calibrated for Google Workspace architecture. Do you need assistance with an API
-              integration, a GAM command, or a security policy today?
+              Hello Abhishek. I am calibrated for Google Workspace architecture. Do you need assistance with an API integration, a GAM command, or a security policy today?
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
     <div class="shrink-0 relative">
-      <div
-        class="absolute -inset-1 bg-gradient-to-r from-google-blue/30 to-google-green/30 rounded-2xl blur opacity-30">
-      </div>
+      <div class="absolute -inset-1 bg-gradient-to-r from-google-blue/30 to-google-green/30 rounded-2xl blur opacity-30"></div>
       <div class="relative glass-card rounded-2xl p-2 flex items-center shadow-lg">
-        <input type="text" id="chat-input" placeholder="Type your GAM or Workspace query here..."
-                  class="w-full bg-transparent border-none text-white px-4 py-3 focus:outline-none placeholder-slate-500 text-sm">
+        <input type="text" id="chat-input" placeholder="Type your GAM or Workspace query here..." class="w-full bg-transparent border-none text-white px-4 py-3 focus:outline-none placeholder-slate-500 text-sm">
         <button id="send-btn" class="bg-google-blue hover:bg-blue-600 text-white w-10 h-10 rounded-xl flex items-center justify-center transition shadow-lg shrink-0 mr-1">
-                  <i class="fas fa-paper-plane text-sm mt-0.5 mr-0.5"></i>
-              </button>
+            <i class="fas fa-paper-plane text-sm mt-0.5 mr-0.5"></i>
+        </button>
       </div>
     </div>
   </main>
@@ -265,8 +121,7 @@
       <p>&copy; 2026 Abhishek Mehta. All rights reserved.</p>
       <div class="flex gap-6">
         <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
-        <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank"
-          class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+        <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
         <a href="#" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
       </div>
     </div>
@@ -275,7 +130,6 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       
-      // --- CONFIGURE MARKED.JS FOR CUSTOM CODE BLOCKS ---
       const renderer = new marked.Renderer();
       renderer.code = function({text, lang}) {
           const languageLabel = lang ? lang.toUpperCase() : 'TERMINAL SNIPPET';
@@ -296,7 +150,6 @@
       };
       marked.use({ renderer });
 
-      // --- MOBILE MENU LOGIC ---
       const mobileBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       const menuIcon = mobileBtn.querySelector('i');
@@ -307,7 +160,6 @@
         menuIcon.classList.replace(mobileMenu.classList.contains('hidden') ? 'fa-times' : 'fa-bars', mobileMenu.classList.contains('hidden') ? 'fa-bars' : 'fa-times');
       });
 
-      // --- CHAT INTERFACE LOGIC WITH STREAMING & THINKING ---
       const chatInput = document.getElementById('chat-input');
       const sendBtn = document.getElementById('send-btn');
       const clearBtn = document.getElementById('clear-btn');
@@ -316,7 +168,6 @@
       let chatHistory = [];
       const BACKEND_URL = 'https://workspace-ai-backend.onrender.com/api/chat';
 
-      // Clear Chat Logic
       clearBtn.addEventListener('click', () => {
           chatHistory = [];
           const greeting = document.getElementById('greeting-msg').outerHTML;
@@ -341,7 +192,6 @@
         chatInput.value = '';
         appendUserMessage(text);
         
-        // Prepare empty container for streaming response
         const messageId = 'msg-' + Date.now();
         const aiHtml = `
           <div id="container-${messageId}" class="flex gap-4 max-w-4xl w-full animate-[fadeIn_0.3s_ease-out]">
@@ -376,9 +226,9 @@
         
         let accumulatedText = "";
         let accumulatedThought = "";
+        let lastUpdate = 0; // The throttle timer
 
         try {
-            // Note: Your backend must be updated to use Server-Sent Events (SSE) and send data chunks
             const response = await fetch(BACKEND_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -397,7 +247,7 @@
 
                 buffer += decoder.decode(value, { stream: true });
                 const lines = buffer.split('\n\n');
-                buffer = lines.pop(); // Keep the incomplete chunk in the buffer
+                buffer = lines.pop(); 
 
                 for (const line of lines) {
                     if (line.startsWith('data: ')) {
@@ -406,29 +256,43 @@
 
                         try {
                             const parsed = JSON.parse(dataStr);
-                            if (parsed.error) throw new Error(parsed.error);
+                            
+                            if (parsed.error) {
+                                responseDiv.innerHTML = `<span class="text-google-red"><i class="fas fa-exclamation-triangle"></i> Backend Error: ${parsed.error}</span>`;
+                                thinkBox.classList.add('hidden');
+                                break;
+                            }
 
-                            // Handle "Thought" vs "Text" if your backend sends them separately
+                            // Accumulate the data
                             if (parsed.thought) {
                                 thinkBox.classList.remove('hidden');
                                 accumulatedThought += parsed.thought;
-                                thoughtDiv.innerHTML = marked.parse(accumulatedThought);
                             } 
                             if (parsed.text) {
                                 accumulatedText += parsed.text;
-                                responseDiv.innerHTML = marked.parse(accumulatedText);
                             }
                             
-                            chatWindow.scrollTop = chatWindow.scrollHeight;
+                            // THROTTLE THE DOM UPDATE (Max 1 update per 50ms)
+                            const now = Date.now();
+                            if (now - lastUpdate > 50) {
+                                if (accumulatedThought) thoughtDiv.innerHTML = marked.parse(accumulatedThought);
+                                if (accumulatedText) responseDiv.innerHTML = marked.parse(accumulatedText);
+                                chatWindow.scrollTop = chatWindow.scrollHeight;
+                                lastUpdate = now;
+                            }
 
                         } catch (e) {
-                            console.error("Error parsing stream chunk:", e);
+                            console.warn("Skipping malformed chunk");
                         }
                     }
                 }
             }
 
-            // Save to history after stream completes
+            // GUARANTEE FINAL RENDER AFTER STREAM ENDS
+            if (accumulatedThought) thoughtDiv.innerHTML = marked.parse(accumulatedThought);
+            if (accumulatedText) responseDiv.innerHTML = marked.parse(accumulatedText);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
             chatHistory.push({ role: "user", parts: [{ text: text }] });
             chatHistory.push({ role: "model", parts: [{ text: accumulatedText }] });
 
@@ -437,7 +301,7 @@
             responseDiv.innerHTML = `
               <div class="text-google-red">
                  <p class="font-semibold mb-1"><i class="fas fa-exclamation-triangle"></i> Connection Error</p>
-                 <p>Make sure your backend is updated to support streaming via Server-Sent Events.</p>
+                 <p>Unable to connect to the backend.</p>
               </div>`;
         }
       }
@@ -450,5 +314,4 @@
     });
   </script>
 </body>
-
 </html>
