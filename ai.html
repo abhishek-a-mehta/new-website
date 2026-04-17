@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Workspace AI Assistant | Abhishek Mehta</title>
   
-  <script src="[https://cdn.tailwindcss.com?plugins=typography](https://cdn.tailwindcss.com?plugins=typography)"></script>
-  <script src="[https://cdn.jsdelivr.net/npm/marked/marked.min.js](https://cdn.jsdelivr.net/npm/marked/marked.min.js)"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   
-  <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap)" rel="stylesheet">
-  <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
     tailwind.config = {
@@ -147,7 +147,7 @@
       <p>&copy; 2026 Abhishek Mehta. All rights reserved.</p>
       <div class="flex gap-6">
         <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
-        <a href="[https://www.linkedin.com/in/abhishek-mehta110](https://www.linkedin.com/in/abhishek-mehta110)" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+        <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
         <a href="#" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
       </div>
     </div>
@@ -157,11 +157,9 @@
     document.addEventListener("DOMContentLoaded", () => {
       
       // --- CONFIGURE MARKED.JS FOR CUSTOM CODE BLOCKS ---
-      // This tells the Markdown parser to use our custom Glassmorphism UI for code blocks
       const renderer = new marked.Renderer();
       renderer.code = function({text, lang}) {
           const languageLabel = lang ? lang.toUpperCase() : 'TERMINAL SNIPPET';
-          // We use 'not-prose' so Tailwind Typography doesn't mess up our custom styling
           return `
               <div class="not-prose relative bg-[#0d1117] rounded-lg border border-slate-700/50 mt-4 mb-4 shadow-lg">
                   <div class="flex justify-between items-center px-4 py-2 bg-slate-800/50 border-b border-slate-700/50 rounded-t-lg">
@@ -196,7 +194,7 @@
       const chatWindow = document.getElementById('chat-window');
 
       let chatHistory = [];
-      const BACKEND_URL = '[https://workspace-ai-backend.onrender.com/api/chat](https://workspace-ai-backend.onrender.com/api/chat)';
+      const BACKEND_URL = 'https://workspace-ai-backend.onrender.com/api/chat';
 
       function appendUserMessage(text) {
         const msgHtml = `
@@ -251,7 +249,6 @@
 
             document.getElementById(typingId).remove();
             
-            // Parse Markdown into beautiful HTML using Marked.js
             const formattedReply = marked.parse(data.reply);
             
             const aiHtml = `
