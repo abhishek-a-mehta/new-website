@@ -147,35 +147,7 @@
                   </div>
               </div>
 
-              <div class="flex gap-4 max-w-3xl self-end flex-row-reverse">
-                  <div class="w-10 h-10 rounded-full bg-google-blue flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/30 text-white font-bold text-sm">
-                      U
-                  </div>
-                  <div class="bg-google-blue/10 border border-google-blue/30 rounded-2xl rounded-tr-sm px-5 py-4 text-white text-sm leading-relaxed">
-                      How do I bulk suspend users based on a CSV file using GAMADV-XTD3?
-                  </div>
               </div>
-
-              <div class="flex gap-4 max-w-4xl w-full">
-                  <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
-                      <i class="fas fa-robot text-google-blue"></i>
-                  </div>
-                  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed w-full overflow-hidden">
-                      <p class="mb-3">You can achieve this by reading the CSV and passing the user identifiers to the suspend command. Ensure your CSV has a column header named `email`.</p>
-                      
-                      <div class="relative bg-[#0d1117] rounded-lg border border-slate-700/50 mt-2">
-                          <div class="flex justify-between items-center px-4 py-2 bg-slate-800/50 border-b border-slate-700/50 rounded-t-lg">
-                              <span class="text-xs text-slate-400 font-mono">bash</span>
-                              <button class="text-xs text-slate-400 hover:text-white transition"><i class="far fa-copy mr-1"></i> Copy</button>
-                          </div>
-                          <div class="p-4 overflow-x-auto">
-                              <code class="text-green-400 font-mono text-sm whitespace-pre">gam csv users.csv gam update user ~email suspended true</code>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-
-          </div>
       </div>
 
       <div class="shrink-0 relative">
@@ -228,10 +200,16 @@
         });
       });
 
-      // --- CHAT INTERFACE LOGIC (Frontend Stub) ---
+      // --- CHAT INTERFACE LOGIC (Production API Integration) ---
       const chatInput = document.getElementById('chat-input');
       const sendBtn = document.getElementById('send-btn');
       const chatWindow = document.getElementById('chat-window');
+
+      // Maintains the conversation history locally so the LLM remembers context
+      let chatHistory = [];
+
+      // *** REPLACE THIS URL WITH YOUR ACTUAL RENDER.COM BACKEND URL ***
+      const BACKEND_URL = 'https://workspace-ai-backend.onrender.com';
 
       function appendUserMessage(text) {
         const msgHtml = `
@@ -267,40 +245,90 @@
         return id;
       }
 
-      function handleSend() {
+      function formatAIResponse(text) {
+          // Detects markdown codeblocks and wraps them in our custom glass-card styling
+          let formattedText = text.replace(/```([\s\S]*?)```/g, (match, code) => {
+              const cleanCode = code.replace(/^[a-z]+\n/, ''); // Removes language tag like 'bash'
+              return `
+                  <div class="relative bg-[#0d1117] rounded-lg border border-slate-700/50 mt-3 mb-3">
+                      <div class="flex justify-between items-center px-4 py-2 bg-slate-800/50 border-b border-slate-700/50 rounded-t-lg">
+                          <span class="text-xs text-slate-400 font-mono">Terminal Snippet</span>
+                      </div>
+                      <div class="p-4 overflow-x-auto">
+                          <code class="text-green-400 font-mono text-sm whitespace-pre">${cleanCode.trim()}</code>
+                      </div>
+                  </div>
+              `;
+          });
+          
+          // Convert regular line breaks to HTML breaks
+          return formattedText.replace(/\n/g, '<br>');
+      }
+
+      async function handleSend() {
         const text = chatInput.value.trim();
         if (!text) return;
         
-        // 1. Clear input
         chatInput.value = '';
-        
-        // 2. Append User Message
         appendUserMessage(text);
-        
-        // 3. Show AI is "typing"
         const typingId = appendAITypingIndicator();
 
-        // For now, simulate a fake network delay and response
-        setTimeout(() => {
+        try {
+            // Call the Render API
+            const response = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    message: text,
+                    history: chatHistory 
+                })
+            });
+
+            if (!response.ok) throw new Error('Network response was not ok');
+            const data = await response.json();
+
+            // Update conversation history array so LLM remembers the context next turn
+            chatHistory.push({ role: "user", parts: [{ text: text }] });
+            chatHistory.push({ role: "model", parts: [{ text: data.reply }] });
+
+            // Remove the bouncing dots and display the real formatted response
             document.getElementById(typingId).remove();
+            const formattedReply = formatAIResponse(data.reply);
             
             const aiHtml = `
               <div class="flex gap-4 max-w-4xl w-full animate-[fadeIn_0.3s_ease-out]">
                   <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
                       <i class="fas fa-robot text-google-blue"></i>
                   </div>
-                  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed w-full">
-                      <p>Backend API integration is required to process this prompt: <strong>"${text}"</strong>.</p>
-                      <p class="mt-2 text-slate-400 italic">Please connect your frontend fetch() to your deployed Node.js backend.</p>
+                  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed w-full overflow-hidden">
+                      ${formattedReply}
                   </div>
               </div>
             `;
             chatWindow.insertAdjacentHTML('beforeend', aiHtml);
             chatWindow.scrollTop = chatWindow.scrollHeight;
-        }, 1500);
+
+        } catch (error) {
+            console.error("Chat Error:", error);
+            document.getElementById(typingId).remove();
+            
+            // Helpful error message if Render is sleeping or CORS blocked
+            const errorHtml = `
+              <div class="flex gap-4 max-w-4xl w-full animate-[fadeIn_0.3s_ease-out]">
+                  <div class="w-10 h-10 rounded-full bg-slate-800 border border-red-900 flex items-center justify-center shrink-0 shadow-lg shadow-google-red/20">
+                      <i class="fas fa-exclamation-triangle text-google-red"></i>
+                  </div>
+                  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed w-full">
+                      <p class="text-google-red font-semibold mb-1">Connection Error</p>
+                      <p>Unable to reach the backend API. If you recently deployed on Render's free tier, the server may be waking up from sleep (which takes ~50 seconds). Please try again in a moment.</p>
+                  </div>
+              </div>
+            `;
+            chatWindow.insertAdjacentHTML('beforeend', errorHtml);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
       }
 
-      // Event Listeners for Chat
       sendBtn.addEventListener('click', handleSend);
       chatInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') handleSend();
