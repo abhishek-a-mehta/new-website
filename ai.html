@@ -43,7 +43,7 @@
       transition: all 0.3s ease;
     }
 
-    /* Custom scrollbar for the chat area */
+    /* Custom scrollbar for the inner chat area */
     #chat-window::-webkit-scrollbar { width: 6px; }
     #chat-window::-webkit-scrollbar-track { background: transparent; }
     #chat-window::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
@@ -134,45 +134,48 @@
           <p class="text-slate-400 text-sm mt-2">Ask complex GAM questions or request Apps Script workflows.</p>
       </div>
 
-      <div id="chat-window" class="flex-grow glass-card rounded-3xl p-6 flex flex-col gap-6 overflow-y-auto shadow-2xl mb-6">
+      <div class="flex-grow glass-card rounded-3xl p-4 md:p-6 flex flex-col shadow-2xl mb-6 overflow-hidden">
           
-          <div class="flex gap-4 max-w-3xl">
-              <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
-                  <i class="fas fa-robot text-google-blue"></i>
+          <div id="chat-window" class="flex-grow flex flex-col gap-6 overflow-y-auto pr-2 md:pr-4">
+              
+              <div class="flex gap-4 max-w-3xl">
+                  <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
+                      <i class="fas fa-robot text-google-blue"></i>
+                  </div>
+                  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed">
+                      Hello Abhishek. I am calibrated for Google Workspace architecture. Do you need assistance with an API integration, a GAM command, or a security policy today?
+                  </div>
               </div>
-              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed">
-                  Hello Abhishek. I am calibrated for Google Workspace architecture. Do you need assistance with an API integration, a GAM command, or a security policy today?
-              </div>
-          </div>
 
-          <div class="flex gap-4 max-w-3xl self-end flex-row-reverse">
-              <div class="w-10 h-10 rounded-full bg-google-blue flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/30 text-white font-bold text-sm">
-                  U
+              <div class="flex gap-4 max-w-3xl self-end flex-row-reverse">
+                  <div class="w-10 h-10 rounded-full bg-google-blue flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/30 text-white font-bold text-sm">
+                      U
+                  </div>
+                  <div class="bg-google-blue/10 border border-google-blue/30 rounded-2xl rounded-tr-sm px-5 py-4 text-white text-sm leading-relaxed">
+                      How do I bulk suspend users based on a CSV file using GAMADV-XTD3?
+                  </div>
               </div>
-              <div class="bg-google-blue/10 border border-google-blue/30 rounded-2xl rounded-tr-sm px-5 py-4 text-white text-sm leading-relaxed">
-                  How do I bulk suspend users based on a CSV file using GAMADV-XTD3?
-              </div>
-          </div>
 
-          <div class="flex gap-4 max-w-4xl w-full">
-              <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
-                  <i class="fas fa-robot text-google-blue"></i>
-              </div>
-              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed w-full overflow-hidden">
-                  <p class="mb-3">You can achieve this by reading the CSV and passing the user identifiers to the suspend command. Ensure your CSV has a column header named `email`.</p>
-                  
-                  <div class="relative bg-[#0d1117] rounded-lg border border-slate-700/50 mt-2">
-                      <div class="flex justify-between items-center px-4 py-2 bg-slate-800/50 border-b border-slate-700/50 rounded-t-lg">
-                          <span class="text-xs text-slate-400 font-mono">bash</span>
-                          <button class="text-xs text-slate-400 hover:text-white transition"><i class="far fa-copy mr-1"></i> Copy</button>
-                      </div>
-                      <div class="p-4 overflow-x-auto">
-                          <code class="text-green-400 font-mono text-sm whitespace-pre">gam csv users.csv gam update user ~email suspended true</code>
+              <div class="flex gap-4 max-w-4xl w-full">
+                  <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
+                      <i class="fas fa-robot text-google-blue"></i>
+                  </div>
+                  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed w-full overflow-hidden">
+                      <p class="mb-3">You can achieve this by reading the CSV and passing the user identifiers to the suspend command. Ensure your CSV has a column header named `email`.</p>
+                      
+                      <div class="relative bg-[#0d1117] rounded-lg border border-slate-700/50 mt-2">
+                          <div class="flex justify-between items-center px-4 py-2 bg-slate-800/50 border-b border-slate-700/50 rounded-t-lg">
+                              <span class="text-xs text-slate-400 font-mono">bash</span>
+                              <button class="text-xs text-slate-400 hover:text-white transition"><i class="far fa-copy mr-1"></i> Copy</button>
+                          </div>
+                          <div class="p-4 overflow-x-auto">
+                              <code class="text-green-400 font-mono text-sm whitespace-pre">gam csv users.csv gam update user ~email suspended true</code>
+                          </div>
                       </div>
                   </div>
               </div>
-          </div>
 
+          </div>
       </div>
 
       <div class="shrink-0 relative">
@@ -277,10 +280,6 @@
         // 3. Show AI is "typing"
         const typingId = appendAITypingIndicator();
 
-        // [BACKEND HOOK GOES HERE]
-        // This is where you will eventually call fetch('https://your-render-url.com/api/chat', ...)
-        // Once the response comes back, you will remove the typingId element and append the real AI response.
-        
         // For now, simulate a fake network delay and response
         setTimeout(() => {
             document.getElementById(typingId).remove();
