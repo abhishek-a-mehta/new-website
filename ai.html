@@ -1,112 +1,313 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workspace AI Assistant | Abhishek Mehta</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: { google: { blue: '#4285F4', red: '#EA4335', yellow: '#FBBC05', green: '#34A853' } }
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workspace AI Assistant | Abhishek Mehta</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            google: { blue: '#4285F4', red: '#EA4335', yellow: '#FBBC05', green: '#34A853' }
+          }
         }
-    </script>
-    <style>
-        body { background-color: #0f172a; color: #f8fafc; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
-        .glass-panel { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        
-        /* Custom Scrollbar for Chat */
-        #chat-window::-webkit-scrollbar { width: 6px; }
-        #chat-window::-webkit-scrollbar-track { background: transparent; }
-        #chat-window::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-        
-        /* Typing indicator animation */
-        .dot-flashing { animation: blink 1.4s infinite linear; }
-        .dot-flashing:nth-child(2) { animation-delay: 0.2s; }
-        .dot-flashing:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes blink { 0% { opacity: .2; } 20% { opacity: 1; } 100% { opacity: .2; } }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .glass-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(66, 133, 244, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    /* Custom scrollbar for the chat area */
+    #chat-window::-webkit-scrollbar { width: 6px; }
+    #chat-window::-webkit-scrollbar-track { background: transparent; }
+    #chat-window::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+    #chat-window::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+    /* Typing indicator animation */
+    .dot-flashing { animation: blink 1.4s infinite linear; }
+    .dot-flashing:nth-child(2) { animation-delay: 0.2s; }
+    .dot-flashing:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes blink { 0% { opacity: .2; } 20% { opacity: 1; } 100% { opacity: .2; } }
+
+    /* --- FUTURISTIC DYNAMIC BACKGROUND --- */
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -20; 
+      opacity: 1; 
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px); 
+      opacity: 0.2; 
+      animation: blob-color-shift 8s infinite ease-in-out alternate;
+    }
+
+    @keyframes blob-color-shift {
+      0% { background-color: #4285F4; transform: translate(0px, 0px) scale(1); }
+      25% { background-color: #EA4335; transform: translate(40px, -40px) scale(1.05); }
+      50% { background-color: #FBBC05; transform: translate(-30px, 20px) scale(0.95); }
+      75% { background-color: #34A853; transform: translate(20px, 40px) scale(1.1); }
+      100% { background-color: #4285F4; transform: translate(0px, 0px) scale(1); }
+    }
+
+    .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; animation-duration: 9s; animation-delay: 0s; }
+    .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; animation-duration: 11s; animation-delay: -3s; }
+    .blob-3 { top: 30%; left: 40%; width: 55vw; height: 55vw; animation-duration: 13s; animation-delay: -6s; }
+  </style>
 </head>
+
 <body class="antialiased selection:bg-google-blue selection:text-white relative">
 
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[600px] bg-google-blue rounded-full blur-[180px] opacity-10 pointer-events-none -z-10"></div>
+  <div class="background-animation">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
 
-    <nav class="w-full z-50 glass-panel border-b-0 border-white/5 shrink-0">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-xl font-bold tracking-tight">AM<span class="text-google-blue">.</span></a>
-            <div class="space-x-8 text-sm font-medium text-slate-300">
-                <a href="index.html" class="hover:text-white transition">Home</a>
-                <span class="text-white border-b-2 border-google-blue pb-1">AI Assistant</span>
+  <nav class="fixed w-full top-0 z-50 glass-card border-b-0 border-white/5 shrink-0">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative">
+      <a href="index.html" class="text-xl font-bold tracking-tight z-50">AM<span class="text-google-blue">.</span></a>
+
+      <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 space-x-8 text-sm font-medium text-slate-300">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <a href="addons.html" class="hover:text-white transition">Add-ons</a>
+        <a href="ai.html" class="text-white border-b-2 border-google-blue pb-1">AI Assistant</a>
+      </div>
+      
+      <a href="index.html#contact"
+        class="hidden md:block bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition z-50">Get
+        in Touch</a>
+
+      <button id="mobile-menu-btn" class="block md:hidden text-slate-300 hover:text-white focus:outline-none z-50 transition">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+
+    <div id="mobile-menu"
+      class="hidden absolute top-full left-0 w-full glass-card border-t border-white/5 shadow-2xl flex-col items-center py-8 space-y-6 md:hidden">
+      <a href="index.html" class="text-lg text-slate-300 hover:text-white font-medium mobile-link transition">Home</a>
+      <a href="addons.html" class="text-lg text-slate-300 hover:text-white font-medium mobile-link transition">Add-ons</a>
+      <a href="ai.html" class="text-lg text-white font-medium border-b-2 border-google-blue pb-1 mobile-link transition">AI Assistant</a>
+      <a href="index.html#contact"
+        class="bg-google-blue text-white px-8 py-3 mt-2 rounded-full text-sm font-semibold shadow-lg shadow-google-blue/20 mobile-link transition">Get
+        in Touch</a>
+    </div>
+  </nav>
+
+  <main class="flex-grow flex flex-col max-w-5xl mx-auto w-full pt-28 pb-6 px-4 md:px-6 overflow-hidden relative z-10">
+      
+      <div class="text-center mb-6 shrink-0">
+          <h1 class="text-3xl font-extrabold text-white tracking-tight">Workspace <span class="text-google-blue">Oracle</span></h1>
+          <p class="text-slate-400 text-sm mt-2">Ask complex GAM questions or request Apps Script workflows.</p>
+      </div>
+
+      <div id="chat-window" class="flex-grow glass-card rounded-3xl p-6 flex flex-col gap-6 overflow-y-auto shadow-2xl mb-6">
+          
+          <div class="flex gap-4 max-w-3xl">
+              <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
+                  <i class="fas fa-robot text-google-blue"></i>
+              </div>
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed">
+                  Hello Abhishek. I am calibrated for Google Workspace architecture. Do you need assistance with an API integration, a GAM command, or a security policy today?
+              </div>
+          </div>
+
+          <div class="flex gap-4 max-w-3xl self-end flex-row-reverse">
+              <div class="w-10 h-10 rounded-full bg-google-blue flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/30 text-white font-bold text-sm">
+                  U
+              </div>
+              <div class="bg-google-blue/10 border border-google-blue/30 rounded-2xl rounded-tr-sm px-5 py-4 text-white text-sm leading-relaxed">
+                  How do I bulk suspend users based on a CSV file using GAMADV-XTD3?
+              </div>
+          </div>
+
+          <div class="flex gap-4 max-w-4xl w-full">
+              <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
+                  <i class="fas fa-robot text-google-blue"></i>
+              </div>
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed w-full overflow-hidden">
+                  <p class="mb-3">You can achieve this by reading the CSV and passing the user identifiers to the suspend command. Ensure your CSV has a column header named `email`.</p>
+                  
+                  <div class="relative bg-[#0d1117] rounded-lg border border-slate-700/50 mt-2">
+                      <div class="flex justify-between items-center px-4 py-2 bg-slate-800/50 border-b border-slate-700/50 rounded-t-lg">
+                          <span class="text-xs text-slate-400 font-mono">bash</span>
+                          <button class="text-xs text-slate-400 hover:text-white transition"><i class="far fa-copy mr-1"></i> Copy</button>
+                      </div>
+                      <div class="p-4 overflow-x-auto">
+                          <code class="text-green-400 font-mono text-sm whitespace-pre">gam csv users.csv gam update user ~email suspended true</code>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+
+      <div class="shrink-0 relative">
+          <div class="absolute -inset-1 bg-gradient-to-r from-google-blue/30 to-google-green/30 rounded-2xl blur opacity-30"></div>
+          <div class="relative glass-card rounded-2xl p-2 flex items-center shadow-lg">
+              <input type="text" id="chat-input" placeholder="Type your GAM or Workspace query here..." 
+                  class="w-full bg-transparent border-none text-white px-4 py-3 focus:outline-none placeholder-slate-500 text-sm">
+              <button id="send-btn" class="bg-google-blue hover:bg-blue-600 text-white w-10 h-10 rounded-xl flex items-center justify-center transition shadow-lg shrink-0 mr-1">
+                  <i class="fas fa-paper-plane text-sm mt-0.5 mr-0.5"></i>
+              </button>
+          </div>
+      </div>
+  </main>
+
+  <section class="py-6 px-6 border-t border-white/5 bg-slate-900/50 shrink-0">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+      <p>&copy; 2026 Abhishek Mehta. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
+        <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank"
+          class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+        <a href="#" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // --- MOBILE MENU LOGIC ---
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = mobileBtn.querySelector('i');
+
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('flex');
+        if (mobileMenu.classList.contains('hidden')) {
+          menuIcon.classList.replace('fa-times', 'fa-bars');
+        } else {
+          menuIcon.classList.replace('fa-bars', 'fa-times');
+        }
+      });
+
+      document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenu.classList.remove('flex');
+          menuIcon.classList.replace('fa-times', 'fa-bars');
+        });
+      });
+
+      // --- CHAT INTERFACE LOGIC (Frontend Stub) ---
+      const chatInput = document.getElementById('chat-input');
+      const sendBtn = document.getElementById('send-btn');
+      const chatWindow = document.getElementById('chat-window');
+
+      function appendUserMessage(text) {
+        const msgHtml = `
+          <div class="flex gap-4 max-w-3xl self-end flex-row-reverse animate-[fadeIn_0.3s_ease-out]">
+            <div class="w-10 h-10 rounded-full bg-google-blue flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/30 text-white font-bold text-sm">
+                U
             </div>
-        </div>
-    </nav>
+            <div class="bg-google-blue/10 border border-google-blue/30 rounded-2xl rounded-tr-sm px-5 py-4 text-white text-sm leading-relaxed">
+                ${text}
+            </div>
+          </div>
+        `;
+        chatWindow.insertAdjacentHTML('beforeend', msgHtml);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+      }
 
-    <main class="flex-grow flex flex-col max-w-5xl mx-auto w-full p-4 md:p-6 overflow-hidden">
+      function appendAITypingIndicator() {
+        const id = 'typing-' + Date.now();
+        const msgHtml = `
+          <div id="${id}" class="flex gap-4 max-w-3xl animate-[fadeIn_0.3s_ease-out]">
+            <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
+                <i class="fas fa-robot text-google-blue"></i>
+            </div>
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 flex items-center gap-1 h-[52px]">
+                <div class="w-2 h-2 bg-slate-400 rounded-full dot-flashing"></div>
+                <div class="w-2 h-2 bg-slate-400 rounded-full dot-flashing"></div>
+                <div class="w-2 h-2 bg-slate-400 rounded-full dot-flashing"></div>
+            </div>
+          </div>
+        `;
+        chatWindow.insertAdjacentHTML('beforeend', msgHtml);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+        return id;
+      }
+
+      function handleSend() {
+        const text = chatInput.value.trim();
+        if (!text) return;
         
-        <div class="text-center mb-6 shrink-0">
-            <h1 class="text-3xl font-extrabold text-white tracking-tight">Workspace <span class="text-google-blue">Oracle</span></h1>
-            <p class="text-slate-400 text-sm mt-2">Ask complex GAM questions or request Apps Script workflows.</p>
-        </div>
+        // 1. Clear input
+        chatInput.value = '';
+        
+        // 2. Append User Message
+        appendUserMessage(text);
+        
+        // 3. Show AI is "typing"
+        const typingId = appendAITypingIndicator();
 
-        <div id="chat-window" class="flex-grow glass-panel rounded-3xl p-6 flex flex-col gap-6 overflow-y-auto shadow-2xl mb-6">
+        // [BACKEND HOOK GOES HERE]
+        // This is where you will eventually call fetch('https://your-render-url.com/api/chat', ...)
+        // Once the response comes back, you will remove the typingId element and append the real AI response.
+        
+        // For now, simulate a fake network delay and response
+        setTimeout(() => {
+            document.getElementById(typingId).remove();
             
-            <div class="flex gap-4 max-w-3xl">
-                <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
-                    <i class="fas fa-robot text-google-blue"></i>
-                </div>
-                <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed">
-                    Hello Abhishek. I am calibrated for Google Workspace architecture. Do you need assistance with an API integration, a GAM command, or a security policy today?
-                </div>
-            </div>
+            const aiHtml = `
+              <div class="flex gap-4 max-w-4xl w-full animate-[fadeIn_0.3s_ease-out]">
+                  <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
+                      <i class="fas fa-robot text-google-blue"></i>
+                  </div>
+                  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed w-full">
+                      <p>Backend API integration is required to process this prompt: <strong>"${text}"</strong>.</p>
+                      <p class="mt-2 text-slate-400 italic">Please connect your frontend fetch() to your deployed Node.js backend.</p>
+                  </div>
+              </div>
+            `;
+            chatWindow.insertAdjacentHTML('beforeend', aiHtml);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }, 1500);
+      }
 
-            <div class="flex gap-4 max-w-3xl self-end flex-row-reverse">
-                <div class="w-10 h-10 rounded-full bg-google-blue flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/30 text-white font-bold text-sm">
-                    U
-                </div>
-                <div class="bg-google-blue/10 border border-google-blue/30 rounded-2xl rounded-tr-sm px-5 py-4 text-white text-sm leading-relaxed">
-                    How do I bulk suspend users based on a CSV file using GAMADV-XTD3?
-                </div>
-            </div>
+      // Event Listeners for Chat
+      sendBtn.addEventListener('click', handleSend);
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleSend();
+      });
 
-             <div class="flex gap-4 max-w-4xl w-full">
-                <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
-                    <i class="fas fa-robot text-google-blue"></i>
-                </div>
-                <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed w-full overflow-hidden">
-                    <p class="mb-3">You can achieve this by reading the CSV and passing the user identifiers to the suspend command. Ensure your CSV has a column header named `email`.</p>
-                    
-                    <div class="relative bg-[#0d1117] rounded-lg border border-slate-700/50 mt-2">
-                        <div class="flex justify-between items-center px-4 py-2 bg-slate-800/50 border-b border-slate-700/50 rounded-t-lg">
-                            <span class="text-xs text-slate-400 font-mono">bash</span>
-                            <button class="text-xs text-slate-400 hover:text-white transition"><i class="far fa-copy mr-1"></i> Copy</button>
-                        </div>
-                        <div class="p-4 overflow-x-auto">
-                            <code class="text-green-400 font-mono text-sm whitespace-pre">gam csv users.csv gam update user ~email suspended true</code>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="shrink-0 relative">
-            <div class="absolute -inset-1 bg-gradient-to-r from-google-blue/30 to-google-green/30 rounded-2xl blur opacity-30"></div>
-            <div class="relative glass-panel rounded-2xl p-2 flex items-center shadow-lg">
-                <input type="text" id="chat-input" placeholder="Type your GAM or Workspace query here..." 
-                    class="w-full bg-transparent border-none text-white px-4 py-3 focus:outline-none placeholder-slate-500 text-sm">
-                <button class="bg-google-blue hover:bg-blue-600 text-white w-10 h-10 rounded-xl flex items-center justify-center transition shadow-lg shrink-0 mr-1">
-                    <i class="fas fa-paper-plane text-sm mt-0.5 mr-0.5"></i>
-                </button>
-            </div>
-        </div>
-
-    </main>
+    });
+  </script>
 </body>
 </html>
