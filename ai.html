@@ -274,7 +274,7 @@
                             
                             // THROTTLE THE DOM UPDATE (Max 1 update per 50ms)
                             const now = Date.now();
-                            if (now - lastUpdate > 50) {
+                            if (now - lastUpdate > 200) {
                                 if (accumulatedThought) thoughtDiv.innerHTML = marked.parse(accumulatedThought);
                                 if (accumulatedText) responseDiv.innerHTML = marked.parse(accumulatedText);
                                 chatWindow.scrollTop = chatWindow.scrollHeight;
