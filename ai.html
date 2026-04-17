@@ -6,9 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Workspace AI Assistant | Abhishek Mehta</title>
   
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="[https://cdn.tailwindcss.com?plugins=typography](https://cdn.tailwindcss.com?plugins=typography)"></script>
+  <script src="[https://cdn.jsdelivr.net/npm/marked/marked.min.js](https://cdn.jsdelivr.net/npm/marked/marked.min.js)"></script>
+  
+  <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap)" rel="stylesheet">
+  <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
 
   <script>
     tailwind.config = {
@@ -43,7 +45,7 @@
       transition: all 0.3s ease;
     }
 
-    /* Custom scrollbar for the inner chat area */
+    /* Custom scrollbar */
     #chat-window::-webkit-scrollbar { width: 6px; }
     #chat-window::-webkit-scrollbar-track { background: transparent; }
     #chat-window::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
@@ -58,23 +60,13 @@
     /* --- FUTURISTIC DYNAMIC BACKGROUND --- */
     .background-animation {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: -20; 
-      opacity: 1; 
+      top: 0; left: 0; width: 100%; height: 100%;
+      overflow: hidden; z-index: -20; opacity: 1; 
     }
-
     .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px); 
-      opacity: 0.2; 
+      position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.2; 
       animation: blob-color-shift 8s infinite ease-in-out alternate;
     }
-
     @keyframes blob-color-shift {
       0% { background-color: #4285F4; transform: translate(0px, 0px) scale(1); }
       25% { background-color: #EA4335; transform: translate(40px, -40px) scale(1.05); }
@@ -82,7 +74,6 @@
       75% { background-color: #34A853; transform: translate(20px, 40px) scale(1.1); }
       100% { background-color: #4285F4; transform: translate(0px, 0px) scale(1); }
     }
-
     .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; animation-duration: 9s; animation-delay: 0s; }
     .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; animation-duration: 11s; animation-delay: -3s; }
     .blob-3 { top: 30%; left: 40%; width: 55vw; height: 55vw; animation-duration: 13s; animation-delay: -6s; }
@@ -92,62 +83,51 @@
 <body class="antialiased selection:bg-google-blue selection:text-white relative">
 
   <div class="background-animation">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
+    <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
   </div>
 
   <nav class="fixed w-full top-0 z-50 glass-card border-b-0 border-white/5 shrink-0">
     <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative">
       <a href="index.html" class="text-xl font-bold tracking-tight z-50">AM<span class="text-google-blue">.</span></a>
-
       <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 space-x-8 text-sm font-medium text-slate-300">
         <a href="index.html" class="hover:text-white transition">Home</a>
         <a href="addons.html" class="hover:text-white transition">Add-ons</a>
         <a href="ai.html" class="text-white border-b-2 border-google-blue pb-1">AI Assistant</a>
       </div>
-      
-      <a href="index.html#contact"
-        class="hidden md:block bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition z-50">Get
-        in Touch</a>
-
+      <a href="index.html#contact" class="hidden md:block bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition z-50">Get in Touch</a>
       <button id="mobile-menu-btn" class="block md:hidden text-slate-300 hover:text-white focus:outline-none z-50 transition">
         <i class="fas fa-bars text-2xl"></i>
       </button>
     </div>
-
-    <div id="mobile-menu"
-      class="hidden absolute top-full left-0 w-full glass-card border-t border-white/5 shadow-2xl flex-col items-center py-8 space-y-6 md:hidden">
+    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full glass-card border-t border-white/5 shadow-2xl flex-col items-center py-8 space-y-6 md:hidden">
       <a href="index.html" class="text-lg text-slate-300 hover:text-white font-medium mobile-link transition">Home</a>
       <a href="addons.html" class="text-lg text-slate-300 hover:text-white font-medium mobile-link transition">Add-ons</a>
       <a href="ai.html" class="text-lg text-white font-medium border-b-2 border-google-blue pb-1 mobile-link transition">AI Assistant</a>
-      <a href="index.html#contact"
-        class="bg-google-blue text-white px-8 py-3 mt-2 rounded-full text-sm font-semibold shadow-lg shadow-google-blue/20 mobile-link transition">Get
-        in Touch</a>
+      <a href="index.html#contact" class="bg-google-blue text-white px-8 py-3 mt-2 rounded-full text-sm font-semibold shadow-lg shadow-google-blue/20 mobile-link transition">Get in Touch</a>
     </div>
   </nav>
 
   <main class="flex-grow flex flex-col max-w-5xl mx-auto w-full pt-28 pb-6 px-4 md:px-6 overflow-hidden relative z-10">
-      
       <div class="text-center mb-6 shrink-0">
           <h1 class="text-3xl font-extrabold text-white tracking-tight">Workspace <span class="text-google-blue">Oracle</span></h1>
           <p class="text-slate-400 text-sm mt-2">Ask complex GAM questions or request Apps Script workflows.</p>
       </div>
 
       <div class="flex-grow glass-card rounded-3xl p-4 md:p-6 flex flex-col shadow-2xl mb-6 overflow-hidden">
-          
           <div id="chat-window" class="flex-grow flex flex-col gap-6 overflow-y-auto pr-2 md:pr-4">
               
-              <div class="flex gap-4 max-w-3xl">
+              <div class="flex gap-4 max-w-4xl w-full">
                   <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
                       <i class="fas fa-robot text-google-blue"></i>
                   </div>
-                  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed">
-                      Hello Abhishek. I am calibrated for Google Workspace architecture. Do you need assistance with an API integration, a GAM command, or a security policy today?
+                  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 w-full">
+                      <div class="prose prose-sm prose-invert max-w-none text-slate-300 leading-relaxed">
+                          Hello Abhishek. I am calibrated for Google Workspace architecture. Do you need assistance with an API integration, a GAM command, or a security policy today?
+                      </div>
                   </div>
               </div>
 
-              </div>
+          </div>
       </div>
 
       <div class="shrink-0 relative">
@@ -167,8 +147,7 @@
       <p>&copy; 2026 Abhishek Mehta. All rights reserved.</p>
       <div class="flex gap-6">
         <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
-        <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank"
-          class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+        <a href="[https://www.linkedin.com/in/abhishek-mehta110](https://www.linkedin.com/in/abhishek-mehta110)" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
         <a href="#" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
       </div>
     </div>
@@ -177,6 +156,29 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       
+      // --- CONFIGURE MARKED.JS FOR CUSTOM CODE BLOCKS ---
+      // This tells the Markdown parser to use our custom Glassmorphism UI for code blocks
+      const renderer = new marked.Renderer();
+      renderer.code = function({text, lang}) {
+          const languageLabel = lang ? lang.toUpperCase() : 'TERMINAL SNIPPET';
+          // We use 'not-prose' so Tailwind Typography doesn't mess up our custom styling
+          return `
+              <div class="not-prose relative bg-[#0d1117] rounded-lg border border-slate-700/50 mt-4 mb-4 shadow-lg">
+                  <div class="flex justify-between items-center px-4 py-2 bg-slate-800/50 border-b border-slate-700/50 rounded-t-lg">
+                      <span class="text-xs text-slate-400 font-mono tracking-wider">${languageLabel}</span>
+                      <button onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.innerText); this.innerHTML = '<i class=\\\'fas fa-check mr-1 text-google-green\\\'></i> Copied!'; setTimeout(() => this.innerHTML = '<i class=\\\'far fa-copy mr-1\\\'></i> Copy', 2000);" 
+                              class="text-xs text-slate-400 hover:text-white transition flex items-center">
+                          <i class="far fa-copy mr-1"></i> Copy
+                      </button>
+                  </div>
+                  <div class="p-4 overflow-x-auto">
+                      <code class="text-green-400 font-mono text-sm whitespace-pre">${text}</code>
+                  </div>
+              </div>
+          `;
+      };
+      marked.use({ renderer });
+
       // --- MOBILE MENU LOGIC ---
       const mobileBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
@@ -185,41 +187,22 @@
       mobileBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
         mobileMenu.classList.toggle('flex');
-        if (mobileMenu.classList.contains('hidden')) {
-          menuIcon.classList.replace('fa-times', 'fa-bars');
-        } else {
-          menuIcon.classList.replace('fa-bars', 'fa-times');
-        }
+        menuIcon.classList.replace(mobileMenu.classList.contains('hidden') ? 'fa-times' : 'fa-bars', mobileMenu.classList.contains('hidden') ? 'fa-bars' : 'fa-times');
       });
 
-      document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-          mobileMenu.classList.remove('flex');
-          menuIcon.classList.replace('fa-times', 'fa-bars');
-        });
-      });
-
-      // --- CHAT INTERFACE LOGIC (Production API Integration) ---
+      // --- CHAT INTERFACE LOGIC ---
       const chatInput = document.getElementById('chat-input');
       const sendBtn = document.getElementById('send-btn');
       const chatWindow = document.getElementById('chat-window');
 
-      // Maintains the conversation history locally so the LLM remembers context
       let chatHistory = [];
-
-      // *** REPLACE THIS URL WITH YOUR ACTUAL RENDER.COM BACKEND URL ***
-      const BACKEND_URL = 'https://workspace-ai-backend.onrender.com/api/chat';
+      const BACKEND_URL = '[https://workspace-ai-backend.onrender.com/api/chat](https://workspace-ai-backend.onrender.com/api/chat)';
 
       function appendUserMessage(text) {
         const msgHtml = `
           <div class="flex gap-4 max-w-3xl self-end flex-row-reverse animate-[fadeIn_0.3s_ease-out]">
-            <div class="w-10 h-10 rounded-full bg-google-blue flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/30 text-white font-bold text-sm">
-                U
-            </div>
-            <div class="bg-google-blue/10 border border-google-blue/30 rounded-2xl rounded-tr-sm px-5 py-4 text-white text-sm leading-relaxed">
-                ${text}
-            </div>
+            <div class="w-10 h-10 rounded-full bg-google-blue flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/30 text-white font-bold text-sm">U</div>
+            <div class="bg-google-blue/10 border border-google-blue/30 rounded-2xl rounded-tr-sm px-5 py-4 text-white text-sm leading-relaxed">${text}</div>
           </div>
         `;
         chatWindow.insertAdjacentHTML('beforeend', msgHtml);
@@ -229,7 +212,7 @@
       function appendAITypingIndicator() {
         const id = 'typing-' + Date.now();
         const msgHtml = `
-          <div id="${id}" class="flex gap-4 max-w-3xl animate-[fadeIn_0.3s_ease-out]">
+          <div id="${id}" class="flex gap-4 max-w-4xl w-full animate-[fadeIn_0.3s_ease-out]">
             <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
                 <i class="fas fa-robot text-google-blue"></i>
             </div>
@@ -245,26 +228,6 @@
         return id;
       }
 
-      function formatAIResponse(text) {
-          // Detects markdown codeblocks and wraps them in our custom glass-card styling
-          let formattedText = text.replace(/```([\s\S]*?)```/g, (match, code) => {
-              const cleanCode = code.replace(/^[a-z]+\n/, ''); // Removes language tag like 'bash'
-              return `
-                  <div class="relative bg-[#0d1117] rounded-lg border border-slate-700/50 mt-3 mb-3">
-                      <div class="flex justify-between items-center px-4 py-2 bg-slate-800/50 border-b border-slate-700/50 rounded-t-lg">
-                          <span class="text-xs text-slate-400 font-mono">Terminal Snippet</span>
-                      </div>
-                      <div class="p-4 overflow-x-auto">
-                          <code class="text-green-400 font-mono text-sm whitespace-pre">${cleanCode.trim()}</code>
-                      </div>
-                  </div>
-              `;
-          });
-          
-          // Convert regular line breaks to HTML breaks
-          return formattedText.replace(/\n/g, '<br>');
-      }
-
       async function handleSend() {
         const text = chatInput.value.trim();
         if (!text) return;
@@ -274,34 +237,32 @@
         const typingId = appendAITypingIndicator();
 
         try {
-            // Call the Render API
             const response = await fetch(BACKEND_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    message: text,
-                    history: chatHistory 
-                })
+                body: JSON.stringify({ message: text, history: chatHistory })
             });
 
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
 
-            // Update conversation history array so LLM remembers the context next turn
             chatHistory.push({ role: "user", parts: [{ text: text }] });
             chatHistory.push({ role: "model", parts: [{ text: data.reply }] });
 
-            // Remove the bouncing dots and display the real formatted response
             document.getElementById(typingId).remove();
-            const formattedReply = formatAIResponse(data.reply);
+            
+            // Parse Markdown into beautiful HTML using Marked.js
+            const formattedReply = marked.parse(data.reply);
             
             const aiHtml = `
               <div class="flex gap-4 max-w-4xl w-full animate-[fadeIn_0.3s_ease-out]">
                   <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
                       <i class="fas fa-robot text-google-blue"></i>
                   </div>
-                  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed w-full overflow-hidden">
-                      ${formattedReply}
+                  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 w-full overflow-hidden">
+                      <div class="prose prose-sm prose-invert max-w-none text-slate-300 leading-relaxed">
+                          ${formattedReply}
+                      </div>
                   </div>
               </div>
             `;
@@ -311,8 +272,6 @@
         } catch (error) {
             console.error("Chat Error:", error);
             document.getElementById(typingId).remove();
-            
-            // Helpful error message if Render is sleeping or CORS blocked
             const errorHtml = `
               <div class="flex gap-4 max-w-4xl w-full animate-[fadeIn_0.3s_ease-out]">
                   <div class="w-10 h-10 rounded-full bg-slate-800 border border-red-900 flex items-center justify-center shrink-0 shadow-lg shadow-google-red/20">
@@ -320,7 +279,7 @@
                   </div>
                   <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 text-slate-300 text-sm leading-relaxed w-full">
                       <p class="text-google-red font-semibold mb-1">Connection Error</p>
-                      <p>Unable to reach the backend API. If you recently deployed on Render's free tier, the server may be waking up from sleep (which takes ~50 seconds). Please try again in a moment.</p>
+                      <p>Unable to reach the backend API. Please try again.</p>
                   </div>
               </div>
             `;
