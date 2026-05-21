@@ -107,8 +107,14 @@
 
     <div class="shrink-0 relative">
       <div class="absolute -inset-1 bg-gradient-to-r from-google-blue/30 to-google-green/30 rounded-2xl blur opacity-30"></div>
-      <div class="relative glass-card rounded-2xl p-2 flex items-center shadow-lg">
-        <input type="text" id="chat-input" placeholder="Type your GAM or Workspace query here..." class="w-full bg-transparent border-none text-white px-4 py-3 focus:outline-none placeholder-slate-500 text-sm">
+      <div class="relative glass-card rounded-2xl p-2 flex items-center shadow-lg gap-1">
+        
+        <input type="text" id="chat-input" placeholder="Type your GAM or Workspace query here..." class="w-full bg-transparent border-none text-white px-3 py-3 focus:outline-none placeholder-slate-500 text-sm">
+        
+        <button id="mic-btn" class="text-slate-400 hover:text-white w-10 h-10 rounded-xl flex items-center justify-center transition shrink-0" title="Voice Typing">
+            <i class="fas fa-microphone"></i>
+        </button>
+
         <button id="send-btn" class="bg-google-blue hover:bg-blue-600 text-white w-10 h-10 rounded-xl flex items-center justify-center transition shadow-lg shrink-0 mr-1">
             <i class="fas fa-paper-plane text-sm mt-0.5 mr-0.5"></i>
         </button>
@@ -226,7 +232,7 @@
         
         let accumulatedText = "";
         let accumulatedThought = "";
-        let lastUpdate = 0; // The throttle timer
+        let lastUpdate = 0; 
 
         try {
             const response = await fetch(BACKEND_URL, {
@@ -263,7 +269,6 @@
                                 break;
                             }
 
-                            // Accumulate the data
                             if (parsed.thought) {
                                 thinkBox.classList.remove('hidden');
                                 accumulatedThought += parsed.thought;
@@ -272,7 +277,6 @@
                                 accumulatedText += parsed.text;
                             }
                             
-                            // THROTTLE THE DOM UPDATE (Max 1 update per 50ms)
                             const now = Date.now();
                             if (now - lastUpdate > 200) {
                                 if (accumulatedThought) thoughtDiv.innerHTML = marked.parse(accumulatedThought);
@@ -288,7 +292,6 @@
                 }
             }
 
-            // GUARANTEE FINAL RENDER AFTER STREAM ENDS
             if (accumulatedThought) thoughtDiv.innerHTML = marked.parse(accumulatedThought);
             if (accumulatedText) responseDiv.innerHTML = marked.parse(accumulatedText);
             chatWindow.scrollTop = chatWindow.scrollHeight;
@@ -310,6 +313,73 @@
       chatInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') handleSend();
       });
+
+      // --- VOICE TYPING LOGIC (WEB SPEECH API) ---
+      const micBtn = document.getElementById('mic-btn');
+      const micIcon = micBtn.querySelector('i');
+
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (SpeechRecognition) {
+          const recognition = new SpeechRecognition();
+          recognition.continuous = true; // Infinite listening enabled
+          recognition.interimResults = true;
+
+          let isRecording = false;
+          let startingText = ""; // Remembers text already in the box
+
+          // Toggle recording on button click
+          micBtn.addEventListener('click', () => {
+              if (isRecording) {
+                  recognition.stop();
+              } else {
+                  // Save what's already in the input box so we don't overwrite it
+                  startingText = chatInput.value ? chatInput.value + " " : "";
+                  recognition.start();
+              }
+          });
+
+          // Stop recording instantly if the user starts typing manually
+          chatInput.addEventListener('input', () => {
+              if (isRecording) {
+                  recognition.stop();
+              }
+          });
+
+          recognition.onstart = () => {
+              isRecording = true;
+              micIcon.classList.remove('fa-microphone', 'text-slate-400');
+              micIcon.classList.add('fa-microphone-lines', 'text-google-red', 'animate-pulse');
+              chatInput.placeholder = "Listening indefinitely... (Type or click mic to stop)";
+          };
+
+          recognition.onresult = (event) => {
+              let sessionTranscript = '';
+              // Gather all the words said during this specific recording session
+              for (let i = 0; i < event.results.length; ++i) {
+                  sessionTranscript += event.results[i][0].transcript;
+              }
+              // Append the new voice text to whatever was already there
+              chatInput.value = startingText + sessionTranscript;
+          };
+
+          recognition.onend = () => {
+              isRecording = false;
+              micIcon.classList.remove('fa-microphone-lines', 'text-google-red', 'animate-pulse');
+              micIcon.classList.add('fa-microphone', 'text-slate-400');
+              chatInput.placeholder = "Type your GAM or Workspace query here...";
+          };
+
+          recognition.onerror = (event) => {
+              console.error("Microphone Error:", event.error);
+              recognition.stop();
+              chatInput.placeholder = "Microphone error or permission denied.";
+              setTimeout(() => { chatInput.placeholder = "Type your GAM or Workspace query here..."; }, 3000);
+          };
+      } else {
+          micBtn.style.display = 'none';
+          console.warn("Speech Recognition API is not supported in this browser.");
+      }
 
     });
   </script>
