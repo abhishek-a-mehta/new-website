@@ -28,10 +28,19 @@
     body { background-color: #0f172a; color: #f8fafc; overflow-x: hidden; display: flex; flex-direction: column; height: 100vh; }
     .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
     .glass-card:hover { border-color: rgba(66, 133, 244, 0.5); transition: all 0.3s ease; }
+    
+    /* Main Chat Window Scrollbar */
     #chat-window::-webkit-scrollbar { width: 6px; }
     #chat-window::-webkit-scrollbar-track { background: transparent; }
     #chat-window::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
     #chat-window::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+    /* Custom Textarea Scrollbar */
+    #chat-input::-webkit-scrollbar { width: 4px; }
+    #chat-input::-webkit-scrollbar-track { background: transparent; }
+    #chat-input::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
+    #chat-input::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
     .dot-flashing { animation: blink 1.4s infinite linear; }
     .dot-flashing:nth-child(2) { animation-delay: 0.2s; }
     .dot-flashing:nth-child(3) { animation-delay: 0.4s; }
@@ -107,15 +116,15 @@
 
     <div class="shrink-0 relative">
       <div class="absolute -inset-1 bg-gradient-to-r from-google-blue/30 to-google-green/30 rounded-2xl blur opacity-30"></div>
-      <div class="relative glass-card rounded-2xl p-2 flex items-center shadow-lg gap-1">
+      <div class="relative glass-card rounded-2xl p-2 flex items-end shadow-lg gap-1">
         
-        <input type="text" id="chat-input" placeholder="Type your GAM or Workspace query here..." class="w-full bg-transparent border-none text-white px-3 py-3 focus:outline-none placeholder-slate-500 text-sm">
+        <textarea id="chat-input" rows="1" placeholder="Type your GAM or Workspace query here..." class="w-full bg-transparent border-none text-white px-3 py-3 focus:outline-none placeholder-slate-500 text-sm resize-none max-h-32 overflow-y-auto"></textarea>
         
-        <button id="mic-btn" class="text-slate-400 hover:text-white w-10 h-10 rounded-xl flex items-center justify-center transition shrink-0" title="Voice Typing">
+        <button id="mic-btn" class="text-slate-400 hover:text-white w-10 h-10 rounded-xl flex items-center justify-center transition shrink-0 mb-1" title="Voice Typing">
             <i class="fas fa-microphone"></i>
         </button>
 
-        <button id="send-btn" class="bg-google-blue hover:bg-blue-600 text-white w-10 h-10 rounded-xl flex items-center justify-center transition shadow-lg shrink-0 mr-1">
+        <button id="send-btn" class="bg-google-blue hover:bg-blue-600 text-white w-10 h-10 rounded-xl flex items-center justify-center transition shadow-lg shrink-0 mr-1 mb-1">
             <i class="fas fa-paper-plane text-sm mt-0.5 mr-0.5"></i>
         </button>
       </div>
@@ -174,6 +183,13 @@
       let chatHistory = [];
       const BACKEND_URL = 'https://workspace-ai-backend.onrender.com/api/chat';
 
+      // --- AUTO-RESIZE TEXTAREA LOGIC ---
+      function adjustTextareaHeight() {
+          chatInput.style.height = 'auto'; // Reset height
+          chatInput.style.height = chatInput.scrollHeight + 'px'; // Set to match content
+      }
+      chatInput.addEventListener('input', adjustTextareaHeight);
+
       clearBtn.addEventListener('click', () => {
           chatHistory = [];
           const greeting = document.getElementById('greeting-msg').outerHTML;
@@ -181,10 +197,12 @@
       });
 
       function appendUserMessage(text) {
+        // Convert plain text to HTML so multi-line messages maintain line breaks
+        const formattedText = text.replace(/\n/g, '<br>');
         const msgHtml = `
           <div class="flex gap-4 max-w-3xl self-end flex-row-reverse animate-[fadeIn_0.3s_ease-out]">
             <div class="w-10 h-10 rounded-full bg-google-blue flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/30 text-white font-bold text-sm">U</div>
-            <div class="bg-google-blue/10 border border-google-blue/30 rounded-2xl rounded-tr-sm px-5 py-4 text-white text-sm leading-relaxed">${text}</div>
+            <div class="bg-google-blue/10 border border-google-blue/30 rounded-2xl rounded-tr-sm px-5 py-4 text-white text-sm leading-relaxed">${formattedText}</div>
           </div>
         `;
         chatWindow.insertAdjacentHTML('beforeend', msgHtml);
@@ -196,6 +214,7 @@
         if (!text) return;
         
         chatInput.value = '';
+        adjustTextareaHeight(); // Shrink the box back down immediately
         appendUserMessage(text);
         
         const messageId = 'msg-' + Date.now();
@@ -310,8 +329,13 @@
       }
 
       sendBtn.addEventListener('click', handleSend);
-      chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') handleSend();
+      
+      // Changed to 'keydown' to intercept Enter vs Shift+Enter
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault(); // Prevent standard new line
+            handleSend();
+        }
       });
 
       // --- VOICE TYPING LOGIC (WEB SPEECH API) ---
@@ -322,24 +346,22 @@
 
       if (SpeechRecognition) {
           const recognition = new SpeechRecognition();
-          recognition.continuous = true; // Infinite listening enabled
+          recognition.continuous = true; 
           recognition.interimResults = true;
 
           let isRecording = false;
-          let startingText = ""; // Remembers text already in the box
+          let startingText = ""; 
 
-          // Toggle recording on button click
           micBtn.addEventListener('click', () => {
               if (isRecording) {
                   recognition.stop();
               } else {
-                  // Save what's already in the input box so we don't overwrite it
                   startingText = chatInput.value ? chatInput.value + " " : "";
                   recognition.start();
               }
           });
 
-          // Stop recording instantly if the user starts typing manually
+          // Stop recording instantly if the user manually types
           chatInput.addEventListener('input', () => {
               if (isRecording) {
                   recognition.stop();
@@ -355,12 +377,11 @@
 
           recognition.onresult = (event) => {
               let sessionTranscript = '';
-              // Gather all the words said during this specific recording session
               for (let i = 0; i < event.results.length; ++i) {
                   sessionTranscript += event.results[i][0].transcript;
               }
-              // Append the new voice text to whatever was already there
               chatInput.value = startingText + sessionTranscript;
+              adjustTextareaHeight(); // Magically resize as the voice types!
           };
 
           recognition.onend = () => {
