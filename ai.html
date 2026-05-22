@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
 <head>
@@ -400,6 +400,540 @@
       } else {
           micBtn.style.display = 'none';
           console.warn("Speech Recognition API is not supported in this browser.");
+      }
+
+    });
+  </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workspace AI Assistant | Abhishek Mehta</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            google: { blue: '#4285F4', red: '#EA4335', yellow: '#FBBC05', green: '#34A853' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #0f172a; color: #f8fafc; overflow-x: hidden; display: flex; flex-direction: column; height: 100vh; }
+    .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    
+    /* Scrollbars */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    
+    #chat-input::-webkit-scrollbar { width: 4px; }
+    
+    .dot-flashing { animation: blink 1.4s infinite linear; }
+    .dot-flashing:nth-child(2) { animation-delay: 0.2s; }
+    .dot-flashing:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes blink { 0% { opacity: .2; } 20% { opacity: 1; } 100% { opacity: .2; } }
+    
+    .background-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -20; opacity: 1; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.2; animation: blob-color-shift 8s infinite ease-in-out alternate; }
+    @keyframes blob-color-shift {
+      0% { background-color: #4285F4; transform: translate(0px, 0px) scale(1); }
+      25% { background-color: #EA4335; transform: translate(40px, -40px) scale(1.05); }
+      50% { background-color: #FBBC05; transform: translate(-30px, 20px) scale(0.95); }
+      75% { background-color: #34A853; transform: translate(20px, 40px) scale(1.1); }
+      100% { background-color: #4285F4; transform: translate(0px, 0px) scale(1); }
+    }
+    .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; animation-duration: 9s; animation-delay: 0s; }
+    .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; animation-duration: 11s; animation-delay: -3s; }
+    .blob-3 { top: 30%; left: 40%; width: 55vw; height: 55vw; animation-duration: 13s; animation-delay: -6s; }
+    details>summary { list-style: none; }
+    details>summary::-webkit-details-marker { display: none; }
+
+    /* Active Chat Sidebar Item */
+    .chat-item-active { background-color: rgba(66, 133, 244, 0.2); border-left: 3px solid #4285F4; }
+  </style>
+</head>
+
+<body class="antialiased selection:bg-google-blue selection:text-white relative flex flex-col h-screen">
+  
+  <div class="background-animation">
+    <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+  </div>
+
+  <nav class="fixed w-full top-0 z-50 glass-card border-b-0 border-white/5 shrink-0 h-16">
+    <div class="w-full px-6 h-full flex justify-between items-center relative">
+      <a href="index.html" class="text-xl font-bold tracking-tight z-50">AM<span class="text-google-blue">.</span></a>
+      <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 space-x-8 text-sm font-medium text-slate-300">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <a href="addons.html" class="hover:text-white transition">Add-ons</a>
+        <a href="ai.html" class="text-white border-b-2 border-google-blue pb-1">AI Assistant</a>
+      </div>
+      <div class="hidden md:flex items-center gap-4 z-50">
+          <a href="index.html#contact" class="bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition">Get in Touch</a>
+      </div>
+      <button id="mobile-menu-btn" class="block md:hidden text-slate-300 hover:text-white focus:outline-none z-50 transition">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+  </nav>
+
+  <div class="flex-grow flex pt-16 overflow-hidden">
+      
+      <aside class="hidden md:flex flex-col w-64 lg:w-72 glass-card border-r border-white/5 h-full shrink-0 relative z-40">
+          <div class="p-4 border-b border-white/5">
+              <button id="new-chat-btn" class="w-full flex items-center justify-center gap-2 bg-google-blue/20 hover:bg-google-blue hover:text-white text-google-blue font-semibold py-3 px-4 rounded-xl transition duration-200 border border-google-blue/30">
+                  <i class="fas fa-plus"></i> New Chat
+              </button>
+          </div>
+          
+          <div class="px-4 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider mt-2">Recent Chats</div>
+          
+          <div id="chat-history-list" class="flex-1 overflow-y-auto px-2 pb-4 space-y-1">
+              </div>
+      </aside>
+
+      <main class="flex-1 flex flex-col h-full relative z-10 w-full max-w-4xl mx-auto px-4 md:px-6 pt-6 pb-4">
+          
+          <div class="flex justify-between items-end mb-6 shrink-0">
+              <div class="text-left">
+                  <h1 class="text-3xl font-extrabold text-white tracking-tight">Workspace <span class="text-google-blue">Oracle</span></h1>
+                  <p class="text-slate-400 text-sm mt-1">Ask complex GAM questions or request Apps Script workflows.</p>
+              </div>
+          </div>
+
+          <div class="flex-grow glass-card rounded-3xl p-4 md:p-6 flex flex-col shadow-2xl mb-4 overflow-hidden">
+              <div id="chat-window" class="flex-grow flex flex-col gap-6 overflow-y-auto pr-2 md:pr-4 pb-4">
+                  <div id="greeting-msg" class="flex gap-4 w-full">
+                      <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
+                          <i class="fas fa-robot text-google-blue"></i>
+                      </div>
+                      <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 w-full">
+                          <div class="prose prose-sm prose-invert max-w-none text-slate-300 leading-relaxed">
+                              Hello There! My name is AB. I am calibrated for Google Workspace architecture. Do you need assistance with an API integration, a GAM command, or a security policy today?
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="shrink-0 relative">
+              <div class="absolute -inset-1 bg-gradient-to-r from-google-blue/30 to-google-green/30 rounded-2xl blur opacity-30"></div>
+              <div class="relative glass-card rounded-2xl p-2 flex items-end shadow-lg gap-1">
+                  <textarea id="chat-input" rows="1" placeholder="Type your GAM or Workspace query here..." class="w-full bg-transparent border-none text-white px-3 py-3 focus:outline-none placeholder-slate-500 text-sm resize-none max-h-32 overflow-y-auto"></textarea>
+                  
+                  <button id="mic-btn" class="text-slate-400 hover:text-white w-10 h-10 rounded-xl flex items-center justify-center transition shrink-0 mb-1" title="Voice Typing">
+                      <i class="fas fa-microphone"></i>
+                  </button>
+
+                  <button id="send-btn" class="bg-google-blue hover:bg-blue-600 text-white w-10 h-10 rounded-xl flex items-center justify-center transition shadow-lg shrink-0 mr-1 mb-1">
+                      <i class="fas fa-paper-plane text-sm mt-0.5 mr-0.5"></i>
+                  </button>
+              </div>
+          </div>
+          <div class="text-center mt-2 text-xs text-slate-500">Chats are saved securely in your browser's local storage.</div>
+      </main>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // --- MARKED.JS CONFIGURATION ---
+      const renderer = new marked.Renderer();
+      renderer.code = function({text, lang}) {
+          const languageLabel = lang ? lang.toUpperCase() : 'TERMINAL SNIPPET';
+          return `
+              <div class="not-prose relative bg-[#0d1117] rounded-lg border border-slate-700/50 mt-4 mb-4 shadow-lg">
+                  <div class="flex justify-between items-center px-4 py-2 bg-slate-800/50 border-b border-slate-700/50 rounded-t-lg">
+                      <span class="text-xs text-slate-400 font-mono tracking-wider">${languageLabel}</span>
+                      <button onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.innerText); this.innerHTML = '<i class=\\\'fas fa-check mr-1 text-google-green\\\'></i> Copied!'; setTimeout(() => this.innerHTML = '<i class=\\\'far fa-copy mr-1\\\'></i> Copy', 2000);" 
+                              class="text-xs text-slate-400 hover:text-white transition flex items-center">
+                          <i class="far fa-copy mr-1"></i> Copy
+                      </button>
+                  </div>
+                  <div class="p-4 overflow-x-auto">
+                      <code class="text-green-400 font-mono text-sm whitespace-pre">${text}</code>
+                  </div>
+              </div>
+          `;
+      };
+      marked.use({ renderer });
+
+      // --- DOM ELEMENTS ---
+      const chatInput = document.getElementById('chat-input');
+      const sendBtn = document.getElementById('send-btn');
+      const newChatBtn = document.getElementById('new-chat-btn');
+      const chatWindow = document.getElementById('chat-window');
+      const chatHistoryList = document.getElementById('chat-history-list');
+      const greetingMsgHtml = document.getElementById('greeting-msg').outerHTML;
+      
+      const BACKEND_URL = 'https://workspace-ai-backend.onrender.com/api/chat';
+
+      // --- LOCAL STORAGE MANAGER ---
+      let savedSessions = JSON.parse(localStorage.getItem('workspace_oracle_sessions')) || [];
+      let currentSessionId = null;
+
+      function saveSessionsToStorage() {
+          localStorage.setItem('workspace_oracle_sessions', JSON.stringify(savedSessions));
+          renderSidebar();
+      }
+
+      function createNewSession() {
+          currentSessionId = 'session_' + Date.now();
+          const newSession = {
+              id: currentSessionId,
+              title: "New Workspace Query",
+              history: []
+          };
+          savedSessions.unshift(newSession); // Add to top of list
+          saveSessionsToStorage();
+          
+          // Reset UI
+          chatWindow.innerHTML = greetingMsgHtml;
+          chatInput.value = '';
+          adjustTextareaHeight();
+      }
+
+      function updateCurrentSession(userText, aiText, aiThought = null) {
+          let session = savedSessions.find(s => s.id === currentSessionId);
+          if (!session) return;
+
+          // Auto-title the session based on the first user prompt if it's new
+          if (session.history.length === 0) {
+              const words = userText.split(' ').slice(0, 5).join(' ');
+              session.title = words + (words.length < userText.length ? '...' : '');
+          }
+
+          // Save Raw text to memory
+          session.history.push({ role: "user", parts: [{ text: userText }] });
+          session.history.push({ 
+              role: "model", 
+              parts: [{ text: aiText }],
+              thought: aiThought // We save the thought string so it can be re-rendered later!
+          });
+
+          saveSessionsToStorage();
+      }
+
+      function loadSession(sessionId) {
+          currentSessionId = sessionId;
+          const session = savedSessions.find(s => s.id === currentSessionId);
+          if (!session) return;
+
+          chatWindow.innerHTML = ''; // Clear window
+          
+          if (session.history.length === 0) {
+              chatWindow.innerHTML = greetingMsgHtml;
+          } else {
+              // Rebuild the chat UI from memory
+              session.history.forEach(msg => {
+                  if (msg.role === 'user') {
+                      appendUserMessage(msg.parts[0].text);
+                  } else {
+                      appendAIMessage(msg.parts[0].text, msg.thought);
+                  }
+              });
+          }
+          renderSidebar(); // Update active highlights
+      }
+
+      function deleteSession(sessionId, event) {
+          event.stopPropagation(); // Stop the click from loading the chat
+          savedSessions = savedSessions.filter(s => s.id !== sessionId);
+          saveSessionsToStorage();
+          
+          if (currentSessionId === sessionId) {
+              if (savedSessions.length > 0) loadSession(savedSessions[0].id);
+              else createNewSession();
+          }
+      }
+
+      function renderSidebar() {
+          chatHistoryList.innerHTML = '';
+          savedSessions.forEach(session => {
+              const isActive = session.id === currentSessionId;
+              const li = document.createElement('div');
+              li.className = `group flex items-center justify-between px-3 py-3 rounded-xl cursor-pointer transition text-sm ${isActive ? 'chat-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-white'}`;
+              li.innerHTML = `
+                  <div class="truncate flex items-center gap-3 w-[85%]">
+                      <i class="far fa-comment-alt opacity-70"></i>
+                      <span class="truncate">${session.title}</span>
+                  </div>
+                  <button class="opacity-0 group-hover:opacity-100 text-slate-500 hover:text-google-red transition p-1" title="Delete Chat">
+                      <i class="fas fa-trash-alt"></i>
+                  </button>
+              `;
+              
+              li.addEventListener('click', () => loadSession(session.id));
+              li.querySelector('button').addEventListener('click', (e) => deleteSession(session.id, e));
+              
+              chatHistoryList.appendChild(li);
+          });
+      }
+
+      // Initialize App
+      if (savedSessions.length === 0) {
+          createNewSession();
+      } else {
+          loadSession(savedSessions[0].id);
+      }
+
+      newChatBtn.addEventListener('click', createNewSession);
+
+      // --- UI LOGIC ---
+      function adjustTextareaHeight() {
+          chatInput.style.height = 'auto'; 
+          chatInput.style.height = chatInput.scrollHeight + 'px'; 
+      }
+      chatInput.addEventListener('input', adjustTextareaHeight);
+
+      function appendUserMessage(text) {
+        const formattedText = text.replace(/\n/g, '<br>');
+        const msgHtml = `
+          <div class="flex gap-4 max-w-3xl self-end flex-row-reverse animate-[fadeIn_0.3s_ease-out]">
+            <div class="w-10 h-10 rounded-full bg-google-blue flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/30 text-white font-bold text-sm">U</div>
+            <div class="bg-google-blue/10 border border-google-blue/30 rounded-2xl rounded-tr-sm px-5 py-4 text-white text-sm leading-relaxed">${formattedText}</div>
+          </div>
+        `;
+        chatWindow.insertAdjacentHTML('beforeend', msgHtml);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+      }
+
+      function appendAIMessage(text, thought = null) {
+        const parsedText = marked.parse(text);
+        const parsedThought = thought ? marked.parse(thought) : '';
+        const thoughtHtml = thought ? `
+            <details class="mb-4 group cursor-pointer text-slate-400 text-xs font-mono">
+                <summary class="outline-none flex items-center gap-2 hover:text-google-blue transition">
+                    <i class="fas fa-microchip"></i> <span>Oracle Thought Process</span>
+                </summary>
+                <div class="mt-2 p-4 bg-slate-900/50 rounded-lg border border-white/5 opacity-80 prose prose-sm prose-invert max-w-none">${parsedThought}</div>
+            </details>
+        ` : '';
+
+        const msgHtml = `
+          <div class="flex gap-4 w-full animate-[fadeIn_0.3s_ease-out]">
+              <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
+                  <i class="fas fa-robot text-google-blue"></i>
+              </div>
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 w-full overflow-hidden">
+                  ${thoughtHtml}
+                  <div class="prose prose-sm prose-invert max-w-none text-slate-300 leading-relaxed">${parsedText}</div>
+              </div>
+          </div>
+        `;
+        chatWindow.insertAdjacentHTML('beforeend', msgHtml);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+      }
+
+      // --- STREAMING LOGIC ---
+      async function handleSend() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+        
+        chatInput.value = '';
+        adjustTextareaHeight(); 
+        appendUserMessage(text);
+        
+        // Remove greeting if it's the first message
+        const greeting = document.getElementById('greeting-msg');
+        if (greeting) greeting.remove();
+
+        const messageId = 'msg-' + Date.now();
+        const aiHtml = `
+          <div id="container-${messageId}" class="flex gap-4 w-full animate-[fadeIn_0.3s_ease-out]">
+              <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/20">
+                  <i class="fas fa-robot text-google-blue"></i>
+              </div>
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl rounded-tl-sm px-5 py-4 w-full overflow-hidden">
+                  
+                  <details id="think-box-${messageId}" class="mb-4 group cursor-pointer text-slate-400 text-xs font-mono hidden" open>
+                      <summary class="outline-none flex items-center gap-2 hover:text-google-blue transition">
+                          <i class="fas fa-microchip"></i> <span>Oracle Thought Process</span>
+                      </summary>
+                      <div id="thought-${messageId}" class="mt-2 p-4 bg-slate-900/50 rounded-lg border border-white/5 opacity-80 prose prose-sm prose-invert max-w-none">
+                          <span class="animate-pulse text-google-blue flex items-center gap-2">
+                              <i class="fas fa-circle-notch fa-spin"></i> Synthesizing Workspace architecture...
+                          </span>
+                      </div>
+                  </details>
+
+                  <div id="response-${messageId}" class="prose prose-sm prose-invert max-w-none text-slate-300 leading-relaxed">
+                      <div class="flex items-center gap-1 h-5 mt-1">
+                          <div class="w-2 h-2 bg-google-blue rounded-full dot-flashing"></div>
+                          <div class="w-2 h-2 bg-google-blue rounded-full dot-flashing"></div>
+                          <div class="w-2 h-2 bg-google-blue rounded-full dot-flashing"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        `;
+        chatWindow.insertAdjacentHTML('beforeend', aiHtml);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+
+        const responseDiv = document.getElementById(`response-${messageId}`);
+        const thinkBox = document.getElementById(`think-box-${messageId}`);
+        const thoughtDiv = document.getElementById(`thought-${messageId}`);
+        
+        let accumulatedText = "";
+        let accumulatedThought = "";
+        let lastUpdate = 0; 
+        
+        // Get the active session history to send to backend
+        const currentSession = savedSessions.find(s => s.id === currentSessionId);
+        // Exclude thoughts from history sent to API to save tokens, only send text
+        const apiHistory = currentSession.history.map(msg => ({
+            role: msg.role,
+            parts: msg.parts
+        }));
+
+        try {
+            const response = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text, history: apiHistory })
+            });
+
+            if (!response.ok) throw new Error('Network error');
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder("utf-8");
+            let buffer = "";
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                buffer += decoder.decode(value, { stream: true });
+                const lines = buffer.split('\n\n');
+                buffer = lines.pop(); 
+
+                for (const line of lines) {
+                    if (line.startsWith('data: ')) {
+                        const dataStr = line.substring(6);
+                        if (dataStr === '[DONE]') break;
+
+                        try {
+                            const parsed = JSON.parse(dataStr);
+                            
+                            if (parsed.error) {
+                                responseDiv.innerHTML = `<span class="text-google-red"><i class="fas fa-exclamation-triangle"></i> Backend Error: ${parsed.error}</span>`;
+                                thinkBox.classList.add('hidden');
+                                break;
+                            }
+
+                            if (parsed.thought) {
+                                thinkBox.classList.remove('hidden');
+                                accumulatedThought += parsed.thought;
+                            } 
+                            if (parsed.text) {
+                                accumulatedText += parsed.text;
+                            }
+                            
+                            const now = Date.now();
+                            if (now - lastUpdate > 200) {
+                                if (accumulatedThought) thoughtDiv.innerHTML = marked.parse(accumulatedThought);
+                                if (accumulatedText) responseDiv.innerHTML = marked.parse(accumulatedText);
+                                chatWindow.scrollTop = chatWindow.scrollHeight;
+                                lastUpdate = now;
+                            }
+                        } catch (e) { console.warn("Skipping malformed chunk"); }
+                    }
+                }
+            }
+
+            if (accumulatedThought) {
+                thoughtDiv.innerHTML = marked.parse(accumulatedThought);
+                thinkBox.removeAttribute('open'); // Collapse thought box when finished
+            }
+            if (accumulatedText) responseDiv.innerHTML = marked.parse(accumulatedText);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            // Save the completed transaction to local storage
+            updateCurrentSession(text, accumulatedText, accumulatedThought);
+
+        } catch (error) {
+            console.error("Chat Error:", error);
+            responseDiv.innerHTML = `
+              <div class="text-google-red">
+                 <p class="font-semibold mb-1"><i class="fas fa-exclamation-triangle"></i> Connection Error</p>
+                 <p>Unable to connect to the backend.</p>
+              </div>`;
+        }
+      }
+
+      sendBtn.addEventListener('click', handleSend);
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault(); 
+            handleSend();
+        }
+      });
+
+      // --- VOICE TYPING LOGIC ---
+      const micBtn = document.getElementById('mic-btn');
+      const micIcon = micBtn.querySelector('i');
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (SpeechRecognition) {
+          const recognition = new SpeechRecognition();
+          recognition.continuous = true; 
+          recognition.interimResults = true;
+
+          let isRecording = false;
+          let startingText = ""; 
+
+          micBtn.addEventListener('click', () => {
+              if (isRecording) recognition.stop();
+              else {
+                  startingText = chatInput.value ? chatInput.value + " " : "";
+                  recognition.start();
+              }
+          });
+
+          chatInput.addEventListener('input', () => {
+              if (isRecording) recognition.stop();
+          });
+
+          recognition.onstart = () => {
+              isRecording = true;
+              micIcon.classList.remove('fa-microphone', 'text-slate-400');
+              micIcon.classList.add('fa-microphone-lines', 'text-google-red', 'animate-pulse');
+              chatInput.placeholder = "Listening indefinitely... (Type or click mic to stop)";
+          };
+
+          recognition.onresult = (event) => {
+              let sessionTranscript = '';
+              for (let i = 0; i < event.results.length; ++i) {
+                  sessionTranscript += event.results[i][0].transcript;
+              }
+              chatInput.value = startingText + sessionTranscript;
+              adjustTextareaHeight();
+          };
+
+          recognition.onend = () => {
+              isRecording = false;
+              micIcon.classList.remove('fa-microphone-lines', 'text-google-red', 'animate-pulse');
+              micIcon.classList.add('fa-microphone', 'text-slate-400');
+              chatInput.placeholder = "Type your GAM or Workspace query here...";
+          };
+      } else {
+          micBtn.style.display = 'none';
       }
 
     });
