@@ -505,7 +505,8 @@
           <div class="px-4 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider mt-2">Recent Chats</div>
           
           <div id="chat-history-list" class="flex-1 overflow-y-auto px-2 pb-4 space-y-1">
-              </div>
+              <!-- JS WILL INJECT HISTORY ITEMS HERE -->
+          </div>
       </aside>
 
       <main class="flex-1 flex flex-col h-full relative z-10 w-full max-w-4xl mx-auto px-4 md:px-6 pt-6 pb-4">
@@ -553,18 +554,24 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       
-      // --- MARKED.JS CONFIGURATION ---
-const renderer = new marked.Renderer();
-      renderer.code = function({text, lang}) {
-          const languageLabel = lang ? lang.toUpperCase() : 'TERMINAL SNIPPET';
-          
-          // NEW: Escape HTML characters to prevent the browser from rendering AI-generated code!
-          const escapedText = text
+      // --- UTILITIES ---
+      // Universal HTML escape function to prevent injection from user or AI
+      function escapeHTML(str) {
+          return str
               .replace(/&/g, "&amp;")
               .replace(/</g, "&lt;")
               .replace(/>/g, "&gt;")
               .replace(/"/g, "&quot;")
               .replace(/'/g, "&#039;");
+      }
+
+      // --- MARKED.JS CONFIGURATION ---
+      const renderer = new marked.Renderer();
+      renderer.code = function({text, lang}) {
+          const languageLabel = lang ? lang.toUpperCase() : 'TERMINAL SNIPPET';
+          
+          // Escape HTML characters to prevent the browser from rendering AI-generated code!
+          const escapedText = escapeHTML(text);
 
           return `
               <div class="not-prose relative bg-[#0d1117] rounded-lg border border-slate-700/50 mt-4 mb-4 shadow-lg">
@@ -609,10 +616,9 @@ const renderer = new marked.Renderer();
               title: "New Workspace Query",
               history: []
           };
-          savedSessions.unshift(newSession); // Add to top of list
+          savedSessions.unshift(newSession); 
           saveSessionsToStorage();
           
-          // Reset UI
           chatWindow.innerHTML = greetingMsgHtml;
           chatInput.value = '';
           adjustTextareaHeight();
@@ -622,18 +628,16 @@ const renderer = new marked.Renderer();
           let session = savedSessions.find(s => s.id === currentSessionId);
           if (!session) return;
 
-          // Auto-title the session based on the first user prompt if it's new
           if (session.history.length === 0) {
               const words = userText.split(' ').slice(0, 5).join(' ');
               session.title = words + (words.length < userText.length ? '...' : '');
           }
 
-          // Save Raw text to memory
           session.history.push({ role: "user", parts: [{ text: userText }] });
           session.history.push({ 
               role: "model", 
               parts: [{ text: aiText }],
-              thought: aiThought // We save the thought string so it can be re-rendered later!
+              thought: aiThought 
           });
 
           saveSessionsToStorage();
@@ -644,12 +648,11 @@ const renderer = new marked.Renderer();
           const session = savedSessions.find(s => s.id === currentSessionId);
           if (!session) return;
 
-          chatWindow.innerHTML = ''; // Clear window
+          chatWindow.innerHTML = ''; 
           
           if (session.history.length === 0) {
               chatWindow.innerHTML = greetingMsgHtml;
           } else {
-              // Rebuild the chat UI from memory
               session.history.forEach(msg => {
                   if (msg.role === 'user') {
                       appendUserMessage(msg.parts[0].text);
@@ -658,11 +661,11 @@ const renderer = new marked.Renderer();
                   }
               });
           }
-          renderSidebar(); // Update active highlights
+          renderSidebar(); 
       }
 
       function deleteSession(sessionId, event) {
-          event.stopPropagation(); // Stop the click from loading the chat
+          event.stopPropagation(); 
           savedSessions = savedSessions.filter(s => s.id !== sessionId);
           saveSessionsToStorage();
           
@@ -678,10 +681,12 @@ const renderer = new marked.Renderer();
               const isActive = session.id === currentSessionId;
               const li = document.createElement('div');
               li.className = `group flex items-center justify-between px-3 py-3 rounded-xl cursor-pointer transition text-sm ${isActive ? 'chat-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-white'}`;
+              
+              // NEW: Applying escapeHTML to the sidebar title!
               li.innerHTML = `
                   <div class="truncate flex items-center gap-3 w-[85%]">
                       <i class="far fa-comment-alt opacity-70"></i>
-                      <span class="truncate">${session.title}</span>
+                      <span class="truncate">${escapeHTML(session.title)}</span>
                   </div>
                   <button class="opacity-0 group-hover:opacity-100 text-slate-500 hover:text-google-red transition p-1" title="Delete Chat">
                       <i class="fas fa-trash-alt"></i>
@@ -695,7 +700,6 @@ const renderer = new marked.Renderer();
           });
       }
 
-      // Initialize App
       if (savedSessions.length === 0) {
           createNewSession();
       } else {
@@ -712,7 +716,8 @@ const renderer = new marked.Renderer();
       chatInput.addEventListener('input', adjustTextareaHeight);
 
       function appendUserMessage(text) {
-        const formattedText = text.replace(/\n/g, '<br>');
+        // NEW: Applying escapeHTML before allowing newlines to render
+        const formattedText = escapeHTML(text).replace(/\n/g, '<br>');
         const msgHtml = `
           <div class="flex gap-4 max-w-3xl self-end flex-row-reverse animate-[fadeIn_0.3s_ease-out]">
             <div class="w-10 h-10 rounded-full bg-google-blue flex items-center justify-center shrink-0 shadow-lg shadow-google-blue/30 text-white font-bold text-sm">U</div>
@@ -759,7 +764,6 @@ const renderer = new marked.Renderer();
         adjustTextareaHeight(); 
         appendUserMessage(text);
         
-        // Remove greeting if it's the first message
         const greeting = document.getElementById('greeting-msg');
         if (greeting) greeting.remove();
 
@@ -803,9 +807,7 @@ const renderer = new marked.Renderer();
         let accumulatedThought = "";
         let lastUpdate = 0; 
         
-        // Get the active session history to send to backend
         const currentSession = savedSessions.find(s => s.id === currentSessionId);
-        // Exclude thoughts from history sent to API to save tokens, only send text
         const apiHistory = currentSession.history.map(msg => ({
             role: msg.role,
             parts: msg.parts
@@ -868,12 +870,11 @@ const renderer = new marked.Renderer();
 
             if (accumulatedThought) {
                 thoughtDiv.innerHTML = marked.parse(accumulatedThought);
-                thinkBox.removeAttribute('open'); // Collapse thought box when finished
+                thinkBox.removeAttribute('open'); 
             }
             if (accumulatedText) responseDiv.innerHTML = marked.parse(accumulatedText);
             chatWindow.scrollTop = chatWindow.scrollHeight;
 
-            // Save the completed transaction to local storage
             updateCurrentSession(text, accumulatedText, accumulatedThought);
 
         } catch (error) {
