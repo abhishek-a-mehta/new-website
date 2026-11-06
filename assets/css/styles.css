@@ -1972,10 +1972,13 @@ textarea.input {
 .meta-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  height: 32px;
-  padding: 0 0.8rem;
-  border-radius: var(--r-pill);
+  gap: 0.45rem;
+  min-height: 32px;
+  max-width: 100%;
+  padding: 0.3rem 0.85rem;
+  border-radius: 16px;
+  line-height: 1.35;
+  text-align: left;
   border: 1px solid var(--border);
   background: var(--surface);
   font-size: 0.82rem;
@@ -1984,6 +1987,7 @@ textarea.input {
 }
 
 .meta-chip .icon {
+  flex: none;
   width: 0.95rem;
   height: 0.95rem;
 }
@@ -2430,10 +2434,11 @@ textarea.input {
 }
 
 .legal-num {
+  flex: none;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 1em;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.02em;
   color: var(--text-subtle);
 }
 
