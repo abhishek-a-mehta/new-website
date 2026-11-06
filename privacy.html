@@ -1,136 +1,208 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" data-theme="dark">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy | Abhishek Mehta</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script>
-    tailwind.config = {
-      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { google: { blue: '#4285F4', red: '#EA4335', yellow: '#FBBC05', green: '#34A853' } } } }
-    }
-  </script>
-  <style>
-    body { background-color: #0f172a; color: #f8fafc; overflow-x: hidden; }
-    .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-    .fade-in { animation: fadeIn 1s ease-in-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #0f172a; }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #475569; }
-    
-    .background-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -20; opacity: 1; }
-    .blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.2; animation: blob-color-shift 8s infinite ease-in-out alternate; }
-    @keyframes blob-color-shift {
-      0% { background-color: #4285F4; transform: translate(0px, 0px) scale(1); }
-      25% { background-color: #EA4335; transform: translate(40px, -40px) scale(1.05); }
-      50% { background-color: #FBBC05; transform: translate(-30px, 20px) scale(0.95); }
-      75% { background-color: #34A853; transform: translate(20px, 40px) scale(1.1); }
-      100% { background-color: #4285F4; transform: translate(0px, 0px) scale(1); }
-    }
-    .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; animation-duration: 9s; animation-delay: 0s; }
-    .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; animation-duration: 11s; animation-delay: -3s; }
-    .blob-3 { top: 30%; left: 40%; width: 55vw; height: 55vw; animation-duration: 13s; animation-delay: -6s; }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!--
+    Security: the Content-Security-Policy is delivered via <meta> because GitHub Pages
+    cannot send custom response headers. No inline scripts, styles or event handlers are used.
+    TODO(security): frame-ancestors / X-Frame-Options (clickjacking) and HSTS can only be sent
+    as HTTP headers; add them if the site is moved behind Cloudflare, Netlify or a similar CDN.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'self'; require-trusted-types-for 'script'; trusted-types 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Privacy Policy — Workspace Add-ons by Abhishek Mehta</title>
+  <meta name="description" content="How Bulkyduce, User Info and Resource Manager handle your data: no data collection and no access to your data.">
+  <link rel="canonical" href="https://mehtaabhishek.in/privacy.html">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#08080a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Abhishek Mehta">
+  <meta property="og:title" content="Privacy Policy — Workspace Add-ons by Abhishek Mehta">
+  <meta property="og:description" content="How Bulkyduce, User Info and Resource Manager handle your data: no data collection and no access to your data.">
+  <meta property="og:url" content="https://mehtaabhishek.in/privacy.html">
+  <meta property="og:image" content="https://mehtaabhishek.in/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Abhishek Mehta — Workspace Cloud Architect">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/main.js" defer></script>
 </head>
-<body class="antialiased selection:bg-google-blue selection:text-white relative">
-  <div class="background-animation">
-    <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
-  </div>
 
-  <nav class="fixed w-full top-0 z-50 glass-card border-b-0 border-white/5">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative">
-      <a href="index.html" class="text-xl font-bold tracking-tight z-50">AM<span class="text-google-blue">.</span></a>
-      <div class="space-x-8 hidden md:block text-sm font-medium text-slate-300">
-        <a href="index.html" class="hover:text-white transition">Home</a>
-        <a href="addons.html" class="hover:text-white transition">Add-ons</a>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="nav-shell">
+      <a class="brand" href="index.html" aria-label="Abhishek Mehta — home">
+        <span class="brand-mark"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M11.5 44 20 20l8.5 24M14.33 36h11.34M37.5 44V20l7.5 14 7.5-14v24" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="brand-name">Abhishek Mehta</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="addons.html">Add-ons</a>
+        <a href="ai.html">AI Assistant</a>
+        <a href="support.html">Support</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme" title="Switch to light theme"><svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+        <a class="btn btn-primary btn-sm nav-cta" href="index.html#contact">Get in touch</a>
+        <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><svg class="icon icon-menu" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><svg class="icon icon-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
       </div>
-      <a href="index.html#contact" class="hidden md:block bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-200 transition">Get in Touch</a>
-      <button id="mobile-menu-btn" class="block md:hidden text-slate-300 hover:text-white focus:outline-none z-50 transition">
-        <i class="fas fa-bars text-2xl"></i>
-      </button>
     </div>
-    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full glass-card border-t border-white/5 shadow-2xl flex-col items-center py-8 space-y-6 md:hidden">
-      <a href="index.html" class="text-lg text-slate-300 hover:text-white font-medium mobile-link transition">Home</a>
-      <a href="addons.html" class="text-lg text-slate-300 hover:text-white font-medium mobile-link transition">Add-ons</a>
-      <a href="index.html#contact" class="bg-google-blue text-white px-8 py-3 mt-2 rounded-full text-sm font-semibold shadow-lg shadow-google-blue/20 mobile-link transition">Get in Touch</a>
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Mobile">
+        <a href="index.html">Home <svg class="icon icon-chevron-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg></a>
+        <a href="addons.html">Add-ons <svg class="icon icon-chevron-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg></a>
+        <a href="ai.html">AI Assistant <svg class="icon icon-chevron-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg></a>
+        <a href="support.html">Support <svg class="icon icon-chevron-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg></a>
+        <a class="btn btn-primary btn-lg btn-block" href="index.html#contact">Get in touch <svg class="icon icon-arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <section class="pt-32 pb-12 px-6 fade-in text-center relative z-10">
-    <div class="max-w-3xl mx-auto">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">Privacy Policy</h1>
-      <p class="text-lg md:text-xl text-slate-400 font-light leading-relaxed">Built on Trust, Transparency, and Security.</p>
-    </div>
-  </section>
-
-  <section class="pb-24 px-6 relative z-10 fade-in" style="animation-delay: 0.2s;">
-    <div class="max-w-4xl mx-auto space-y-8">
-      
-      <div class="glass-card p-8 md:p-10 rounded-3xl">
-        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-          <i class="fas fa-database text-google-blue"></i> Do I collect your data?
-        </h2>
-        <div class="space-y-4 text-slate-300 leading-relaxed">
-          <p><strong>No, I don't collect any user data.</strong> These tools are developed to help fellow Admins perform their day-to-day tasks with ease. They are built with Google Apps Script, which runs on the V8 Engine—the most secure JavaScript Engine.</p>
-          <p>Whatever data you download or upload using these tools goes directly to the Google Workspace Admin Console using the required APIs to perform actions (like Add/Delete/Suspend/Update Users, Groups, or Attributes). Upon completing the action, it gives confirmation strictly to the user.</p>
-          <p>All of the above is done using a secure OAuth pipeline, ensuring that data reaches the specific intended user only (the person actively using the tool).</p>
+  <main id="main">
+    <section class="page-hero page-hero--center" aria-labelledby="page-title">
+      <div class="bg-layer" aria-hidden="true">
+        <div class="dot-grid"></div>
+        <div class="aurora"></div>
+      </div>
+      <div class="container">
+        <div class="page-hero-inner">
+          <span class="eyebrow rise">Legal</span>
+          <h1 class="page-title rise rise-1" id="page-title">Privacy <span class="serif text-gradient">Policy</span></h1>
+          <p class="page-lead rise rise-2">Built on Trust, Transparency, and Security.</p>
+          <div class="meta-row rise rise-3">
+            <span class="meta-chip"><svg class="icon icon-shield-check" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> Applies to Bulkyduce, User Info &amp; Resource Manager</span>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="glass-card p-8 md:p-10 rounded-3xl">
-        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-          <i class="fas fa-eye-slash text-google-red"></i> Can I see or access your data?
-        </h2>
-        <div class="space-y-4 text-slate-300 leading-relaxed">
-          <p><strong>No, I cannot access or see your data.</strong> Your data is stored entirely within Google Sheets under your ownership. Unless you specifically share that sheet with another user, not only me, but no one else can see your data.</p>
+    <section class="section section--tight section--flush-top">
+      <div class="container legal-layout">
+        <aside class="legal-toc">
+          <nav aria-label="On this page" data-toc>
+            <p class="toc-title">On this page</p>
+            <ol class="toc-list">
+              <li><a href="#data-collection">Do I collect your data?</a></li>
+              <li><a href="#data-access">Can I access your data?</a></li>
+              <li><a href="#conclusion">Conclusion</a></li>
+            </ol>
+          </nav>
+        </aside>
+
+        <article class="legal-body">
+          <div class="summary-cards">
+            <div class="card summary-card accent-blue reveal">
+              <span class="feature-icon"><svg class="icon icon-database" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></span>
+              <h2 class="h3">No data collected</h2>
+              <p>The add-ons don’t collect any user data.</p>
+            </div>
+            <div class="card summary-card accent-red reveal reveal-d1">
+              <span class="feature-icon"><svg class="icon icon-eye-off" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><path d="m2 2 20 20"/></svg></span>
+              <h2 class="h3">No access to your data</h2>
+              <p>Your data stays in your own Google Sheet.</p>
+            </div>
+            <div class="card summary-card accent-green reveal reveal-d2">
+              <span class="feature-icon"><svg class="icon icon-shield-check" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+              <h2 class="h3">Secure OAuth pipeline</h2>
+              <p>Results reach only the person using the tool.</p>
+            </div>
+          </div>
+
+          <div class="prose">
+            <section class="legal-section" id="data-collection">
+              <h2><span class="legal-num">01</span>Do I collect your data?</h2>
+              <p><strong>No, I don’t collect any user data.</strong> These tools are developed to help fellow Admins perform their day-to-day tasks with ease. They are built with Google Apps Script, which runs on the V8 Engine — the most secure JavaScript Engine.</p>
+              <p>Whatever data you download or upload using these tools goes directly to the Google Workspace Admin Console using the required APIs to perform actions (like Add/Delete/Suspend/Update Users, Groups, or Attributes). Upon completing the action, it gives confirmation strictly to the user.</p>
+              <p>All of the above is done using a secure OAuth pipeline, ensuring that data reaches the specific intended user only (the person actively using the tool).</p>
+            </section>
+
+            <section class="legal-section" id="data-access">
+              <h2><span class="legal-num">02</span>Can I see or access your data?</h2>
+              <p><strong>No, I cannot access or see your data.</strong> Your data is stored entirely within Google Sheets under your ownership. Unless you specifically share that sheet with another user, not only me, but no one else can see your data.</p>
+            </section>
+
+            <section class="legal-section" id="conclusion">
+              <h2><span class="legal-num">03</span>Conclusion</h2>
+              <p>Dear Users,</p>
+              <p>I can’t access or see your data. It remains securely in your Google Sheet under your full control.</p>
+              <p>These Add-ons are created transparently with Google Apps Script. I have published snippets of the code working behind these tools on my <a href="https://github.com/abhishek-a-mehta" target="_blank" rel="noopener noreferrer">GitHub Profile</a> to maintain full transparency with the community.</p>
+            </section>
+          </div>
+
+          <div class="card cta-band legal-foot reveal">
+            <div>
+              <h2 class="cta-band-title">Questions about your privacy?</h2>
+              <p class="cta-band-text">I’m happy to explain how the add-ons work. You can also read the terms of use.</p>
+            </div>
+            <div class="cta-band-actions">
+              <a class="btn btn-primary" href="support.html"><svg class="icon icon-life-buoy" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg> Contact support</a>
+              <a class="btn btn-secondary" href="terms.html">Terms of Service</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" aria-label="Abhishek Mehta — home">
+            <span class="brand-mark"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M11.5 44 20 20l8.5 24M14.33 36h11.34M37.5 44V20l7.5 14 7.5-14v24" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="brand-name">Abhishek Mehta</span>
+          </a>
+          <p class="footer-tagline">Workspace Cloud Architect — in love with Google Workspace &amp; Cloud Technology.</p>
+          <div class="social">
+            <a class="icon-btn" href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><svg class="icon icon-linkedin icon-fill" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a class="icon-btn" href="https://github.com/abhishek-a-mehta" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)"><svg class="icon icon-github icon-fill" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+            <a class="icon-btn" href="mailto:abhishekmehta110@gmail.com" aria-label="Email Abhishek"><svg class="icon icon-mail" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+          </div>
         </div>
+        <nav class="footer-col" aria-labelledby="footer-site">
+          <h2 class="footer-title" id="footer-site">Site</h2>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#experience">Career timeline</a></li>
+            <li><a href="ai.html">AI Assistant</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-labelledby="footer-addons">
+          <h2 class="footer-title" id="footer-addons">Add-ons</h2>
+          <ul>
+            <li><a href="addons.html">All add-ons</a></li>
+            <li><a href="bulkyduce.html">Bulkyduce</a></li>
+            <li><a href="user_info.html">User Info</a></li>
+            <li><a href="resource_manager.html">Resource Manager</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-labelledby="footer-help">
+          <h2 class="footer-title" id="footer-help">Help &amp; legal</h2>
+          <ul>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </nav>
       </div>
-
-      <div class="glass-card p-8 md:p-10 rounded-3xl">
-        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-          <i class="fas fa-check-circle text-google-green"></i> Conclusion
-        </h2>
-        <div class="space-y-4 text-slate-300 leading-relaxed">
-          <p>Dear Users,</p>
-          <p>I can't access or see your data. It remains securely in your Google Sheet under your full control.</p>
-          <p>These Add-ons are created transparently with Google Apps Script. I have published snippets of the code working behind these tools on my GitHub Profile to maintain full transparency with the community.</p>
-        </div>
+      <div class="footer-bottom">
+        <p>&copy; <span data-year>2026</span> Abhishek Mehta. All rights reserved.</p>
+        <p>Bengaluru, India</p>
       </div>
-
     </div>
-  </section>
-
-  <section class="py-12 px-6 border-t border-white/5 bg-slate-900/50">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
-      <p>&copy; 2026 Abhishek Mehta. All rights reserved.</p>
-      <div class="flex gap-6">
-        <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
-        <a href="https://www.linkedin.com/in/abhishek-mehta110" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
-        <a href="#" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const mobileBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const menuIcon = mobileBtn.querySelector('i');
-      mobileBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        mobileMenu.classList.toggle('flex');
-        menuIcon.classList.replace(mobileMenu.classList.contains('hidden') ? 'fa-times' : 'fa-bars', mobileMenu.classList.contains('hidden') ? 'fa-bars' : 'fa-times');
-      });
-      document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('flex'); menuIcon.classList.replace('fa-times', 'fa-bars');
-        });
-      });
-    });
-  </script>
+  </footer>
 </body>
+
 </html>
