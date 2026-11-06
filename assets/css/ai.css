@@ -695,6 +695,13 @@
   color: var(--text-subtle);
 }
 
+/* iOS Safari zooms the page when a field under 16px gets focus */
+@media (hover: none) and (pointer: coarse) {
+  #chat-input {
+    font-size: 1rem;
+  }
+}
+
 .composer-actions {
   display: flex;
   align-items: center;

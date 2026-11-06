@@ -1,12 +1,12 @@
 /*
  * Applies the saved colour theme before first paint so there is no flash.
- * Dark is the default; the toggle in the header stores "light" or "dark".
+ * Light is the default; the toggle in the header stores "light" or "dark".
  * Loaded synchronously in <head> (external file, CSP-compliant).
  */
 (function () {
   'use strict';
   var root = document.documentElement;
-  var theme = 'dark';
+  var theme = 'light';
   try {
     var saved = window.localStorage.getItem('theme');
     if (saved === 'light' || saved === 'dark') {

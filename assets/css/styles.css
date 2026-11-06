@@ -408,32 +408,35 @@ ol[role="list"] {
 .brand {
   justify-self: start;
   display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  padding: 4px 10px 4px 4px;
+  align-items: baseline;
+  padding: 6px 12px;
   border-radius: var(--r-pill);
   color: var(--heading);
-  font-weight: 600;
-  font-size: 0.975rem;
-  letter-spacing: -0.02em;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1;
+  letter-spacing: -0.03em;
   white-space: nowrap;
+  transition: opacity 0.2s ease;
 }
 
-.brand-mark {
-  width: 34px;
-  height: 34px;
-  border-radius: 11px;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  color: #fff;
-  background: linear-gradient(140deg, #6aa5ff 0%, #2b7bf0 45%, #1557c0 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 18px -6px rgba(26, 115, 232, 0.85);
+.brand:hover {
+  opacity: 0.82;
 }
 
-.brand-mark svg {
-  width: 100%;
-  height: 100%;
+.footer-brand .brand {
+  padding: 2px 0;
+  border-radius: var(--r-xs);
+  font-size: 1.5rem;
+}
+
+.brand-dot {
+  color: var(--blue);
+}
+
+[data-theme="light"] .brand-dot {
+  color: var(--t-blue);
 }
 
 .nav-links {
@@ -973,8 +976,11 @@ ol[role="list"] {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  padding: 0 0.1em 0.08em 0;
-  margin-right: -0.1em;
+  /* Italic glyphs overhang their advance box on both sides (the "g" of
+     "great.", the "A" of "Add-ons"); background-clip: text only paints inside
+     the padding box, so pad all round and cancel it with negative margins. */
+  padding: 0.06em 0.16em 0.18em;
+  margin: 0 -0.16em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
@@ -2076,6 +2082,14 @@ textarea.input {
   letter-spacing: -0.03em;
 }
 
+/* Add-on names (cards, page titles, support guides): Geist Mono with the same
+   gradient as "Cloud Architect." */
+.addon-wordmark {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
 .addon-source {
   margin-top: 0.25rem;
   display: inline-flex;
@@ -2436,10 +2450,10 @@ textarea.input {
 .legal-num {
   flex: none;
   font-family: var(--font-mono);
-  font-size: 1em;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--text-subtle);
+  font-size: 1.15em;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: var(--text-muted);
 }
 
 .summary-cards {

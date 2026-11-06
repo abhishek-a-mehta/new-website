@@ -53,10 +53,47 @@
   if (!chatWindow || !composer || !input) {
     return;
   }
-  var defaultPlaceholder = window.matchMedia('(max-width: 560px)').matches
-    ? 'Ask a GAM or Workspace question…'
-    : (input.getAttribute('placeholder') || '');
-  input.setAttribute('placeholder', defaultPlaceholder);
+  /*
+   * Placeholder text must stay on one line: the composer is a single row tall,
+   * so a wrapped placeholder had its second line clipped on narrow phones.
+   * Each list runs from longest to shortest and the longest one that fits the
+   * current width is shown (re-checked on resize and once web fonts load).
+   */
+  var PLACEHOLDERS = {
+    idle: [
+      input.getAttribute('placeholder') || 'Type your GAM or Workspace query here…',
+      'Ask a GAM or Workspace question…',
+      'Ask a Workspace question…',
+      'Ask about Workspace…',
+      'Ask AB anything…'
+    ],
+    listening: ['Listening… type or tap the mic to stop', 'Listening… tap the mic to stop', 'Listening…'],
+    micError: ['Microphone unavailable or permission denied.', 'Microphone unavailable', 'Mic unavailable']
+  };
+  var placeholderState = 'idle';
+  var measureCtx = null;
+
+  function fitPlaceholder(options) {
+    var style = window.getComputedStyle(input);
+    var room = input.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight) - 4;
+    if (!measureCtx) {
+      measureCtx = document.createElement('canvas').getContext('2d');
+    }
+    if (measureCtx && room > 0) {
+      measureCtx.font = style.fontStyle + ' ' + style.fontWeight + ' ' + style.fontSize + ' ' + style.fontFamily;
+      for (var i = 0; i < options.length - 1; i++) {
+        if (measureCtx.measureText(options[i]).width <= room) {
+          return options[i];
+        }
+      }
+    }
+    return options[options.length - 1];
+  }
+
+  function setPlaceholder(state) {
+    placeholderState = state;
+    input.setAttribute('placeholder', fitPlaceholder(PLACEHOLDERS[state]));
+  }
 
   /* ---------- Helpers ---------- */
   function el(tag, className, text) {
@@ -733,7 +770,7 @@
       micBtn.classList.add('is-recording');
       micBtn.setAttribute('aria-pressed', 'true');
       micBtn.setAttribute('aria-label', 'Stop voice typing');
-      input.placeholder = 'Listening… type or tap the mic to stop';
+      setPlaceholder('listening');
     };
 
     recognition.onresult = function (event) {
@@ -751,20 +788,37 @@
       micBtn.classList.remove('is-recording');
       micBtn.setAttribute('aria-pressed', 'false');
       micBtn.setAttribute('aria-label', 'Start voice typing');
-      input.placeholder = defaultPlaceholder;
+      setPlaceholder('idle');
     };
 
     recognition.onerror = function () {
-      input.placeholder = 'Microphone unavailable or permission denied.';
+      setPlaceholder('micError');
       window.setTimeout(function () {
         if (!recording) {
-          input.placeholder = defaultPlaceholder;
+          setPlaceholder('idle');
         }
       }, 3000);
     };
   }
 
   /* ---------- Init ---------- */
+  // Fit after the mic button is shown, since it narrows the input.
+  setPlaceholder('idle');
+  var placeholderFrame = 0;
+  window.addEventListener('resize', function () {
+    if (!placeholderFrame) {
+      placeholderFrame = window.requestAnimationFrame(function () {
+        placeholderFrame = 0;
+        setPlaceholder(placeholderState);
+      });
+    }
+  });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () {
+      setPlaceholder(placeholderState);
+    });
+  }
+
   if (sessions.length) {
     loadSession(sessions[0].id);
   } else {

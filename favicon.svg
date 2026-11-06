@@ -1,11 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="am-bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#6aa5ff"/>
-      <stop offset="0.45" stop-color="#2b7bf0"/>
-      <stop offset="1" stop-color="#1557c0"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="15" fill="url(#am-bg)"/>
-  <path d="M11.5 44 20 20l8.5 24M14.33 36h11.34M37.5 44V20l7.5 14 7.5-14v24" fill="none" stroke="#fff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#FFFFFF"/><rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#D4D4D8" stroke-width="1.5"/><path transform="matrix(0.02946 0 0 0.02946 5.446 13.601)" fill="#0B0B0D" d="M18.8 1000.0L274.8 290.0L455.0 290.0L711.0 1000.0L553.4 1000.0L501.0 849.0L228.2 849.0L175.8 1000.0ZM271.0 724.2L458.8 724.2L365.2 449.6ZM773.8 1000.0L773.8 290.0L976.6 290.0L1157.4 807.0L1337.8 290.0L1540.6 290.0L1540.6 1000.0L1388.6 1000.0L1388.6 540.0L1221.6 998.2L1092.2 998.2L925.8 540.0L925.8 1000.0Z"/><path transform="matrix(0.02946 0 0 0.02946 5.446 13.601)" fill="#1A73E8" d="M1621.4 1000.0L1621.4 846.8L1784.2 846.8L1784.2 1000.0Z"/></svg>
