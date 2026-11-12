@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap for https://mehtaabhishek.in/
+  Each <loc> must exactly match the page's <link rel="canonical">.
+  Update <lastmod> (YYYY-MM-DD) whenever a page's content meaningfully changes.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://mehtaabhishek.in/</loc>
+    <lastmod>2026-11-06</lastmod>
+  </url>
+  <url>
+    <loc>https://mehtaabhishek.in/addons.html</loc>
+    <lastmod>2026-11-06</lastmod>
+  </url>
+  <url>
+    <loc>https://mehtaabhishek.in/bulkyduce.html</loc>
+    <lastmod>2026-11-06</lastmod>
+  </url>
+  <url>
+    <loc>https://mehtaabhishek.in/user_info.html</loc>
+    <lastmod>2026-11-06</lastmod>
+  </url>
+  <url>
+    <loc>https://mehtaabhishek.in/resource_manager.html</loc>
+    <lastmod>2026-11-06</lastmod>
+  </url>
+  <url>
+    <loc>https://mehtaabhishek.in/ai.html</loc>
+    <lastmod>2026-11-06</lastmod>
+  </url>
+  <url>
+    <loc>https://mehtaabhishek.in/support.html</loc>
+    <lastmod>2026-11-06</lastmod>
+  </url>
+  <url>
+    <loc>https://mehtaabhishek.in/privacy.html</loc>
+    <lastmod>2026-11-06</lastmod>
+  </url>
+  <url>
+    <loc>https://mehtaabhishek.in/terms.html</loc>
+    <lastmod>2026-11-06</lastmod>
+  </url>
+</urlset>
