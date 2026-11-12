@@ -1,0 +1,7 @@
+# robots.txt for https://mehtaabhishek.in/
+# All public pages may be crawled. CSS/JS under /assets/ must stay crawlable
+# so search engines can render the pages correctly.
+User-agent: *
+Allow: /
+
+Sitemap: https://mehtaabhishek.in/sitemap.xml
