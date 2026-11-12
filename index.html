@@ -35,6 +35,67 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <script src="assets/js/theme.js"></script>
   <script src="assets/js/main.js" defer></script>
+  <!--
+    Structured data (schema.org JSON-LD) so search engines can identify the site and its author.
+    type="application/ld+json" is a non-executable data block: browsers never run it, so it is
+    not subject to the CSP script-src rule above. Keep it in sync with the visible page content.
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://mehtaabhishek.in/#website",
+        "url": "https://mehtaabhishek.in/",
+        "name": "Abhishek Mehta",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://mehtaabhishek.in/#person" }
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://mehtaabhishek.in/#webpage",
+        "url": "https://mehtaabhishek.in/",
+        "name": "Abhishek Mehta — Workspace Cloud Architect",
+        "inLanguage": "en",
+        "isPartOf": { "@id": "https://mehtaabhishek.in/#website" },
+        "mainEntity": { "@id": "https://mehtaabhishek.in/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://mehtaabhishek.in/#person",
+        "name": "Abhishek Mehta",
+        "url": "https://mehtaabhishek.in/",
+        "jobTitle": "Workspace Cloud Architect",
+        "description": "Workspace Cloud Architect at Google, using automation and architecture to help enterprises collaborate securely at scale.",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Google",
+          "url": "https://www.google.com/"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bengaluru",
+          "addressCountry": "IN"
+        },
+        "knowsAbout": [
+          "Google Workspace",
+          "Google Apps Script",
+          "Vertex AI",
+          "Google Vault",
+          "Client-Side Encryption",
+          "Google Cloud Directory Sync",
+          "Enterprise security",
+          "Office 365 to Google Workspace migration"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/abhishek-mehta110",
+          "https://github.com/abhishek-a-mehta"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
