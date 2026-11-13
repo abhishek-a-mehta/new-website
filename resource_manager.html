@@ -141,7 +141,103 @@
           </article>
         </div>
 
-        <div class="card cta-band reveal">
+        <div class="mt-lg" id="faq">
+          <h2 class="subhead reveal">Frequently asked questions</h2>
+          <div class="faq reveal">
+            <details>
+              <summary>What can Resource Manager do? <svg class="icon icon-plus" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary>
+              <div class="faq-body">
+                <p>Resource Manager helps Google Workspace admins manage Calendar resources from Google Sheets. It can list and create buildings, resources and features; update and delete buildings and resources in bulk; and add features to resources.</p>
+              </div>
+            </details>
+            <details>
+              <summary>Can I delete buildings or resources in bulk? <svg class="icon icon-plus" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary>
+              <div class="faq-body">
+                <p>Yes. Go to <strong>Extensions</strong> › <strong>Resource Manager</strong> and choose the delete action for buildings or resources.</p>
+              </div>
+            </details>
+            <details>
+              <summary>Do I still need the Admin console for calendar resources? <svg class="icon icon-plus" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary>
+              <div class="faq-body">
+                <p>Not for these tasks. Resource Manager lets you manage buildings, resources and features from your sheet without navigating the Admin console.</p>
+              </div>
+            </details>
+            <details>
+              <summary>What do I need to use Resource Manager? <svg class="icon icon-plus" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary>
+              <div class="faq-body">
+                <p>A Google Workspace account. Resource Manager works on your behalf through Google’s OAuth, so it can only perform the actions your own account is allowed to perform in the Admin console.</p>
+              </div>
+            </details>
+            <details>
+              <summary>Is Resource Manager free, and does it store my data? <svg class="icon icon-plus" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary>
+              <div class="faq-body">
+                <p>It’s free, and it doesn’t collect your data. Whatever you download or upload goes directly to Google Workspace through the required APIs, over a secure OAuth pipeline, and the results stay in your own Google Sheet. See the <a href="privacy.html">Privacy Policy</a>.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="mt-lg" id="troubleshooting">
+          <h2 class="subhead reveal">Troubleshooting</h2>
+          <p class="muted reveal">Most problems have a quick fix. Open the one that matches what you see.</p>
+          <div class="faq mt-sm reveal">
+            <details id="fix-menu">
+              <summary>Resource Manager doesn’t appear in the Extensions menu <svg class="icon icon-plus" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary>
+              <div class="faq-body">
+                <ol class="steps">
+                  <li><strong>Reload the sheet.</strong> The menu is added when a sheet opens, so a sheet that was already open during installation won’t show it yet.</li>
+                  <li>Check that you’re signed in with the account you installed Resource Manager with (profile picture, top right).</li>
+                  <li>Go to <strong>Extensions</strong> › <strong>Add-ons</strong> › <strong>Manage add-ons</strong>, open the <strong>⋮</strong> menu on Resource Manager and make sure <strong>Use in this document</strong> is ticked. Then reload the sheet.</li>
+                  <li>If your admin installed Resource Manager for the whole domain, it can take up to 24 hours to appear.</li>
+                </ol>
+              </div>
+            </details>
+            <details id="fix-multiple-accounts">
+              <summary>It fails or asks me to sign in again when I use several Google accounts <svg class="icon icon-plus" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary>
+              <div class="faq-body">
+                <p>This is a known Google limitation: add-ons can run as your browser’s default account (the first one you signed in with) instead of the account that has the sheet open.</p>
+                <ol class="steps mt-sm">
+                  <li>Open the sheet in an <strong>Incognito window</strong> or a separate <strong>Chrome profile</strong> where only your Google Workspace account is signed in.</li>
+                  <li>Alternatively, sign out of all accounts, then sign in with your Google Workspace account first.</li>
+                </ol>
+              </div>
+            </details>
+            <details id="fix-permissions">
+              <summary>I get a permission or “access denied” error <svg class="icon icon-plus" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary>
+              <div class="faq-body">
+                <p>Resource Manager works through your own Google account, so it can only do what your account is allowed to do in the Admin console.</p>
+                <ol class="steps mt-sm">
+                  <li>Sign in with an admin account, not a regular user account.</li>
+                  <li>Make sure your admin role allows managing buildings and calendar resources. If it doesn’t, ask a super admin to add that privilege to your role.</li>
+                  <li>Run the action again.</li>
+                </ol>
+              </div>
+            </details>
+            <details id="fix-blocked">
+              <summary>My organization blocks Resource Manager <svg class="icon icon-plus" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary>
+              <div class="faq-body">
+                <p>Your Google Workspace admin decides which Marketplace apps can be installed and which apps can access your organization’s data. Ask them to check two settings in the <a href="https://admin.google.com" target="_blank" rel="noopener noreferrer">Google Admin console</a>:</p>
+                <ol class="steps mt-sm">
+                  <li><strong>Apps</strong> › <strong>Google Workspace Marketplace apps</strong>: allow Resource Manager, or install it for the domain.</li>
+                  <li><strong>Security</strong> › <strong>Access and data control</strong> › <strong>API controls</strong> › <strong>Manage third-party app access</strong>: if Resource Manager is listed as Blocked or Limited, change it to <strong>Trusted</strong>.</li>
+                </ol>
+              </div>
+            </details>
+            <details id="fix-create-resource">
+              <summary>Creating a resource fails because its building or feature doesn’t exist <svg class="icon icon-plus" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary>
+              <div class="faq-body">
+                <p>A resource can only point to buildings and features that already exist in your Google Workspace account.</p>
+                <ol class="steps mt-sm">
+                  <li>Run <strong>List Buildings</strong> and check the building is there. Copy it exactly as it appears in the list.</li>
+                  <li>If the building is missing, create it first, then create the resource again.</li>
+                  <li>Features work the same way: list them first, and create any missing feature before you add it to a resource.</li>
+                </ol>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="card cta-band mt-lg reveal">
           <div>
             <h2 class="cta-band-title">Questions about Resource Manager?</h2>
             <p class="cta-band-text">Get in touch for help or suggestions, and review how your data is handled.</p>

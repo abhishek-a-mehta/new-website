@@ -26,6 +26,9 @@ Key facts:
 ## Help and policies
 
 - [Support and FAQ](https://mehtaabhishek.in/support.html): Setup guides, FAQ and support email (abhishekmehta110@gmail.com)
+- [Bulkyduce troubleshooting](https://mehtaabhishek.in/bulkyduce.html#troubleshooting): Fixes for a missing Extensions menu, errors when signed in to several Google accounts, permission errors, an add-on blocked by the organization, and rows that fail during a bulk create or update
+- [User Info troubleshooting](https://mehtaabhishek.in/user_info.html#troubleshooting): The same common fixes, plus empty fields in the download
+- [Resource Manager troubleshooting](https://mehtaabhishek.in/resource_manager.html#troubleshooting): The same common fixes, plus creating a resource whose building or feature doesn't exist yet
 - [Privacy Policy](https://mehtaabhishek.in/privacy.html): How the add-ons handle data (no user data is collected)
 - [Terms of Service](https://mehtaabhishek.in/terms.html): Terms for using the add-ons
 
