@@ -1,0 +1,34 @@
+# Abhishek Mehta
+
+> Abhishek Mehta is a Workspace Cloud Architect at Google, based in Bengaluru, India, with 10+ years of experience designing, migrating, automating and securing Google Workspace for enterprises. He also builds free Google Workspace Marketplace add-ons for admins (Bulkyduce, User Info and Resource Manager) with 740K+ combined installs.
+
+Key facts:
+
+- Workspace Cloud Architect at Google since January 2023: built a Workspace-to-Workspace chat migration tool for domain transfers, designs automation with Apps Script, Vertex AI and REST APIs, and advises public-sector and enterprise customers on Google Vault, security posture and Client-Side Encryption.
+- Previously Technical Lead, Google Workspace at Wipro (2021–2023) and Zomato (2019–2021), and Cloud Solutions Engineer at Searce (2016–2019).
+- Built Apps Script automation (Admin and Gmail APIs) that let a 110,000-seat enterprise off-board BetterCloud, saving about £500K.
+- Has run large Office 365 to Google Workspace migrations with Cloud Migrator and Google DMS.
+- The add-ons are free and collect no user data: they act through the signed-in admin's own Google OAuth permissions, and results stay in the admin's own Google Sheet.
+
+## Profile
+
+- [Home](https://mehtaabhishek.in/): Expertise, career timeline and contact form
+- [LinkedIn](https://www.linkedin.com/in/abhishek-mehta110): Professional profile
+- [GitHub](https://github.com/abhishek-a-mehta): Code repositories
+
+## Google Workspace add-ons
+
+- [All add-ons](https://mehtaabhishek.in/addons.html): Overview of the three free Marketplace add-ons
+- [Bulkyduce](https://mehtaabhishek.in/bulkyduce.html): Bulk user, alias and group management inside Google Sheets: download, check duplicates, create, update, suspend and delete users; manage aliases, groups and group members; update GCPW custom attributes. 708K+ installs, rated 4.5.
+- [User Info](https://mehtaabhishek.in/user_info.html): Download Google Workspace users into Google Sheets in two clicks, with all organizational fields or only the essentials. 26K+ installs, rated 4.8. [Install from the Marketplace](https://workspace.google.com/marketplace/app/user_info/331367634987)
+- [Resource Manager](https://mehtaabhishek.in/resource_manager.html): Manage Google Calendar resources from Google Sheets: list and create buildings, resources and features; update and bulk-delete buildings and resources; add features to resources. 8K+ installs, rated 4.2. [Install from the Marketplace](https://workspace.google.com/marketplace/app/resource_manager/995689811803)
+
+## Help and policies
+
+- [Support and FAQ](https://mehtaabhishek.in/support.html): Setup guides, FAQ and support email (abhishekmehta110@gmail.com)
+- [Privacy Policy](https://mehtaabhishek.in/privacy.html): How the add-ons handle data (no user data is collected)
+- [Terms of Service](https://mehtaabhishek.in/terms.html): Terms for using the add-ons
+
+## Optional
+
+- [Workspace Oracle](https://mehtaabhishek.in/ai.html): Interactive AI chat assistant for GAM commands, Apps Script workflows and Google Workspace architecture questions. Requires JavaScript; answers can be inaccurate.
