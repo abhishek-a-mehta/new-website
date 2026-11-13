@@ -261,6 +261,30 @@
     el.textContent = String(new Date().getFullYear());
   });
 
+  /* ---------- Deep links into FAQ / troubleshooting answers ----------
+   * page.html#fix-menu opens the matching <details> (or the one containing the
+   * target), so links from emails, the support page or llms.txt land on an open
+   * answer. The id is looked up with getElementById, never parsed as a selector.
+   */
+  function openLinkedDetails() {
+    var id = window.location.hash.slice(1);
+    var target = null;
+    if (id) {
+      try {
+        target = document.getElementById(decodeURIComponent(id));
+      } catch (e) {
+        target = null; /* Malformed %-escape in the URL — ignore it. */
+      }
+    }
+    var details = target && target.closest('details');
+    if (details && !details.open) {
+      details.open = true;
+      target.scrollIntoView();
+    }
+  }
+  openLinkedDetails();
+  window.addEventListener('hashchange', openLinkedDetails);
+
   /* ---------- Career timeline (scroll-driven) ----------
    * Preserved from the original site: each card reveals when it enters the
    * viewport, its node lights up, and the gradient line fills from the first
