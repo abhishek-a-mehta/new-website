@@ -1,6 +1,6 @@
 # Abhishek Mehta
 
-> Abhishek Mehta is a Workspace Cloud Architect at Google, based in Bengaluru, India, with 10+ years of experience designing, migrating, automating and securing Google Workspace for enterprises. He also builds free Google Workspace Marketplace add-ons for admins (Bulkyduce, User Info and Resource Manager) with 740K+ combined installs.
+> Abhishek Mehta is a Workspace Cloud Architect at Google, based in Bengaluru, India, with 10+ years of experience designing, migrating, automating and securing Google Workspace for enterprises. He also builds free Google Workspace Marketplace add-ons for admins (Bulkyduce, User Info and Resource Manager) with 630K+ combined installs.
 
 Key facts:
 
@@ -19,9 +19,9 @@ Key facts:
 ## Google Workspace add-ons
 
 - [All add-ons](https://mehtaabhishek.in/addons.html): Overview of the three free Marketplace add-ons
-- [Bulkyduce](https://mehtaabhishek.in/bulkyduce.html): Bulk user, alias and group management inside Google Sheets: download, check duplicates, create, update, suspend and delete users; manage aliases, groups and group members; update GCPW custom attributes. 708K+ installs, rated 4.5.
-- [User Info](https://mehtaabhishek.in/user_info.html): Download Google Workspace users into Google Sheets in two clicks, with all organizational fields or only the essentials. 26K+ installs, rated 4.8. [Install from the Marketplace](https://workspace.google.com/marketplace/app/user_info/331367634987)
-- [Resource Manager](https://mehtaabhishek.in/resource_manager.html): Manage Google Calendar resources from Google Sheets: list and create buildings, resources and features; update and bulk-delete buildings and resources; add features to resources. 8K+ installs, rated 4.2. [Install from the Marketplace](https://workspace.google.com/marketplace/app/resource_manager/995689811803)
+- [Bulkyduce](https://mehtaabhishek.in/bulkyduce.html): Bulk user, alias and group management inside Google Sheets: download, check duplicates, create, update, suspend and delete users; manage aliases, groups and group members; update GCPW custom attributes. 600K+ installs, rated 4.5. [Install from the Marketplace](https://workspace.google.com/marketplace/app/bulkyduce/862622165027)
+- [User Info](https://mehtaabhishek.in/user_info.html): Download Google Workspace users into Google Sheets in two clicks, with all organizational fields or only the essentials. 24K+ installs, rated 4.5. [Install from the Marketplace](https://workspace.google.com/marketplace/app/user_info/331367634987)
+- [Resource Manager](https://mehtaabhishek.in/resource_manager.html): Manage Google Calendar resources from Google Sheets: list and create buildings, resources and features; update and bulk-delete buildings and resources; add features to resources. 10K+ installs. [Install from the Marketplace](https://workspace.google.com/marketplace/app/resource_manager/995689811803)
 
 ## Help and policies
 
