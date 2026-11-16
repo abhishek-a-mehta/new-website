@@ -25,6 +25,7 @@
   var SLOW_HINT_MS = 10000;
   var REQUEST_TIMEOUT_MS = 120000;
   var WAKE_INTERVAL_MS = 600000; // at most one wake-up ping per 10 minutes (Render sleeps after 15)
+  var MAX_HISTORY_SENT = 20; // most recent entries (10 exchanges) sent as context; the backend keeps the same
   var SVG_NS = 'http://www.w3.org/2000/svg';
 
   var ICON = {
@@ -564,6 +565,21 @@
     });
   }
 
+  // The backend explains rate limits (429) and rejected input (400/413) as
+  // { "error": "..." }. Show that text instead of a generic connection error;
+  // errorBox() renders it with textContent, so it can't inject markup.
+  async function readServerError(response) {
+    if (response.status !== 400 && response.status !== 413 && response.status !== 429) {
+      return '';
+    }
+    try {
+      var data = await response.json();
+      return data && typeof data.error === 'string' ? data.error.slice(0, 300) : '';
+    } catch (e) {
+      return '';
+    }
+  }
+
   /* ---------- Streaming request ---------- */
   async function sendMessage(rawText) {
     var text = String(rawText || '').trim().slice(0, MAX_INPUT);
@@ -574,7 +590,7 @@
       newChat();
     }
     var session = currentSession();
-    var apiHistory = session.history.map(function (m) {
+    var apiHistory = session.history.slice(-MAX_HISTORY_SENT).map(function (m) {
       return { role: m.role, parts: [{ text: m.parts[0].text }] };
     });
 
@@ -626,7 +642,9 @@
         signal: controller.signal
       });
       if (!response.ok || !response.body) {
-        throw new Error('Unexpected response status');
+        var statusError = new Error('Unexpected response status');
+        statusError.userMessage = await readServerError(response);
+        throw statusError;
       }
 
       var reader = response.body.getReader();
@@ -706,6 +724,8 @@
         }
       } else if (reason === 'timeout') {
         ai.body.replaceChildren(errorBox('The assistant took too long to respond. Please try again.'));
+      } else if (err && err.userMessage) {
+        ai.body.replaceChildren(errorBox(err.userMessage));
       } else {
         console.error('Chat request failed.');
         ai.body.replaceChildren(errorBox('Unable to connect to the assistant. Please try again in a moment.'));
