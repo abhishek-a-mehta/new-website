@@ -24,6 +24,7 @@
   var RENDER_INTERVAL_MS = 150;
   var SLOW_HINT_MS = 10000;
   var REQUEST_TIMEOUT_MS = 120000;
+  var WAKE_INTERVAL_MS = 600000; // at most one wake-up ping per 10 minutes (Render sleeps after 15)
   var SVG_NS = 'http://www.w3.org/2000/svg';
 
   var ICON = {
@@ -531,6 +532,38 @@
     updateSendState();
   }
 
+  /* ---------- Backend wake-up ---------- */
+  /*
+   * The chat backend runs on Render's free tier, which sleeps after 15 minutes
+   * without traffic and takes about a minute to wake. Sending one tiny request
+   * when this page is opened (and again when the visitor comes back after 10+
+   * quiet minutes) lets that start-up happen while they read and type.
+   * There's no background timer, so an idle tab never keeps the server awake.
+   * The request carries no chat data, cookies or referrer, and its response is
+   * ignored: no-cors mode needs no CORS headers, and any reply (even a 404)
+   * wakes the service. A small GET /health route on the backend would make it
+   * answer 200 instead of 404.
+   */
+  var WAKE_URL = new URL('/health', BACKEND_URL).href;
+  var lastBackendContact = 0;
+
+  function wakeBackend() {
+    var now = Date.now();
+    if (now - lastBackendContact < WAKE_INTERVAL_MS) {
+      return;
+    }
+    lastBackendContact = now;
+    fetch(WAKE_URL, {
+      method: 'GET',
+      mode: 'no-cors',
+      credentials: 'omit',
+      cache: 'no-store',
+      referrerPolicy: 'no-referrer'
+    }).catch(function () {
+      /* Best effort: if the wake-up fails, the first reply is just slower. */
+    });
+  }
+
   /* ---------- Streaming request ---------- */
   async function sendMessage(rawText) {
     var text = String(rawText || '').trim().slice(0, MAX_INPUT);
@@ -581,6 +614,7 @@
     };
 
     try {
+      lastBackendContact = Date.now(); // a real chat request keeps the server awake too
       var response = await fetch(BACKEND_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -802,6 +836,18 @@
   }
 
   /* ---------- Init ---------- */
+  // Start waking the chat backend straight away (see wakeBackend). A tab opened
+  // in the background waits until it is actually viewed.
+  if (document.visibilityState === 'visible') {
+    wakeBackend();
+  }
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'visible') {
+      wakeBackend();
+    }
+  });
+  input.addEventListener('focus', wakeBackend);
+
   // Fit after the mic button is shown, since it narrows the input.
   setPlaceholder('idle');
   var placeholderFrame = 0;
